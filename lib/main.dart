@@ -1,46 +1,45 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:sust_app/components/window_actions.dart';
+import 'package:system_theme/system_theme.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await windowManager.ensureInitialized();
+  SystemTheme.accentColor.load();
+  WindowOptions windowOptions = const WindowOptions(
+    size: Size(1200, 600),
+    center: true,
+    backgroundColor: Colors.transparent,
+    titleBarStyle: TitleBarStyle.hidden,
+    skipTaskbar: false,
+    fullScreen: false,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return FluentApp(
+      theme: FluentThemeData(
+        focusTheme: const FocusThemeData(glowFactor: 4.0),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Personal Dashboard',
+      home: const MyHomePage(
+        title: "Report App",
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -48,68 +47,155 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+  int _currentIndex = 0;
+  String? selected;
+  List<String> cats = <String>[
+    'Abyssinian',
+    'Aegean',
+    'American Bobtail',
+    'American Curl'
+  ];
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return DragToMoveArea(
+      child: NavigationView(
+        appBar: const NavigationAppBar(
+          title: Text('Report App'),
+          automaticallyImplyLeading: true,
+          actions: WindowActions(),
+        ),
+        pane: NavigationPane(
+          selected: _currentIndex,
+          onChanged: (i) => setState(() {
+            _currentIndex = i;
+          }),
+          displayMode: PaneDisplayMode.open,
+          autoSuggestBox: AutoSuggestBox<String>(
+            items: cats.map((cat) {
+              return AutoSuggestBoxItem<String>(
+                  value: cat,
+                  label: cat,
+                  onFocusChange: (focused) {
+                    if (focused) {
+                      debugPrint('Focused $cat');
+                    }
+                  });
+            }).toList(),
+            onSelected: (item) {
+              setState(() => selected = item.value);
+            },
+          ),
+          items: [
+            PaneItemExpander(
+              icon: const Icon(FluentIcons.account_management),
+              title: const Text('Updates'),
+              body: BodyItem(),
+              items: [
+                PaneItem(
+                  icon: const Icon(FluentIcons.mail),
+                  title: const Text('Class Routine'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Due Assignments'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Upcoming Exams'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Notices'),
+                  body: BodyItem(),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            PaneItemExpander(
+              icon: const Icon(FluentIcons.account_management),
+              title: const Text('Course Information'),
+              body: BodyItem(),
+              items: [
+                PaneItem(
+                  icon: const Icon(FluentIcons.mail),
+                  title: const Text('Resources'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Result'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Attendance'),
+                  body: BodyItem(),
+                ),
+              ],
+            ),
+            PaneItemExpander(
+              icon: const Icon(FluentIcons.account_management),
+              title: const Text('Administrivia'),
+              body: BodyItem(),
+              items: [
+                PaneItem(
+                  icon: const Icon(FluentIcons.mail),
+                  title: const Text('Payment'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Course Registration'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Important Links'),
+                  body: BodyItem(),
+                ),
+              ],
+            ),
+            PaneItemExpander(
+              icon: const Icon(FluentIcons.account_management),
+              title: const Text('Miscellaneous'),
+              body: BodyItem(),
+              items: [
+                PaneItem(
+                  icon: const Icon(FluentIcons.mail),
+                  title: const Text('Bus Schedule'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.view_dashboard),
+                  title: const Text('Student Information'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Events'),
+                  body: BodyItem(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.calendar),
+                  title: const Text('Map'),
+                  body: BodyItem(),
+                ),
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget BodyItem() {
+    return Container(
+      color: Colors.blue,
+      child: const Center(
+        child: Text('Body'),
+      ),
     );
   }
 }

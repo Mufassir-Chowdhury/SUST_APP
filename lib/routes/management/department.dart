@@ -131,7 +131,24 @@ class _DepartmentState extends State<Department> {
                 child: w,
               ),
               wrappedItem: CommandBarButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    pages = [body(context, departments)];
+
+                    pages.add(AddDepartment(
+                      onPressed: () {
+                        setState(() {
+                          departments = getDepartment();
+                          pages = [body(context, departments)];
+                          _selectedIndex = 0;
+                          name = 'Departments';
+                        });
+                      },
+                    ));
+                    _selectedIndex = 1;
+                    name = 'Departments > Add department';
+                  });
+                },
                 label: const Text('Add department'),
                 icon: const Icon(FluentIcons.add),
               ),
@@ -217,6 +234,83 @@ class _DepartmentState extends State<Department> {
           },
         ),
       ),
+    );
+  }
+}
+
+class AddDepartment extends StatefulWidget {
+  const AddDepartment({super.key, this.onPressed});
+  final VoidCallback? onPressed;
+
+  @override
+  State<AddDepartment> createState() => _AddDepartmentState();
+}
+
+class _AddDepartmentState extends State<AddDepartment> {
+  int numberBoxValue = 0;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController floorController = TextEditingController();
+  TextEditingController letterCodeController = TextEditingController();
+
+  Future<String> createDepartment(
+      int code, String name, String floor, String letterCode) async {
+    final http.Response response = await post(
+        '''CREATE department:$letterCode SET letter_code = $letterCode, code = $code, name = "$name", floor = "$floor"''');
+    return jsonDecode(response.body)[0]['status'];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        Form(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              const Text('Add a new department'),
+              const SizedBox(height: 20),
+              TextFormBox(
+                controller: nameController,
+                placeholder: 'Name',
+              ),
+              const SizedBox(height: 20),
+              NumberBox(
+                value: numberBoxValue,
+                min: 100,
+                max: 999,
+                onChanged: (int? n) {
+                  n != null
+                      ? setState(() {
+                          numberBoxValue = n;
+                        })
+                      : null;
+                },
+                mode: SpinButtonPlacementMode.inline,
+              ),
+              const SizedBox(height: 20),
+              TextFormBox(
+                controller: floorController,
+                placeholder: 'Floor',
+              ),
+              const SizedBox(height: 20),
+              TextFormBox(
+                controller: letterCodeController,
+                placeholder: 'Letter Code',
+              ),
+              const SizedBox(height: 20),
+              Button(
+                onPressed: () async {
+                  await createDepartment(numberBoxValue, nameController.text,
+                          floorController.text, letterCodeController.text)
+                      .then((value) => print(value));
+                  widget.onPressed!();
+                },
+                child: const Text('Add'),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -12,8 +12,7 @@ DEFINE FIELD letter_code ON department TYPE string
 DEFINE INDEX letter_code ON department FIELDS letter_code UNIQUE;
 
 DEFINE FIELD name ON department TYPE string 
-    ASSERT $value != NONE AND $value = /^[A-Za-z ]+$/ 
-    AND array::len(string::words($value)) > 0
+    ASSERT $value != NONE AND $value = /^[A-Za-z ]+$/
     AND string::len($value) > 5;
 DEFINE INDEX name ON department FIELDS name UNIQUE;
 

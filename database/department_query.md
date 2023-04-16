@@ -4,7 +4,7 @@ DEFINE TABLE department SCHEMAFULL;
 
 DEFINE FIELD code ON department TYPE number 
     ASSERT $value != NONE AND $value >= 100 AND $value <= 999 
-    AND array::len(string::split(type::string($value), '.')) == 1;
+    AND math::round($value) = $value;
 DEFINE INDEX code ON department FIELDS code UNIQUE;
 
 DEFINE FIELD letter_code ON department TYPE string 
@@ -20,8 +20,8 @@ DEFINE FIELD building ON department TYPE string
     ASSERT $value != NONE AND string::len($value) > 0;
 
 DEFINE FIELD floor ON department TYPE number 
-    ASSERT $value != NONE AND $value > 0 AND $value <= 10
-    AND array::len(string::split(type::string($value), '.')) == 1;
+    ASSERT $value != NONE AND $value > 0 AND $value <= 10 AND 
+    math::round($value) = $value"
 ```
 
 

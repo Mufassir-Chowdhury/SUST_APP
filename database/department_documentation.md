@@ -9,7 +9,7 @@ DEFINE TABLE department SCHEMAFULL;
 ```sql
 DEFINE FIELD code ON department TYPE number 
     ASSERT $value != NONE AND $value >= 100 AND $value <= 999 
-    AND array::len(string::split(type::string($value), '.')) == 1;
+    AND math::round($value) = $value;
 ```
 ### To make the `code` field `unique`
 ```sql
@@ -74,6 +74,6 @@ DEFINE FIELD building ON department TYPE string
 
 ```sql
 DEFINE FIELD floor ON department TYPE number 
-    ASSERT $value != NONE AND $value > 0 AND $value <= 10
-    AND array::len(string::split(type::string($value), '.')) == 1;
+    ASSERT $value != NONE AND $value > 0 AND $value <= 10 
+    AND math::round($value) = $value;
 ```

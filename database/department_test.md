@@ -114,7 +114,7 @@ create department content {
 #### query (type diffrent)
 ```sql
 create department content {
-    code : true|hiii|'hiii'|false|['k','l'],
+    code : true|hiii|'hiii'|false|['k','l']|'',
     id : string::trim('ECO'),
     letter_code : string::trim('ECO'),
     name : string::trim('Economics'),
@@ -128,7 +128,7 @@ create department content {
   {
     "time": "445µs",
     "status": "ERR",
-    "detail": "Found 1|NONE|0|0|0 for field `code`, with record `department:ECO`, but field must conform to: $value != NONE AND $value >= 100 AND $value <= 999 AND array::len(string::split(type::string($value), '.')) == 1"
+    "detail": "Found 1|NONE|0|0|0|0 for field `code`, with record `department:ECO`, but field must conform to: $value != NONE AND $value >= 100 AND $value <= 999 AND array::len(string::split(type::string($value), '.')) == 1"
   }
 ]
 ```
@@ -177,22 +177,80 @@ create department content {
   }
 ]
 ```
-### Wrong input in ``
+### Wrong input in `building`
 #### query
 ```sql
-
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim(''|'     '),
+    floor : 3
+};
 ```
 #### result
 ```json
-
+[
+  {
+    "time": "187.1µs",
+    "status": "ERR",
+    "detail": "Found ''|'' for field `building`, with record `department:ECO`, but field must conform to: $value != NONE AND string::len($value) > 0"
+  }
+]
 ```
-### Wrong input in ``
-#### query
+### Wrong input in `floor`
+#### query (type same but out of condition)
 ```sql
-
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : 10.5|0|11|-1,
+};
 ```
 #### result
 ```json
-
+[
+  {
+    "time": "444µs",
+    "status": "ERR",
+    "detail": "Found 10.5|0|11|-1 for field `floor`, with record `department:ECO`, but field must conform to: $value != NONE AND $value > 0 AND $value <= 10 AND array::len(string::split(type::string($value), '.')) == 1"
+  }
+]
 ```
-### duplicate
+#### query (type different)
+```sql
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : hiii|'hiii'|false|['k','l']|'',
+};
+```
+#### result
+```json
+[
+  {
+    "time": "204µs",
+    "status": "ERR",
+    "detail": "Found NONE|0|0|0|0 for field `floor`, with record `department:ECO`, but field must conform to: $value != NONE AND $value > 0 AND $value <= 10 AND array::len(string::split(type::string($value), '.')) == 1"
+  }
+]
+```
+#### edge case
+```sql
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : true,
+};
+```
+In this case data will be inserted and the value of `floor` will be 1. 

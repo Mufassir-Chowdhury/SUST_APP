@@ -254,3 +254,37 @@ create department content {
 };
 ```
 In this case data will be inserted and the value of `floor` will be 1. 
+
+
+
+## Right input 
+#### query
+```sql
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : 3,
+};
+```
+#### result
+```json
+[
+  {
+    "time": "1.026ms",
+    "status": "OK",
+    "result": [
+      {
+        "building": "D",
+        "code": 100,
+        "floor": 3,
+        "id": "department:ECO",
+        "letter_code": "ECO",
+        "name": "Economics"
+      }
+    ]
+  }
+]
+```

@@ -20,8 +20,9 @@ DEFINE INDEX name ON department FIELDS name UNIQUE;
 DEFINE FIELD building ON department TYPE string 
     ASSERT $value != NONE AND string::len($value) > 0;
 
-DEFINE FIELD floor ON department TYPE int 
-    ASSERT $value != NONE AND $value > 0 AND $value <= 10;
+DEFINE FIELD floor ON department TYPE number 
+    ASSERT $value != NONE AND $value > 0 AND $value <= 10
+    AND array::len(string::split(type::string($value), '.')) == 1;
 ```
 
 
@@ -79,4 +80,12 @@ create department content {
 ```
 
 
-### 
+### getting department names
+```sql
+select name from department;
+```
+
+### getting information of a department via department name
+```sql
+select * from department where name = '$value';
+```

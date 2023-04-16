@@ -36,8 +36,7 @@ DEFINE INDEX letter_code ON department FIELDS letter_code UNIQUE;
 
 ```sql
 DEFINE FIELD name ON department TYPE string 
-    ASSERT $value != NONE AND $value = /^[A-Za-z ]+$/ 
-    AND array::len(string::words($value)) > 0
+    ASSERT $value != NONE AND $value = /^[A-Za-z ]+$/
     AND string::len($value) > 5;
 ```
 
@@ -45,6 +44,22 @@ DEFINE FIELD name ON department TYPE string
 ```sql
 DEFINE INDEX name ON department FIELDS name UNIQUE;
 ```
+
+### To create a field `minor_course_code` with
+- type `string`
+- `one character alphabet`
+
+```sql
+DEFINE FIELD minor_course_code ON department TYPE string 
+    ASSERT $value != NONE AND $value = /[A-Za-z]{1}/
+    AND string::len($value) == 1;
+```
+
+### To make the `minor_course_code` field `unique`
+```sql
+DEFINE INDEX minor_course_code ON department FIELDS minor_course_code UNIQUE;
+```
+
 ### To create a field `building` with
 - type `string`
 - `non-empty` value

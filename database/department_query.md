@@ -35,6 +35,7 @@ create department content {
     name : string::trim($value (string)),
     building : string::trim($value (string)),
     floor : $value (int),
+    minor_course_code : string::trim($value (string)),
 };
 ```
 
@@ -48,6 +49,7 @@ create department content {
     name : string::trim('Computer Science and Engineering'),
     building : string::trim('Dr. M. A. Wazed Miah IICT Building'),
     floor : 3,
+    minor_course_code : string::trim('D'),
 };
 
 create department content {
@@ -56,7 +58,8 @@ create department content {
     letter_code : string::trim('SWE'),
     name : string::trim('Software Engineering'),
     building : string::trim('Dr. M. A. Wazed Miah IICT Building'),
-    floor : 1
+    floor : 1,
+    minor_course_code : string::trim('A'),
 };
 
 create department content {
@@ -65,7 +68,8 @@ create department content {
     letter_code : string::trim('ECO'),
     name : string::trim('Economics'),
     building : string::trim('D'),
-    floor : 3
+    floor : 3,
+    minor_course_code : string::trim('B'),
 };
 
 create department content {
@@ -74,7 +78,8 @@ create department content {
     letter_code : string::trim('PHY'),
     name : string::trim('Physics'),
     building : string::trim('A'),
-    floor : 1
+    floor : 1,
+    minor_course_code : string::trim('a'),
 };
 ```
 

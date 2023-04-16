@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sust_app/components/post.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'database_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Status {
   String? time;
   String? status;
@@ -9,18 +13,12 @@ class Status {
 
   Status({this.time, this.status, this.result});
 
-  Status.fromJson(Map<String, dynamic> json) {
-    time = json['time'];
-    status = json['status'];
-    if (json['result'] != null) {
-      result = <DepartmentModel>[];
-      json['result'].forEach((v) {
-        result!.add(DepartmentModel.fromJson(v));
-      });
-    }
-  }
+  factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StatusToJson(this);
 }
 
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DepartmentModel {
   int? code;
   String? floor;
@@ -30,21 +28,9 @@ class DepartmentModel {
 
   DepartmentModel({this.code, this.floor, this.id, this.letterCode, this.name});
 
-  DepartmentModel.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    floor = json['floor'];
-    letterCode = json['letter_code'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['code'] = code;
-    data['floor'] = floor;
-    data['name'] = name;
-    data['letter_code'] = letterCode;
-    return data;
-  }
+  factory DepartmentModel.fromJson(Map<String, dynamic> json) =>
+      _$DepartmentModelFromJson(json);
+  Map<String, dynamic> toJson() => _$DepartmentModelToJson(this);
 
   static Future<List<String?>> getDepartmentNames() async {
     final http.Response response =

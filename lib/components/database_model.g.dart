@@ -23,16 +23,18 @@ Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
 DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) =>
     DepartmentModel(
       code: json['code'] as int?,
-      floor: json['floor'] as String?,
+      floor: json['floor'] as int?,
       id: json['id'] as String?,
       letterCode: json['letter_code'] as String?,
       name: json['name'] as String?,
+      building: json['building'] as String?,
     );
 
 Map<String, dynamic> _$DepartmentModelToJson(DepartmentModel instance) =>
     <String, dynamic>{
       'code': instance.code,
       'floor': instance.floor,
+      'building': instance.building,
       'id': instance.id,
       'letter_code': instance.letterCode,
       'name': instance.name,

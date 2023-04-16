@@ -21,12 +21,20 @@ class Status {
 @JsonSerializable(fieldRename: FieldRename.snake)
 class DepartmentModel {
   int? code;
-  String? floor;
+  int? floor;
+  String? building;
   String? id;
   String? letterCode;
   String? name;
 
-  DepartmentModel({this.code, this.floor, this.id, this.letterCode, this.name});
+  DepartmentModel({
+    required this.code,
+    required this.floor,
+    this.id,
+    required this.letterCode,
+    required this.name,
+    required this.building,
+  });
 
   factory DepartmentModel.fromJson(Map<String, dynamic> json) =>
       _$DepartmentModelFromJson(json);
@@ -34,7 +42,7 @@ class DepartmentModel {
 
   static Future<List<String?>> getDepartmentNames() async {
     final http.Response response =
-        await post('''SELECT name AS name FROM department''');
+        await post('''select name from department;''');
     return Status.fromJson(jsonDecode(response.body)[0])
         .result!
         .map((e) => e.name)

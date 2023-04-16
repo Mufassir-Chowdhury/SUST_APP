@@ -141,7 +141,13 @@ class _DepartmentState extends State<Department> {
                   material.DataRow(
                     cells: [
                       material.DataCell(Text('Floor')),
-                      material.DataCell(Text(snapshot.data!.floor ?? 'N/A')),
+                      material.DataCell(Text(snapshot.data!.floor.toString())),
+                    ],
+                  ),
+                  material.DataRow(
+                    cells: [
+                      material.DataCell(Text('Building')),
+                      material.DataCell(Text(snapshot.data!.building ?? 'N/A')),
                     ],
                   ),
                   material.DataRow(

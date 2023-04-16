@@ -4,27 +4,44 @@
 // utility in the flutter_test package. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:sust_app/components/my_app.dart';
+import 'package:nock/nock.dart';
+import 'package:sust_app/routes/management/department/department.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  setUpAll(nock.init);
 
+  setUp(() {
+    nock.cleanAll();
+  });
+  testWidgets('Department page navigation test', (WidgetTester tester) async {
+    await tester.pumpWidget(const FluentApp(home: Department()));
     // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.widgetWithText(PageHeader, 'Departments'), findsOneWidget);
+    expect(find.widgetWithText(PageHeader, 'Departments > Add department'),
+        findsNothing);
+    await tester.pump(const Duration(seconds: 2));
+    await tester.tap(find.byType(GestureDetector).first);
+    await tester.pump(const Duration(seconds: 2));
+    expect(find.widgetWithText(PageHeader, 'Departments'), findsOneWidget);
+    expect(find.widgetWithText(PageHeader, 'Departments > Add department'),
+        findsNothing);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(find.byIcon(FluentIcons.add), findsOneWidget);
+    // expect(find.byType(FutureBuilder), findsWidgets);
+    await tester.tap(find.byIcon(FluentIcons.add));
+    await tester.pump(const Duration(seconds: 2));
+    expect(find.widgetWithText(PageHeader, 'Departments > Add department'),
+        findsOneWidget);
+    expect(find.widgetWithText(PageHeader, 'Departments'), findsNothing);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.tap(find.byType(GestureDetector).first);
+    await tester.pump(const Duration(seconds: 2));
+    expect(find.widgetWithText(PageHeader, 'Departments'), findsOneWidget);
+    expect(find.widgetWithText(PageHeader, 'Departments > Add department'),
+        findsNothing);
+
+    await tester.pump(const Duration(seconds: 2));
   });
 }

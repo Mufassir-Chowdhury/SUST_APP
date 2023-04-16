@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/database_model.dart';
 
@@ -21,7 +19,7 @@ class _AddDepartmentState extends State<AddDepartment> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       children: [
         Form(
           key: _formKey,
@@ -42,7 +40,7 @@ class _AddDepartmentState extends State<AddDepartment> {
                 },
               ),
               const SizedBox(height: 20),
-              Text('Code'),
+              const Text('Code'),
               NumberBox(
                 placeholder: 'Code',
                 value: numberBoxValue,
@@ -58,7 +56,7 @@ class _AddDepartmentState extends State<AddDepartment> {
                 mode: SpinButtonPlacementMode.inline,
               ),
               const SizedBox(height: 20),
-              Text('Floor'),
+              const Text('Floor'),
               NumberBox(
                 placeholder: 'Floor',
                 value: floorBoxValue,
@@ -67,7 +65,7 @@ class _AddDepartmentState extends State<AddDepartment> {
                 onChanged: (int? n) {
                   n != null
                       ? setState(() {
-                          numberBoxValue = n;
+                          floorBoxValue = n;
                         })
                       : null;
                 },
@@ -99,15 +97,14 @@ class _AddDepartmentState extends State<AddDepartment> {
               Button(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    print(_formKey.currentState!.validate());
+                    // TODO check for error message after posting
                     DepartmentModel departmentModel = DepartmentModel(
                         code: numberBoxValue,
                         name: nameController.text,
                         floor: floorBoxValue,
                         letterCode: letterCodeController.text.toUpperCase(),
                         building: buildingController.text);
-                    await DepartmentModel.createDepartment(departmentModel)
-                        .then((value) => print(value));
+                    await DepartmentModel.createDepartment(departmentModel);
                     widget.onPressed!();
                   }
                 },

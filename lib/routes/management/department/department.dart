@@ -127,32 +127,32 @@ class _DepartmentState extends State<Department> {
             if (snapshot.hasData) {
               return material.DataTable(
                 columns: [
-                  material.DataColumn(label: Text('Name')),
+                  const material.DataColumn(label: Text('Name')),
                   material.DataColumn(
                       label: Text(snapshot.data!.name ?? 'N/A')),
                 ],
                 rows: [
                   material.DataRow(
                     cells: [
-                      material.DataCell(Text('Code')),
+                      const material.DataCell(Text('Code')),
                       material.DataCell(Text(snapshot.data!.code.toString())),
                     ],
                   ),
                   material.DataRow(
                     cells: [
-                      material.DataCell(Text('Floor')),
+                      const material.DataCell(Text('Floor')),
                       material.DataCell(Text(snapshot.data!.floor.toString())),
                     ],
                   ),
                   material.DataRow(
                     cells: [
-                      material.DataCell(Text('Building')),
+                      const material.DataCell(Text('Building')),
                       material.DataCell(Text(snapshot.data!.building ?? 'N/A')),
                     ],
                   ),
                   material.DataRow(
                     cells: [
-                      material.DataCell(Text('Letter Code')),
+                      const material.DataCell(Text('Letter Code')),
                       material.DataCell(
                           Text(snapshot.data!.letterCode ?? 'N/A')),
                     ],

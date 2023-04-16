@@ -5,6 +5,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'database_model.g.dart';
 
+// TODO use freezed
+
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Status {
   String? time;

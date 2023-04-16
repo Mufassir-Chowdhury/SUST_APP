@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
-import 'package:sust_app/routes/management/department.dart';
+import 'package:sust_app/routes/management/department/department.dart';
 import 'package:window_manager/window_manager.dart';
 
 class AdminPage extends StatefulWidget {

@@ -8,6 +8,7 @@ create department content {
     name : string::trim('Physics'),
     building : string::trim('A'),
     floor : 1,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -31,6 +32,7 @@ create department content {
     name : string::trim('Computer Science and Engineering'),
     building : string::trim('Dr. M. A. Wazed Miah IICT Building'),
     floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -54,6 +56,7 @@ create department content {
     name : string::trim('Physics'),
     building : string::trim('A'),
     floor : 1,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -63,6 +66,31 @@ create department content {
     "time": "409.9µs",
     "status": "ERR",
     "detail": "Database index `letter_code` already contains 'CSE', with record `department:PHY`"
+  }
+]
+```
+
+### duplicate `minor_course_id`
+
+#### query
+```sql
+create department content {
+    code : 332,
+    id : string::trim('CSR'),
+    letter_code : string::trim('CSR'),
+    name : string::trim('Computer cience and Engineering'),
+    building : string::trim('Dr. M. A. Wazed Miah IICT Building'),
+    floor : 3,
+    minor_course_code : string::trim('D'),
+};
+```
+#### result
+```json
+[
+  {
+    "time": "821.8µs",
+    "status": "ERR",
+    "detail": "Database index `minor_course_code` already contains 'D', with record `department:CSR`"
   }
 ]
 ```
@@ -77,6 +105,7 @@ create department content {
     name : string::trim('Computer Science and Engineering'),
     building : string::trim('A'),
     floor : 1,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -98,7 +127,8 @@ create department content {
     letter_code : string::trim('ECO'),
     name : string::trim('Economics'),
     building : string::trim('D'),
-    floor : 3
+    floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -119,7 +149,8 @@ create department content {
     letter_code : string::trim('ECO'),
     name : string::trim('Economics'),
     building : string::trim('D'),
-    floor : 3
+    floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -141,7 +172,8 @@ create department content {
     letter_code : string::trim('EC67'|'EC'|'ECo'|'234'|'234.6'|''),
     name : string::trim('Economics'),
     building : string::trim('D'),
-    floor : 3
+    floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -155,6 +187,35 @@ create department content {
 ]
 ```
 
+### Wrong input in `minor_course_code`
+#### query (type same but out of condition or different type)
+```sql
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : 3,
+    minor_course_code : string::trim(''|'    '|'aa'|'1'|'Ab'),
+};
+```
+#### result
+```json
+[
+  {
+    "time": "321.8µs",
+    "status": "OK",
+    "result": []
+  },
+  {
+    "time": "399.4µs",
+    "status": "ERR",
+    "detail": "Found ''|''|'aa'|'1'|'Ab' for field `minor_course_code`, with record `department:ECO`, but field must conform to: $value != NONE AND $value = /[A-Za-z]{1}/ AND string::len($value) == 1"
+  }
+]
+```
+
 ### Wrong input in `name`
 #### query
 ```sql
@@ -164,7 +225,8 @@ create department content {
     letter_code : string::trim('ECO'),
     name : string::trim('E'|'Economics 4'|'economics.first'|''|'     '|'    Ecomo6  '),
     building : string::trim('D'),
-    floor : 3
+    floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -186,7 +248,8 @@ create department content {
     letter_code : string::trim('ECO'),
     name : string::trim('Economics'),
     building : string::trim(''|'     '),
-    floor : 3
+    floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -209,6 +272,7 @@ create department content {
     name : string::trim('Economics'),
     building : string::trim('D'),
     floor : 10.5|0|11|-1,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -230,6 +294,7 @@ create department content {
     name : string::trim('Economics'),
     building : string::trim('D'),
     floor : hiii|'hiii'|false|['k','l']|'',
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result
@@ -251,6 +316,7 @@ create department content {
     name : string::trim('Economics'),
     building : string::trim('D'),
     floor : true,
+    minor_course_code : string::trim('D'),
 };
 ```
 In this case data will be inserted and the value of `floor` will be 1. 
@@ -267,6 +333,7 @@ create department content {
     name : string::trim('Economics'),
     building : string::trim('D'),
     floor : 3,
+    minor_course_code : string::trim('D'),
 };
 ```
 #### result

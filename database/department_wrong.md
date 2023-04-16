@@ -89,5 +89,110 @@ create department content {
   }
 ]
 ```
-### duplicate
+### Wrong input in `code`
+#### query (type same but out of conditions)
+```sql
+create department content {
+    code : -123|1234|234.6|.990,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : 3
+};
+```
+#### result
+```json
+[
+  {
+    "time": "316.4µs",
+    "status": "ERR",
+    "detail": "Found -123|1234|234.6|.990 for field `code`, with record `department:ECO`, but field must conform to: $value != NONE AND $value >= 100 AND $value <= 999 AND array::len(string::split(type::string($value), '.')) == 1"
+  }
+]
+```
+#### query (type diffrent)
+```sql
+create department content {
+    code : true|hiii|'hiii'|false|['k','l'],
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : 3
+};
+```
+#### result
+```json
+[
+  {
+    "time": "445µs",
+    "status": "ERR",
+    "detail": "Found 1|NONE|0|0|0 for field `code`, with record `department:ECO`, but field must conform to: $value != NONE AND $value >= 100 AND $value <= 999 AND array::len(string::split(type::string($value), '.')) == 1"
+  }
+]
+```
+### Wrong input in `letter_code`
+#### query (type same but out of condition or different type)
+```sql
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('EC67'|'EC'|'ECo'|'234'|'234.6'|''),
+    name : string::trim('Economics'),
+    building : string::trim('D'),
+    floor : 3
+};
+```
+#### result
+```json
+[
+  {
+    "time": "306.3µs",
+    "status": "ERR",
+    "detail": "Found 'EC67'|'EC'|'ECo'|'234'|'234.6'|'' for field `letter_code`, with record `department:ECO`, but field must conform to: $value != NONE AND string::len($value) = 3 AND $value = /[A-Z]{3}/"
+  }
+]
+```
+
+### Wrong input in `name`
+#### query
+```sql
+create department content {
+    code : 100,
+    id : string::trim('ECO'),
+    letter_code : string::trim('ECO'),
+    name : string::trim('E'|'Economics 4'|'economics.first'|''|'     '|'    Ecomo6  '),
+    building : string::trim('D'),
+    floor : 3
+};
+```
+#### result
+```json
+[
+  {
+    "time": "487.9µs",
+    "status": "ERR",
+    "detail": "Found 'E'|'Economics 4'|'economics.first'|''|''|'Ecomo6' for field `name`, with record `department:ECO`, but field must conform to: $value != NONE AND $value = /^[A-Za-z ]+$/ AND string::len($value) > 5 AND array::len(string::words($value)) > 0"
+  }
+]
+```
+### Wrong input in ``
+#### query
+```sql
+
+```
+#### result
+```json
+
+```
+### Wrong input in ``
+#### query
+```sql
+
+```
+#### result
+```json
+
+```
 ### duplicate

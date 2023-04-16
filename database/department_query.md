@@ -1,39 +1,31 @@
 ### To create the table `department`
 ```sql
 DEFINE TABLE department SCHEMAFULL;
-```
 
-### To create field `code` on table `department`
-```sql
-DEFINE FIELD code ON department TYPE int 
-    ASSERT $value != NONE AND $value >= 100 AND $value <= 999;
-DEFINE INDEX code ON department FIELDS code UNIQUE
-```
-### To create field `letter_code` on table `deaprtment`
-```sql
+DEFINE FIELD code ON department TYPE number 
+    ASSERT $value != NONE AND $value >= 100 AND $value <= 999 
+    AND array::len(string::split(type::string($value), '.')) == 1;
+DEFINE INDEX code ON department FIELDS code UNIQUE;
+
 DEFINE FIELD letter_code ON department TYPE string 
     ASSERT $value != NONE AND string::len($value) = 3 AND $value = /[A-Z]{3}/;
 DEFINE INDEX letter_code ON department FIELDS letter_code UNIQUE;
-```
-### To create field `name` on table `deaprtment`
-```sql
+
 DEFINE FIELD name ON department TYPE string 
     ASSERT $value != NONE AND $value = /^[A-Za-z ]+$/ 
     AND array::len(string::words($value)) > 0
     AND string::len($value) > 5;
 DEFINE INDEX name ON department FIELDS name UNIQUE;
-```
-### To create field `building` on table `deaprtment`
-```sql
+
 DEFINE FIELD building ON department TYPE string 
     ASSERT $value != NONE AND string::len($value) > 0;
-```
 
-### To create field `floor` on table `deaprtment`
-```sql
 DEFINE FIELD floor ON department TYPE int 
     ASSERT $value != NONE AND $value > 0 AND $value <= 10;
 ```
+
+
+
 ### `department` adding format via root
 ```sql
 create department content {

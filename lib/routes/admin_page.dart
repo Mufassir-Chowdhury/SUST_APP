@@ -58,7 +58,7 @@ class _AdminPageState extends State<AdminPage> {
                 PaneItem(
                   icon: const Icon(FluentIcons.home_group),
                   title: const Text('Department'),
-                  body: Department(),
+                  body: const Department(),
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),

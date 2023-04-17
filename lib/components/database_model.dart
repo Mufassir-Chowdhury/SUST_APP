@@ -7,9 +7,6 @@ import 'package:flutter/foundation.dart';
 part 'database_model.freezed.dart';
 part 'database_model.g.dart';
 
-// TODO use freezed
-
-// @JsonSerializable(fieldRename: FieldRename.snake)
 @freezed
 class Status with _$Status {
   @JsonSerializable(fieldRename: FieldRename.snake)

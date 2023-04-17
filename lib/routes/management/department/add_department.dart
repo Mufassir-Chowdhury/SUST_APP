@@ -96,6 +96,7 @@ class _AddDepartmentState extends State<AddDepartment> {
                   return null;
                 },
               ),
+              const SizedBox(height: 20),
               TextFormBox(
                 controller: minorCourseCodeController,
                 placeholder: 'Minor Course Code',

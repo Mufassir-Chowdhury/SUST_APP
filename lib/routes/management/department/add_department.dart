@@ -12,9 +12,12 @@ class AddDepartment extends StatefulWidget {
 class _AddDepartmentState extends State<AddDepartment> {
   int numberBoxValue = 100;
   int floorBoxValue = 1;
+  bool errorFound = false;
+  String errorMessage = '';
   TextEditingController nameController = TextEditingController();
   TextEditingController letterCodeController = TextEditingController();
   TextEditingController buildingController = TextEditingController();
+  TextEditingController minorCourseCodeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -93,19 +96,39 @@ class _AddDepartmentState extends State<AddDepartment> {
                   return null;
                 },
               ),
+              TextFormBox(
+                controller: minorCourseCodeController,
+                placeholder: 'Minor Course Code',
+                validator: (value) {
+                  if (value == null || value.trim().length != 1) {
+                    return 'The name must be of exactly length 1';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 20),
               Button(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    // TODO check for error message after posting
                     DepartmentModel departmentModel = DepartmentModel(
-                        code: numberBoxValue,
-                        name: nameController.text,
-                        floor: floorBoxValue,
-                        letterCode: letterCodeController.text.toUpperCase(),
-                        building: buildingController.text);
-                    await DepartmentModel.createDepartment(departmentModel);
-                    widget.onPressed!();
+                      code: numberBoxValue,
+                      name: nameController.text,
+                      floor: floorBoxValue,
+                      letterCode: letterCodeController.text.toUpperCase(),
+                      building: buildingController.text,
+                      id: letterCodeController.text.toUpperCase(),
+                      minorCourseCode:
+                          minorCourseCodeController.text.toUpperCase(),
+                    );
+                    try {
+                      await DepartmentModel.createDepartment(departmentModel);
+                      widget.onPressed!();
+                    } catch (e) {
+                      setState(() {
+                        errorFound = true;
+                        errorMessage = e.toString();
+                      });
+                    }
                   }
                 },
                 child: const Text('Add'),
@@ -113,6 +136,12 @@ class _AddDepartmentState extends State<AddDepartment> {
             ],
           ),
         ),
+        errorFound
+            ? Text(
+                errorMessage,
+                style: TextStyle(color: Colors.red),
+              )
+            : Container(),
       ],
     );
   }

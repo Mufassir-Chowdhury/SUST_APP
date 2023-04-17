@@ -31,3 +31,6 @@ linter:
 analyzer:
   errors:
     invalid_annotation_target: ignore
+  exclude:
+    - lib/components/database_model.g.dart
+    - lib/components/database_model.freezed.dart

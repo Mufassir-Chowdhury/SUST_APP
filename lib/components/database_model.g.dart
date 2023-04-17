@@ -22,8 +22,8 @@ Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
       'result': instance.result,
     };
 
-DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) =>
-    DepartmentModel(
+_$_DepartmentModel _$$_DepartmentModelFromJson(Map<String, dynamic> json) =>
+    _$_DepartmentModel(
       code: json['code'] as int?,
       floor: json['floor'] as int?,
       id: json['id'] as String?,
@@ -33,13 +33,13 @@ DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) =>
       minorCourseCode: json['minor_course_code'] as String?,
     );
 
-Map<String, dynamic> _$DepartmentModelToJson(DepartmentModel instance) =>
+Map<String, dynamic> _$$_DepartmentModelToJson(_$_DepartmentModel instance) =>
     <String, dynamic>{
       'code': instance.code,
       'floor': instance.floor,
-      'building': instance.building,
       'id': instance.id,
       'letter_code': instance.letterCode,
       'name': instance.name,
+      'building': instance.building,
       'minor_course_code': instance.minorCourseCode,
     };

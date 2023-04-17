@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sust_app/components/post.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
+part 'database_model.freezed.dart';
 part 'database_model.g.dart';
 
 // TODO use freezed
@@ -21,29 +24,21 @@ class Status {
   Map<String, dynamic> toJson() => _$StatusToJson(this);
 }
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class DepartmentModel {
-  int? code;
-  int? floor;
-  String? building;
-  String? id;
-  String? letterCode;
-  String? name;
-  String? minorCourseCode;
+@freezed
+class DepartmentModel with _$DepartmentModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory DepartmentModel({
+    int? code,
+    int? floor,
+    String? id,
+    String? letterCode,
+    String? name,
+    String? building,
+    String? minorCourseCode,
+  }) = _DepartmentModel;
 
-  DepartmentModel({
-    required this.code,
-    required this.floor,
-    required this.id,
-    required this.letterCode,
-    required this.name,
-    required this.building,
-    required this.minorCourseCode,
-  });
-
-  factory DepartmentModel.fromJson(Map<String, dynamic> json) =>
+  factory DepartmentModel.fromJson(Map<String, Object?> json) =>
       _$DepartmentModelFromJson(json);
-  Map<String, dynamic> toJson() => _$DepartmentModelToJson(this);
 
   static Future<List<String?>> getDepartmentNames() async {
     final http.Response response =

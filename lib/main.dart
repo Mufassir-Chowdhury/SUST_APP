@@ -3,6 +3,9 @@ import 'package:sust_app/routes/admin_page.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:window_manager/window_manager.dart';
 
+// TODO use animated_text_kit
+// TODO animations package
+// TODO use flutter_animate package
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();

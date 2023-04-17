@@ -14,6 +14,221 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Status _$StatusFromJson(Map<String, dynamic> json) {
+  return _Status.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Status {
+  String? get time => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get detail => throw _privateConstructorUsedError;
+  List<DepartmentModel>? get result => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StatusCopyWith<Status> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StatusCopyWith<$Res> {
+  factory $StatusCopyWith(Status value, $Res Function(Status) then) =
+      _$StatusCopyWithImpl<$Res, Status>;
+  @useResult
+  $Res call(
+      {String? time,
+      String? status,
+      String? detail,
+      List<DepartmentModel>? result});
+}
+
+/// @nodoc
+class _$StatusCopyWithImpl<$Res, $Val extends Status>
+    implements $StatusCopyWith<$Res> {
+  _$StatusCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? result = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<DepartmentModel>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
+  factory _$$_StatusCopyWith(_$_Status value, $Res Function(_$_Status) then) =
+      __$$_StatusCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? time,
+      String? status,
+      String? detail,
+      List<DepartmentModel>? result});
+}
+
+/// @nodoc
+class __$$_StatusCopyWithImpl<$Res>
+    extends _$StatusCopyWithImpl<$Res, _$_Status>
+    implements _$$_StatusCopyWith<$Res> {
+  __$$_StatusCopyWithImpl(_$_Status _value, $Res Function(_$_Status) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? result = freezed,
+  }) {
+    return _then(_$_Status(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value._result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<DepartmentModel>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$_Status with DiagnosticableTreeMixin implements _Status {
+  const _$_Status(
+      {this.time,
+      this.status,
+      this.detail,
+      final List<DepartmentModel>? result})
+      : _result = result;
+
+  factory _$_Status.fromJson(Map<String, dynamic> json) =>
+      _$$_StatusFromJson(json);
+
+  @override
+  final String? time;
+  @override
+  final String? status;
+  @override
+  final String? detail;
+  final List<DepartmentModel>? _result;
+  @override
+  List<DepartmentModel>? get result {
+    final value = _result;
+    if (value == null) return null;
+    if (_result is EqualUnmodifiableListView) return _result;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Status(time: $time, status: $status, detail: $detail, result: $result)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Status'))
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('detail', detail))
+      ..add(DiagnosticsProperty('result', result));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Status &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            const DeepCollectionEquality().equals(other._result, _result));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, time, status, detail,
+      const DeepCollectionEquality().hash(_result));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_StatusCopyWith<_$_Status> get copyWith =>
+      __$$_StatusCopyWithImpl<_$_Status>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_StatusToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Status implements Status {
+  const factory _Status(
+      {final String? time,
+      final String? status,
+      final String? detail,
+      final List<DepartmentModel>? result}) = _$_Status;
+
+  factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
+
+  @override
+  String? get time;
+  @override
+  String? get status;
+  @override
+  String? get detail;
+  @override
+  List<DepartmentModel>? get result;
+  @override
+  @JsonKey(ignore: true)
+  _$$_StatusCopyWith<_$_Status> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) {
   return _DepartmentModel.fromJson(json);
 }

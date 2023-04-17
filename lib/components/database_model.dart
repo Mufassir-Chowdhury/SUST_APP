@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sust_app/components/post.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,18 +9,18 @@ part 'database_model.g.dart';
 
 // TODO use freezed
 
-@JsonSerializable(fieldRename: FieldRename.snake)
-class Status {
-  String? time;
-  String? status;
-  String? detail;
-  List<DepartmentModel>? result;
+// @JsonSerializable(fieldRename: FieldRename.snake)
+@freezed
+class Status with _$Status {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory Status({
+    String? time,
+    String? status,
+    String? detail,
+    List<DepartmentModel>? result,
+  }) = _Status;
 
-  Status({this.time, this.status, this.detail, this.result});
-
-  factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
-
-  Map<String, dynamic> toJson() => _$StatusToJson(this);
+  factory Status.fromJson(Map<String, Object?> json) => _$StatusFromJson(json);
 }
 
 @freezed

@@ -6,7 +6,7 @@ part of 'database_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Status _$StatusFromJson(Map<String, dynamic> json) => Status(
+_$_Status _$$_StatusFromJson(Map<String, dynamic> json) => _$_Status(
       time: json['time'] as String?,
       status: json['status'] as String?,
       detail: json['detail'] as String?,
@@ -15,7 +15,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) => Status(
           .toList(),
     );
 
-Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
+Map<String, dynamic> _$$_StatusToJson(_$_Status instance) => <String, dynamic>{
       'time': instance.time,
       'status': instance.status,
       'detail': instance.detail,

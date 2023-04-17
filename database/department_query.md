@@ -21,7 +21,11 @@ DEFINE FIELD building ON department TYPE string
 
 DEFINE FIELD floor ON department TYPE number 
     ASSERT $value != NONE AND $value > 0 AND $value <= 10 AND 
-    math::round($value) = $value"
+    math::round($value) = $value;
+
+DEFINE FIELD minor_course_code ON department TYPE string 
+    ASSERT $value != NONE AND $value = /[A-Za-z]{1}/ 
+    AND string::len($value) == 1;
 ```
 
 

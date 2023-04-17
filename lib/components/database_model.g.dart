@@ -22,6 +22,16 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) => <String, dynamic>{
       'result': instance.result,
     };
 
+_$_DepartmentResult _$$_DepartmentResultFromJson(Map<String, dynamic> json) =>
+    _$_DepartmentResult(
+      DepartmentModel.fromJson(json['department'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_DepartmentResultToJson(_$_DepartmentResult instance) =>
+    <String, dynamic>{
+      'department': instance.department,
+    };
+
 _$_DepartmentModel _$$_DepartmentModelFromJson(Map<String, dynamic> json) =>
     _$_DepartmentModel(
       code: json['code'] as int?,

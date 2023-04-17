@@ -21,6 +21,13 @@ class Status with _$Status {
 }
 
 @freezed
+class Model with _$Model {
+  factory Model.department(DepartmentModel department) = _DepartmentResult;
+
+  factory Model.fromJson(Map<String, dynamic> json) => _$ModelFromJson(json);
+}
+
+@freezed
 class DepartmentModel with _$DepartmentModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory DepartmentModel({

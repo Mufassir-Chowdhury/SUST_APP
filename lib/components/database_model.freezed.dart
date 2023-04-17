@@ -229,6 +229,252 @@ abstract class _Status implements Status {
       throw _privateConstructorUsedError;
 }
 
+Model _$ModelFromJson(Map<String, dynamic> json) {
+  return _DepartmentResult.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Model {
+  DepartmentModel get department => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DepartmentModel department) department,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DepartmentModel department)? department,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DepartmentModel department)? department,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_DepartmentResult value) department,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_DepartmentResult value)? department,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DepartmentResult value)? department,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ModelCopyWith<Model> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ModelCopyWith<$Res> {
+  factory $ModelCopyWith(Model value, $Res Function(Model) then) =
+      _$ModelCopyWithImpl<$Res, Model>;
+  @useResult
+  $Res call({DepartmentModel department});
+
+  $DepartmentModelCopyWith<$Res> get department;
+}
+
+/// @nodoc
+class _$ModelCopyWithImpl<$Res, $Val extends Model>
+    implements $ModelCopyWith<$Res> {
+  _$ModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? department = null,
+  }) {
+    return _then(_value.copyWith(
+      department: null == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as DepartmentModel,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DepartmentModelCopyWith<$Res> get department {
+    return $DepartmentModelCopyWith<$Res>(_value.department, (value) {
+      return _then(_value.copyWith(department: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_DepartmentResultCopyWith<$Res>
+    implements $ModelCopyWith<$Res> {
+  factory _$$_DepartmentResultCopyWith(
+          _$_DepartmentResult value, $Res Function(_$_DepartmentResult) then) =
+      __$$_DepartmentResultCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({DepartmentModel department});
+
+  @override
+  $DepartmentModelCopyWith<$Res> get department;
+}
+
+/// @nodoc
+class __$$_DepartmentResultCopyWithImpl<$Res>
+    extends _$ModelCopyWithImpl<$Res, _$_DepartmentResult>
+    implements _$$_DepartmentResultCopyWith<$Res> {
+  __$$_DepartmentResultCopyWithImpl(
+      _$_DepartmentResult _value, $Res Function(_$_DepartmentResult) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? department = null,
+  }) {
+    return _then(_$_DepartmentResult(
+      null == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as DepartmentModel,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_DepartmentResult
+    with DiagnosticableTreeMixin
+    implements _DepartmentResult {
+  _$_DepartmentResult(this.department);
+
+  factory _$_DepartmentResult.fromJson(Map<String, dynamic> json) =>
+      _$$_DepartmentResultFromJson(json);
+
+  @override
+  final DepartmentModel department;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Model.department(department: $department)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Model.department'))
+      ..add(DiagnosticsProperty('department', department));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DepartmentResult &&
+            (identical(other.department, department) ||
+                other.department == department));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, department);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DepartmentResultCopyWith<_$_DepartmentResult> get copyWith =>
+      __$$_DepartmentResultCopyWithImpl<_$_DepartmentResult>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DepartmentModel department) department,
+  }) {
+    return department(this.department);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DepartmentModel department)? department,
+  }) {
+    return department?.call(this.department);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DepartmentModel department)? department,
+    required TResult orElse(),
+  }) {
+    if (department != null) {
+      return department(this.department);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_DepartmentResult value) department,
+  }) {
+    return department(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_DepartmentResult value)? department,
+  }) {
+    return department?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DepartmentResult value)? department,
+    required TResult orElse(),
+  }) {
+    if (department != null) {
+      return department(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DepartmentResultToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DepartmentResult implements Model {
+  factory _DepartmentResult(final DepartmentModel department) =
+      _$_DepartmentResult;
+
+  factory _DepartmentResult.fromJson(Map<String, dynamic> json) =
+      _$_DepartmentResult.fromJson;
+
+  @override
+  DepartmentModel get department;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DepartmentResultCopyWith<_$_DepartmentResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 DepartmentModel _$DepartmentModelFromJson(Map<String, dynamic> json) {
   return _DepartmentModel.fromJson(json);
 }

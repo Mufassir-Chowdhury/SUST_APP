@@ -23,6 +23,7 @@ class Status with _$Status {
 @freezed
 class Model with _$Model {
   factory Model.department(DepartmentModel department) = _DepartmentResult;
+  factory Model.student(StudentModel student) = _StudentResult;
 
   factory Model.fromJson(Map<String, dynamic> json) => _$ModelFromJson(json);
 }
@@ -45,7 +46,7 @@ class DepartmentModel with _$DepartmentModel {
 
   static Future<List<String?>> getDepartmentNames() async {
     final http.Response response =
-        await post('''select name from department;''');
+        await post('''SELECT name FROM department;''');
     return Status.fromJson(jsonDecode(response.body)[0])
         .result!
         .map((e) => e.name)
@@ -80,4 +81,73 @@ class DepartmentModel with _$DepartmentModel {
     }
     return status.status!;
   }
+}
+
+@freezed
+class StudentModel with _$StudentModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory StudentModel({
+    int? id,
+    String? name,
+    DepartmentModel? department,
+    EmailModel? building,
+    String? gender,
+    int? session,
+    int? currentSemester,
+    String? bloodGroup,
+    String? privilage,
+    PersonalModel? personal,
+    ResultModel? result,
+  }) = _StudentModel;
+
+  factory StudentModel.fromJson(Map<String, Object?> json) =>
+      _$StudentModelFromJson(json);
+
+  static Future<List<String?>> getStudentNames() async {
+    final http.Response response = await post('''SELECT name FROM student;''');
+    return Status.fromJson(jsonDecode(response.body)[0])
+        .result!
+        .map((e) => e.name)
+        .toList();
+  }
+}
+
+@freezed
+class EmailModel with _$EmailModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory EmailModel({
+    String? personal,
+    String? academic,
+  }) = _EmailModel;
+
+  factory EmailModel.fromJson(Map<String, Object?> json) =>
+      _$EmailModelFromJson(json);
+}
+
+@freezed
+class PersonalModel with _$PersonalModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory PersonalModel({
+    String? father,
+    String? mother,
+    String? birthday,
+    int? phone,
+    String? hometown,
+  }) = _PersonalModel;
+
+  factory PersonalModel.fromJson(Map<String, Object?> json) =>
+      _$PersonalModelFromJson(json);
+}
+
+@freezed
+class ResultModel with _$ResultModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory ResultModel({
+    double? cgpa,
+    String? grade,
+    double? totalCredit,
+  }) = _ResultModel;
+
+  factory ResultModel.fromJson(Map<String, Object?> json) =>
+      _$ResultModelFromJson(json);
 }

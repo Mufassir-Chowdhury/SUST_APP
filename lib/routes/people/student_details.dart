@@ -3,8 +3,8 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sust_app/components/database_model.dart';
 
-class DepartmentDetails extends StatelessWidget {
-  const DepartmentDetails({super.key, required this.name});
+class StudentDetails extends StatelessWidget {
+  const StudentDetails({super.key, required this.name});
   final String name;
 
   @override

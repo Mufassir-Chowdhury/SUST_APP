@@ -25,11 +25,25 @@ Map<String, dynamic> _$$_StatusToJson(_$_Status instance) => <String, dynamic>{
 _$_DepartmentResult _$$_DepartmentResultFromJson(Map<String, dynamic> json) =>
     _$_DepartmentResult(
       DepartmentModel.fromJson(json['department'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_DepartmentResultToJson(_$_DepartmentResult instance) =>
     <String, dynamic>{
       'department': instance.department,
+      'runtimeType': instance.$type,
+    };
+
+_$_StudentResult _$$_StudentResultFromJson(Map<String, dynamic> json) =>
+    _$_StudentResult(
+      StudentModel.fromJson(json['student'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$_StudentResultToJson(_$_StudentResult instance) =>
+    <String, dynamic>{
+      'student': instance.student,
+      'runtimeType': instance.$type,
     };
 
 _$_DepartmentModel _$$_DepartmentModelFromJson(Map<String, dynamic> json) =>
@@ -52,4 +66,87 @@ Map<String, dynamic> _$$_DepartmentModelToJson(_$_DepartmentModel instance) =>
       'name': instance.name,
       'building': instance.building,
       'minor_course_code': instance.minorCourseCode,
+    };
+
+_$_StudentModel _$$_StudentModelFromJson(Map<String, dynamic> json) =>
+    _$_StudentModel(
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      department: json['department'] == null
+          ? null
+          : DepartmentModel.fromJson(
+              json['department'] as Map<String, dynamic>),
+      building: json['building'] == null
+          ? null
+          : EmailModel.fromJson(json['building'] as Map<String, dynamic>),
+      gender: json['gender'] as String?,
+      session: json['session'] as int?,
+      currentSemester: json['current_semester'] as int?,
+      bloodGroup: json['blood_group'] as String?,
+      privilage: json['privilage'] as String?,
+      personal: json['personal'] == null
+          ? null
+          : PersonalModel.fromJson(json['personal'] as Map<String, dynamic>),
+      result: json['result'] == null
+          ? null
+          : ResultModel.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_StudentModelToJson(_$_StudentModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'department': instance.department,
+      'building': instance.building,
+      'gender': instance.gender,
+      'session': instance.session,
+      'current_semester': instance.currentSemester,
+      'blood_group': instance.bloodGroup,
+      'privilage': instance.privilage,
+      'personal': instance.personal,
+      'result': instance.result,
+    };
+
+_$_EmailModel _$$_EmailModelFromJson(Map<String, dynamic> json) =>
+    _$_EmailModel(
+      personal: json['personal'] as String?,
+      academic: json['academic'] as String?,
+    );
+
+Map<String, dynamic> _$$_EmailModelToJson(_$_EmailModel instance) =>
+    <String, dynamic>{
+      'personal': instance.personal,
+      'academic': instance.academic,
+    };
+
+_$_PersonalModel _$$_PersonalModelFromJson(Map<String, dynamic> json) =>
+    _$_PersonalModel(
+      father: json['father'] as String?,
+      mother: json['mother'] as String?,
+      birthday: json['birthday'] as String?,
+      phone: json['phone'] as int?,
+      hometown: json['hometown'] as String?,
+    );
+
+Map<String, dynamic> _$$_PersonalModelToJson(_$_PersonalModel instance) =>
+    <String, dynamic>{
+      'father': instance.father,
+      'mother': instance.mother,
+      'birthday': instance.birthday,
+      'phone': instance.phone,
+      'hometown': instance.hometown,
+    };
+
+_$_ResultModel _$$_ResultModelFromJson(Map<String, dynamic> json) =>
+    _$_ResultModel(
+      cgpa: (json['cgpa'] as num?)?.toDouble(),
+      grade: json['grade'] as String?,
+      totalCredit: (json['total_credit'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$_ResultModelToJson(_$_ResultModel instance) =>
+    <String, dynamic>{
+      'cgpa': instance.cgpa,
+      'grade': instance.grade,
+      'total_credit': instance.totalCredit,
     };

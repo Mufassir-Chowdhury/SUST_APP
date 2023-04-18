@@ -26,15 +26,27 @@
             "problemMatcher": []
         },
         {
+            "label": "load database",
+            "type": "shell",
+            "command": "surreal import --conn http://localhost:8000 --user root --pass root --ns test --db test export.surql",
+            "problemMatcher": []
+        },
+        {
             "label": "all",
             "dependsOn": [
                 "Surreal Start",
                 "Flutter Build Runner",
-                "Flutter Run",
-                "database initialize"
+                // "Flutter Run",
+                "load database"
             ],
             "problemMatcher": []
         },
+        {
+            "label": "save database",
+            "type": "shell",
+            "command": "surreal export --conn http://localhost:8000 --user root --pass root --ns test --db test export.surql",
+            "problemMatcher": [],
+        }
         
     ]
 }

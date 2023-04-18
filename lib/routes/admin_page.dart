@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
 import 'package:sust_app/routes/management/department/department.dart';
+import 'package:sust_app/routes/people/admin.dart';
 import 'package:sust_app/routes/people/student.dart';
 import 'package:sust_app/routes/people/teacher.dart';
 import 'package:window_manager/window_manager.dart';
@@ -90,9 +91,9 @@ class _AdminPageState extends State<AdminPage> {
                   body: const Teacher(),
                 ),
                 PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Attendance'),
-                  body: bodyItem(),
+                  icon: const Icon(FluentIcons.people),
+                  title: const Text('Admin'),
+                  body: const Admin(),
                 ),
               ],
             ),

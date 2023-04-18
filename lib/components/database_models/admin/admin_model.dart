@@ -6,27 +6,27 @@ import 'package:sust_app/components/post.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
-part 'teacher_model.freezed.dart';
-part 'teacher_model.g.dart';
+part 'admin_model.freezed.dart';
+part 'admin_model.g.dart';
 
 @freezed
-class TeacherStatus with _$TeacherStatus {
+class AdminStatus with _$AdminStatus {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory TeacherStatus({
+  const factory AdminStatus({
     String? time,
     String? status,
     String? detail,
-    List<TeacherModel>? result,
-  }) = _TeacherStatus;
+    List<AdminModel>? result,
+  }) = _AdminStatus;
 
-  factory TeacherStatus.fromJson(Map<String, Object?> json) =>
-      _$TeacherStatusFromJson(json);
+  factory AdminStatus.fromJson(Map<String, Object?> json) =>
+      _$AdminStatusFromJson(json);
 }
 
 @freezed
-class TeacherModel with _$TeacherModel {
+class AdminModel with _$AdminModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory TeacherModel({
+  const factory AdminModel({
     String? id,
     String? name,
     DepartmentModel? department,
@@ -35,20 +35,20 @@ class TeacherModel with _$TeacherModel {
     String? gender,
     String? bloodGroup,
     PersonalModel? personal,
-  }) = _TeacherModel;
+  }) = _AdminModel;
 
-  factory TeacherModel.fromJson(Map<String, Object?> json) =>
-      _$TeacherModelFromJson(json);
+  factory AdminModel.fromJson(Map<String, Object?> json) =>
+      _$AdminModelFromJson(json);
 
-  static Future<List<TeacherModel?>> getTeacherNames() async {
+  static Future<List<AdminModel?>> getAdminNames() async {
     final http.Response response =
-        await post('''SELECT name, id FROM teacher;''');
-    return TeacherStatus.fromJson(jsonDecode(response.body)[0]).result!;
+        await post('''SELECT name, id FROM admin;''');
+    return AdminStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
-  static Future<TeacherModel> getTeacherDetails(String id) async {
+  static Future<AdminModel> getAdminDetails(String id) async {
     final http.Response response =
         await post('''SELECT * FROM $id FETCH department;''');
-    return TeacherStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+    return AdminStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 }

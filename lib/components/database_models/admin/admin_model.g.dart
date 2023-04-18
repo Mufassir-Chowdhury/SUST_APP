@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'teacher_model.dart';
+part of 'admin_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TeacherStatus _$$_TeacherStatusFromJson(Map<String, dynamic> json) =>
-    _$_TeacherStatus(
+_$_AdminStatus _$$_AdminStatusFromJson(Map<String, dynamic> json) =>
+    _$_AdminStatus(
       time: json['time'] as String?,
       status: json['status'] as String?,
       detail: json['detail'] as String?,
       result: (json['result'] as List<dynamic>?)
-          ?.map((e) => TeacherModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AdminModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_TeacherStatusToJson(_$_TeacherStatus instance) =>
+Map<String, dynamic> _$$_AdminStatusToJson(_$_AdminStatus instance) =>
     <String, dynamic>{
       'time': instance.time,
       'status': instance.status,
@@ -24,8 +24,8 @@ Map<String, dynamic> _$$_TeacherStatusToJson(_$_TeacherStatus instance) =>
       'result': instance.result,
     };
 
-_$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
-    _$_TeacherModel(
+_$_AdminModel _$$_AdminModelFromJson(Map<String, dynamic> json) =>
+    _$_AdminModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
       department: json['department'] == null
@@ -43,7 +43,7 @@ _$_TeacherModel _$$_TeacherModelFromJson(Map<String, dynamic> json) =>
           : PersonalModel.fromJson(json['personal'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_TeacherModelToJson(_$_TeacherModel instance) =>
+Map<String, dynamic> _$$_AdminModelToJson(_$_AdminModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

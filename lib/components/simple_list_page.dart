@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:sust_app/routes/management/department/add_department.dart';
 
 class Header extends StatelessWidget {
   const Header(
@@ -93,6 +94,86 @@ class SimpleListBuilder<T> extends StatelessWidget {
           return const Center(
             child: ProgressBar(),
           );
+        });
+  }
+}
+
+class SimpleListPage<T> extends StatefulWidget {
+  const SimpleListPage(
+      {super.key,
+      required this.root,
+      required this.loadNames,
+      required this.detailsPage});
+  final String root;
+  final Function() loadNames;
+  final Function(String id) detailsPage;
+
+  @override
+  State<SimpleListPage> createState() => _SimpleListPageState<T>();
+}
+
+class _SimpleListPageState<T> extends State<SimpleListPage> {
+  int _selectedIndex = 0;
+  late Future<List<T?>> listofNames;
+  late List<Widget> pages;
+  String title = '';
+
+  @override
+  void initState() {
+    super.initState();
+    loadListPage();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldPage(
+      header: Header(
+        name: title,
+        onHeaderPress: () {
+          loadListPage();
+        },
+        onAddPress: () {
+          setState(
+            () {
+              pages = [simpleListPage()];
+
+              pages.add(
+                AddDepartment(
+                  onPressed: loadListPage,
+                ).animate().fade().slideY(
+                      begin: .25,
+                      end: 0,
+                      duration: 400.ms,
+                      curve: Curves.easeOut,
+                    ),
+              );
+              _selectedIndex = 1;
+              title = '${widget.root} > Add ${widget.root.toLowerCase()}';
+            },
+          );
+        },
+      ),
+      content: pages[_selectedIndex],
+    );
+  }
+
+  void loadListPage() {
+    setState(() {
+      pages = [simpleListPage()];
+    });
+  }
+
+  SimpleListBuilder<T> simpleListPage() {
+    _selectedIndex = 0;
+    title = widget.root;
+    return SimpleListBuilder<T>(
+        nameList: widget.loadNames(),
+        onPressed: (name, id) {
+          setState(() {
+            pages.add(widget.detailsPage(id));
+            title = '${widget.root} > $name!';
+            _selectedIndex = 1;
+          });
         });
   }
 }

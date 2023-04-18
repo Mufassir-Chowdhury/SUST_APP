@@ -1,7 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sust_app/components/database_model.dart';
+import 'package:sust_app/components/database_models/department/department_model.dart';
 
 class DepartmentDetails extends StatelessWidget {
   const DepartmentDetails({super.key, required this.id});

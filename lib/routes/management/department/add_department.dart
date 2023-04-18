@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:sust_app/components/database_model.dart';
+import 'package:sust_app/components/database_models/department/department_model.dart';
 
 class AddDepartment extends StatefulWidget {
   const AddDepartment({super.key, this.onPressed});

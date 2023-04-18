@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
 import 'package:sust_app/routes/management/department/department.dart';
 import 'package:sust_app/routes/people/student.dart';
+import 'package:sust_app/routes/people/teacher.dart';
 import 'package:window_manager/window_manager.dart';
 
 class AdminPage extends StatefulWidget {
@@ -84,9 +85,9 @@ class _AdminPageState extends State<AdminPage> {
                   body: const Student(),
                 ),
                 PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Result'),
-                  body: bodyItem(),
+                  icon: const Icon(FluentIcons.people),
+                  title: const Text('Teacher'),
+                  body: const Teacher(),
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),

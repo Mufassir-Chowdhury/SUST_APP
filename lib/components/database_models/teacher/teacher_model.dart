@@ -6,53 +6,50 @@ import 'package:sust_app/components/post.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
-part 'student_model.freezed.dart';
-part 'student_model.g.dart';
+part 'teacher_model.freezed.dart';
+part 'teacher_model.g.dart';
 
 @freezed
-class StudentStatus with _$StudentStatus {
+class TeacherStatus with _$TeacherStatus {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory StudentStatus({
+  const factory TeacherStatus({
     String? time,
     String? status,
     String? detail,
-    List<StudentModel>? result,
-  }) = _StudentStatus;
+    List<TeacherModel>? result,
+  }) = _TeacherStatus;
 
-  factory StudentStatus.fromJson(Map<String, Object?> json) =>
-      _$StudentStatusFromJson(json);
+  factory TeacherStatus.fromJson(Map<String, Object?> json) =>
+      _$TeacherStatusFromJson(json);
 }
 
 @freezed
-class StudentModel with _$StudentModel {
+class TeacherModel with _$TeacherModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory StudentModel({
+  const factory TeacherModel({
     String? id,
     String? name,
     DepartmentModel? department,
+    String? designation,
     EmailModel? email,
     String? gender,
-    int? session,
-    int? currentSemester,
     String? bloodGroup,
-    String? privilage,
     PersonalModel? personal,
-    ResultModel? result,
-  }) = _StudentModel;
+  }) = _TeacherModel;
 
-  factory StudentModel.fromJson(Map<String, Object?> json) =>
-      _$StudentModelFromJson(json);
+  factory TeacherModel.fromJson(Map<String, Object?> json) =>
+      _$TeacherModelFromJson(json);
 
-  static Future<List<StudentModel?>> getStudentNames() async {
+  static Future<List<TeacherModel?>> getTeacherNames() async {
     final http.Response response =
-        await post('''SELECT name, id FROM student;''');
-    return StudentStatus.fromJson(jsonDecode(response.body)[0]).result!;
+        await post('''SELECT name, id FROM teacher;''');
+    return TeacherStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
-  static Future<StudentModel> getStudentDetails(String id) async {
+  static Future<TeacherModel> getTeacherDetails(String id) async {
     final http.Response response =
         await post('''SELECT * FROM $id FETCH department;''');
-    return StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+    return TeacherStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 }
 

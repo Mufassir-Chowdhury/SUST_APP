@@ -171,7 +171,7 @@ class _SimpleListPageState<T> extends State<SimpleListPage> {
         onPressed: (name, id) {
           setState(() {
             pages.add(widget.detailsPage(id));
-            title = '${widget.root} > $name!';
+            title = '${widget.root} > $name';
             _selectedIndex = 1;
           });
         });

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'student_model.dart';
+part of 'teacher_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,40 +14,40 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StudentStatus _$StudentStatusFromJson(Map<String, dynamic> json) {
-  return _StudentStatus.fromJson(json);
+TeacherStatus _$TeacherStatusFromJson(Map<String, dynamic> json) {
+  return _TeacherStatus.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StudentStatus {
+mixin _$TeacherStatus {
   String? get time => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get detail => throw _privateConstructorUsedError;
-  List<StudentModel>? get result => throw _privateConstructorUsedError;
+  List<TeacherModel>? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StudentStatusCopyWith<StudentStatus> get copyWith =>
+  $TeacherStatusCopyWith<TeacherStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StudentStatusCopyWith<$Res> {
-  factory $StudentStatusCopyWith(
-          StudentStatus value, $Res Function(StudentStatus) then) =
-      _$StudentStatusCopyWithImpl<$Res, StudentStatus>;
+abstract class $TeacherStatusCopyWith<$Res> {
+  factory $TeacherStatusCopyWith(
+          TeacherStatus value, $Res Function(TeacherStatus) then) =
+      _$TeacherStatusCopyWithImpl<$Res, TeacherStatus>;
   @useResult
   $Res call(
       {String? time,
       String? status,
       String? detail,
-      List<StudentModel>? result});
+      List<TeacherModel>? result});
 }
 
 /// @nodoc
-class _$StudentStatusCopyWithImpl<$Res, $Val extends StudentStatus>
-    implements $StudentStatusCopyWith<$Res> {
-  _$StudentStatusCopyWithImpl(this._value, this._then);
+class _$TeacherStatusCopyWithImpl<$Res, $Val extends TeacherStatus>
+    implements $TeacherStatusCopyWith<$Res> {
+  _$TeacherStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,32 +78,32 @@ class _$StudentStatusCopyWithImpl<$Res, $Val extends StudentStatus>
       result: freezed == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as List<StudentModel>?,
+              as List<TeacherModel>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_StudentStatusCopyWith<$Res>
-    implements $StudentStatusCopyWith<$Res> {
-  factory _$$_StudentStatusCopyWith(
-          _$_StudentStatus value, $Res Function(_$_StudentStatus) then) =
-      __$$_StudentStatusCopyWithImpl<$Res>;
+abstract class _$$_TeacherStatusCopyWith<$Res>
+    implements $TeacherStatusCopyWith<$Res> {
+  factory _$$_TeacherStatusCopyWith(
+          _$_TeacherStatus value, $Res Function(_$_TeacherStatus) then) =
+      __$$_TeacherStatusCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? time,
       String? status,
       String? detail,
-      List<StudentModel>? result});
+      List<TeacherModel>? result});
 }
 
 /// @nodoc
-class __$$_StudentStatusCopyWithImpl<$Res>
-    extends _$StudentStatusCopyWithImpl<$Res, _$_StudentStatus>
-    implements _$$_StudentStatusCopyWith<$Res> {
-  __$$_StudentStatusCopyWithImpl(
-      _$_StudentStatus _value, $Res Function(_$_StudentStatus) _then)
+class __$$_TeacherStatusCopyWithImpl<$Res>
+    extends _$TeacherStatusCopyWithImpl<$Res, _$_TeacherStatus>
+    implements _$$_TeacherStatusCopyWith<$Res> {
+  __$$_TeacherStatusCopyWithImpl(
+      _$_TeacherStatus _value, $Res Function(_$_TeacherStatus) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,7 +114,7 @@ class __$$_StudentStatusCopyWithImpl<$Res>
     Object? detail = freezed,
     Object? result = freezed,
   }) {
-    return _then(_$_StudentStatus(
+    return _then(_$_TeacherStatus(
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ class __$$_StudentStatusCopyWithImpl<$Res>
       result: freezed == result
           ? _value._result
           : result // ignore: cast_nullable_to_non_nullable
-              as List<StudentModel>?,
+              as List<TeacherModel>?,
     ));
   }
 }
@@ -138,13 +138,13 @@ class __$$_StudentStatusCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_StudentStatus with DiagnosticableTreeMixin implements _StudentStatus {
-  const _$_StudentStatus(
-      {this.time, this.status, this.detail, final List<StudentModel>? result})
+class _$_TeacherStatus with DiagnosticableTreeMixin implements _TeacherStatus {
+  const _$_TeacherStatus(
+      {this.time, this.status, this.detail, final List<TeacherModel>? result})
       : _result = result;
 
-  factory _$_StudentStatus.fromJson(Map<String, dynamic> json) =>
-      _$$_StudentStatusFromJson(json);
+  factory _$_TeacherStatus.fromJson(Map<String, dynamic> json) =>
+      _$$_TeacherStatusFromJson(json);
 
   @override
   final String? time;
@@ -152,9 +152,9 @@ class _$_StudentStatus with DiagnosticableTreeMixin implements _StudentStatus {
   final String? status;
   @override
   final String? detail;
-  final List<StudentModel>? _result;
+  final List<TeacherModel>? _result;
   @override
-  List<StudentModel>? get result {
+  List<TeacherModel>? get result {
     final value = _result;
     if (value == null) return null;
     if (_result is EqualUnmodifiableListView) return _result;
@@ -164,14 +164,14 @@ class _$_StudentStatus with DiagnosticableTreeMixin implements _StudentStatus {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StudentStatus(time: $time, status: $status, detail: $detail, result: $result)';
+    return 'TeacherStatus(time: $time, status: $status, detail: $detail, result: $result)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'StudentStatus'))
+      ..add(DiagnosticsProperty('type', 'TeacherStatus'))
       ..add(DiagnosticsProperty('time', time))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('detail', detail))
@@ -182,7 +182,7 @@ class _$_StudentStatus with DiagnosticableTreeMixin implements _StudentStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StudentStatus &&
+            other is _$_TeacherStatus &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.detail, detail) || other.detail == detail) &&
@@ -197,26 +197,26 @@ class _$_StudentStatus with DiagnosticableTreeMixin implements _StudentStatus {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StudentStatusCopyWith<_$_StudentStatus> get copyWith =>
-      __$$_StudentStatusCopyWithImpl<_$_StudentStatus>(this, _$identity);
+  _$$_TeacherStatusCopyWith<_$_TeacherStatus> get copyWith =>
+      __$$_TeacherStatusCopyWithImpl<_$_TeacherStatus>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StudentStatusToJson(
+    return _$$_TeacherStatusToJson(
       this,
     );
   }
 }
 
-abstract class _StudentStatus implements StudentStatus {
-  const factory _StudentStatus(
+abstract class _TeacherStatus implements TeacherStatus {
+  const factory _TeacherStatus(
       {final String? time,
       final String? status,
       final String? detail,
-      final List<StudentModel>? result}) = _$_StudentStatus;
+      final List<TeacherModel>? result}) = _$_TeacherStatus;
 
-  factory _StudentStatus.fromJson(Map<String, dynamic> json) =
-      _$_StudentStatus.fromJson;
+  factory _TeacherStatus.fromJson(Map<String, dynamic> json) =
+      _$_TeacherStatus.fromJson;
 
   @override
   String? get time;
@@ -225,66 +225,59 @@ abstract class _StudentStatus implements StudentStatus {
   @override
   String? get detail;
   @override
-  List<StudentModel>? get result;
+  List<TeacherModel>? get result;
   @override
   @JsonKey(ignore: true)
-  _$$_StudentStatusCopyWith<_$_StudentStatus> get copyWith =>
+  _$$_TeacherStatusCopyWith<_$_TeacherStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-StudentModel _$StudentModelFromJson(Map<String, dynamic> json) {
-  return _StudentModel.fromJson(json);
+TeacherModel _$TeacherModelFromJson(Map<String, dynamic> json) {
+  return _TeacherModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StudentModel {
+mixin _$TeacherModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   DepartmentModel? get department => throw _privateConstructorUsedError;
+  String? get designation => throw _privateConstructorUsedError;
   EmailModel? get email => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
-  int? get session => throw _privateConstructorUsedError;
-  int? get currentSemester => throw _privateConstructorUsedError;
   String? get bloodGroup => throw _privateConstructorUsedError;
-  String? get privilage => throw _privateConstructorUsedError;
   PersonalModel? get personal => throw _privateConstructorUsedError;
-  ResultModel? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StudentModelCopyWith<StudentModel> get copyWith =>
+  $TeacherModelCopyWith<TeacherModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StudentModelCopyWith<$Res> {
-  factory $StudentModelCopyWith(
-          StudentModel value, $Res Function(StudentModel) then) =
-      _$StudentModelCopyWithImpl<$Res, StudentModel>;
+abstract class $TeacherModelCopyWith<$Res> {
+  factory $TeacherModelCopyWith(
+          TeacherModel value, $Res Function(TeacherModel) then) =
+      _$TeacherModelCopyWithImpl<$Res, TeacherModel>;
   @useResult
   $Res call(
       {String? id,
       String? name,
       DepartmentModel? department,
+      String? designation,
       EmailModel? email,
       String? gender,
-      int? session,
-      int? currentSemester,
       String? bloodGroup,
-      String? privilage,
-      PersonalModel? personal,
-      ResultModel? result});
+      PersonalModel? personal});
 
   $DepartmentModelCopyWith<$Res>? get department;
   $EmailModelCopyWith<$Res>? get email;
   $PersonalModelCopyWith<$Res>? get personal;
-  $ResultModelCopyWith<$Res>? get result;
 }
 
 /// @nodoc
-class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
-    implements $StudentModelCopyWith<$Res> {
-  _$StudentModelCopyWithImpl(this._value, this._then);
+class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
+    implements $TeacherModelCopyWith<$Res> {
+  _$TeacherModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -297,14 +290,11 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? department = freezed,
+    Object? designation = freezed,
     Object? email = freezed,
     Object? gender = freezed,
-    Object? session = freezed,
-    Object? currentSemester = freezed,
     Object? bloodGroup = freezed,
-    Object? privilage = freezed,
     Object? personal = freezed,
-    Object? result = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -319,6 +309,10 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as DepartmentModel?,
+      designation: freezed == designation
+          ? _value.designation
+          : designation // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -327,30 +321,14 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String?,
-      session: freezed == session
-          ? _value.session
-          : session // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentSemester: freezed == currentSemester
-          ? _value.currentSemester
-          : currentSemester // ignore: cast_nullable_to_non_nullable
-              as int?,
       bloodGroup: freezed == bloodGroup
           ? _value.bloodGroup
           : bloodGroup // ignore: cast_nullable_to_non_nullable
-              as String?,
-      privilage: freezed == privilage
-          ? _value.privilage
-          : privilage // ignore: cast_nullable_to_non_nullable
               as String?,
       personal: freezed == personal
           ? _value.personal
           : personal // ignore: cast_nullable_to_non_nullable
               as PersonalModel?,
-      result: freezed == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as ResultModel?,
     ) as $Val);
   }
 
@@ -389,40 +367,25 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
       return _then(_value.copyWith(personal: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ResultModelCopyWith<$Res>? get result {
-    if (_value.result == null) {
-      return null;
-    }
-
-    return $ResultModelCopyWith<$Res>(_value.result!, (value) {
-      return _then(_value.copyWith(result: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_StudentModelCopyWith<$Res>
-    implements $StudentModelCopyWith<$Res> {
-  factory _$$_StudentModelCopyWith(
-          _$_StudentModel value, $Res Function(_$_StudentModel) then) =
-      __$$_StudentModelCopyWithImpl<$Res>;
+abstract class _$$_TeacherModelCopyWith<$Res>
+    implements $TeacherModelCopyWith<$Res> {
+  factory _$$_TeacherModelCopyWith(
+          _$_TeacherModel value, $Res Function(_$_TeacherModel) then) =
+      __$$_TeacherModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
       String? name,
       DepartmentModel? department,
+      String? designation,
       EmailModel? email,
       String? gender,
-      int? session,
-      int? currentSemester,
       String? bloodGroup,
-      String? privilage,
-      PersonalModel? personal,
-      ResultModel? result});
+      PersonalModel? personal});
 
   @override
   $DepartmentModelCopyWith<$Res>? get department;
@@ -430,16 +393,14 @@ abstract class _$$_StudentModelCopyWith<$Res>
   $EmailModelCopyWith<$Res>? get email;
   @override
   $PersonalModelCopyWith<$Res>? get personal;
-  @override
-  $ResultModelCopyWith<$Res>? get result;
 }
 
 /// @nodoc
-class __$$_StudentModelCopyWithImpl<$Res>
-    extends _$StudentModelCopyWithImpl<$Res, _$_StudentModel>
-    implements _$$_StudentModelCopyWith<$Res> {
-  __$$_StudentModelCopyWithImpl(
-      _$_StudentModel _value, $Res Function(_$_StudentModel) _then)
+class __$$_TeacherModelCopyWithImpl<$Res>
+    extends _$TeacherModelCopyWithImpl<$Res, _$_TeacherModel>
+    implements _$$_TeacherModelCopyWith<$Res> {
+  __$$_TeacherModelCopyWithImpl(
+      _$_TeacherModel _value, $Res Function(_$_TeacherModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -448,16 +409,13 @@ class __$$_StudentModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? department = freezed,
+    Object? designation = freezed,
     Object? email = freezed,
     Object? gender = freezed,
-    Object? session = freezed,
-    Object? currentSemester = freezed,
     Object? bloodGroup = freezed,
-    Object? privilage = freezed,
     Object? personal = freezed,
-    Object? result = freezed,
   }) {
-    return _then(_$_StudentModel(
+    return _then(_$_TeacherModel(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -470,6 +428,10 @@ class __$$_StudentModelCopyWithImpl<$Res>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as DepartmentModel?,
+      designation: freezed == designation
+          ? _value.designation
+          : designation // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -478,30 +440,14 @@ class __$$_StudentModelCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String?,
-      session: freezed == session
-          ? _value.session
-          : session // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentSemester: freezed == currentSemester
-          ? _value.currentSemester
-          : currentSemester // ignore: cast_nullable_to_non_nullable
-              as int?,
       bloodGroup: freezed == bloodGroup
           ? _value.bloodGroup
           : bloodGroup // ignore: cast_nullable_to_non_nullable
-              as String?,
-      privilage: freezed == privilage
-          ? _value.privilage
-          : privilage // ignore: cast_nullable_to_non_nullable
               as String?,
       personal: freezed == personal
           ? _value.personal
           : personal // ignore: cast_nullable_to_non_nullable
               as PersonalModel?,
-      result: freezed == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as ResultModel?,
     ));
   }
 }
@@ -509,22 +455,19 @@ class __$$_StudentModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
-  const _$_StudentModel(
+class _$_TeacherModel with DiagnosticableTreeMixin implements _TeacherModel {
+  const _$_TeacherModel(
       {this.id,
       this.name,
       this.department,
+      this.designation,
       this.email,
       this.gender,
-      this.session,
-      this.currentSemester,
       this.bloodGroup,
-      this.privilage,
-      this.personal,
-      this.result});
+      this.personal});
 
-  factory _$_StudentModel.fromJson(Map<String, dynamic> json) =>
-      _$$_StudentModelFromJson(json);
+  factory _$_TeacherModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TeacherModelFromJson(json);
 
   @override
   final String? id;
@@ -533,114 +476,87 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
   @override
   final DepartmentModel? department;
   @override
+  final String? designation;
+  @override
   final EmailModel? email;
   @override
   final String? gender;
   @override
-  final int? session;
-  @override
-  final int? currentSemester;
-  @override
   final String? bloodGroup;
   @override
-  final String? privilage;
-  @override
   final PersonalModel? personal;
-  @override
-  final ResultModel? result;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StudentModel(id: $id, name: $name, department: $department, email: $email, gender: $gender, session: $session, currentSemester: $currentSemester, bloodGroup: $bloodGroup, privilage: $privilage, personal: $personal, result: $result)';
+    return 'TeacherModel(id: $id, name: $name, department: $department, designation: $designation, email: $email, gender: $gender, bloodGroup: $bloodGroup, personal: $personal)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'StudentModel'))
+      ..add(DiagnosticsProperty('type', 'TeacherModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('department', department))
+      ..add(DiagnosticsProperty('designation', designation))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('gender', gender))
-      ..add(DiagnosticsProperty('session', session))
-      ..add(DiagnosticsProperty('currentSemester', currentSemester))
       ..add(DiagnosticsProperty('bloodGroup', bloodGroup))
-      ..add(DiagnosticsProperty('privilage', privilage))
-      ..add(DiagnosticsProperty('personal', personal))
-      ..add(DiagnosticsProperty('result', result));
+      ..add(DiagnosticsProperty('personal', personal));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StudentModel &&
+            other is _$_TeacherModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.department, department) ||
                 other.department == department) &&
+            (identical(other.designation, designation) ||
+                other.designation == designation) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.session, session) || other.session == session) &&
-            (identical(other.currentSemester, currentSemester) ||
-                other.currentSemester == currentSemester) &&
             (identical(other.bloodGroup, bloodGroup) ||
                 other.bloodGroup == bloodGroup) &&
-            (identical(other.privilage, privilage) ||
-                other.privilage == privilage) &&
             (identical(other.personal, personal) ||
-                other.personal == personal) &&
-            (identical(other.result, result) || other.result == result));
+                other.personal == personal));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      department,
-      email,
-      gender,
-      session,
-      currentSemester,
-      bloodGroup,
-      privilage,
-      personal,
-      result);
+  int get hashCode => Object.hash(runtimeType, id, name, department,
+      designation, email, gender, bloodGroup, personal);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StudentModelCopyWith<_$_StudentModel> get copyWith =>
-      __$$_StudentModelCopyWithImpl<_$_StudentModel>(this, _$identity);
+  _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>
+      __$$_TeacherModelCopyWithImpl<_$_TeacherModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StudentModelToJson(
+    return _$$_TeacherModelToJson(
       this,
     );
   }
 }
 
-abstract class _StudentModel implements StudentModel {
-  const factory _StudentModel(
+abstract class _TeacherModel implements TeacherModel {
+  const factory _TeacherModel(
       {final String? id,
       final String? name,
       final DepartmentModel? department,
+      final String? designation,
       final EmailModel? email,
       final String? gender,
-      final int? session,
-      final int? currentSemester,
       final String? bloodGroup,
-      final String? privilage,
-      final PersonalModel? personal,
-      final ResultModel? result}) = _$_StudentModel;
+      final PersonalModel? personal}) = _$_TeacherModel;
 
-  factory _StudentModel.fromJson(Map<String, dynamic> json) =
-      _$_StudentModel.fromJson;
+  factory _TeacherModel.fromJson(Map<String, dynamic> json) =
+      _$_TeacherModel.fromJson;
 
   @override
   String? get id;
@@ -649,24 +565,18 @@ abstract class _StudentModel implements StudentModel {
   @override
   DepartmentModel? get department;
   @override
+  String? get designation;
+  @override
   EmailModel? get email;
   @override
   String? get gender;
   @override
-  int? get session;
-  @override
-  int? get currentSemester;
-  @override
   String? get bloodGroup;
-  @override
-  String? get privilage;
   @override
   PersonalModel? get personal;
   @override
-  ResultModel? get result;
-  @override
   @JsonKey(ignore: true)
-  _$$_StudentModelCopyWith<_$_StudentModel> get copyWith =>
+  _$$_TeacherModelCopyWith<_$_TeacherModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

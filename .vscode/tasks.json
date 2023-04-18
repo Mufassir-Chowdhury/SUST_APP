@@ -20,13 +20,21 @@
             "problemMatcher": []
         },
         {
+            "label": "database initialize",
+            "type": "shell",
+            "command": "python3 ./database/initialize.py",
+            "problemMatcher": []
+        },
+        {
             "label": "all",
             "dependsOn": [
                 "Surreal Start",
                 "Flutter Build Runner",
-                "Flutter Run"
+                "Flutter Run",
+                "database initialize"
             ],
             "problemMatcher": []
         },
+        
     ]
 }

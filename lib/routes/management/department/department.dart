@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart' as material;
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sust_app/components/database_model.dart';
 import 'package:sust_app/routes/management/department/add_department.dart';
+import 'package:sust_app/routes/management/department/department_details.dart';
+
+// TODO fix header width
 
 class Department extends StatefulWidget {
   const Department({super.key});
@@ -28,53 +31,64 @@ class _DepartmentState extends State<Department> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage(
-      header: PageHeader(
-        title: GestureDetector(
-          child: Text(
-            name,
+      header: SizedBox(
+        width: 1000,
+        child: PageHeader(
+          title: GestureDetector(
+            child: Text(
+              name,
+              overflow: TextOverflow.ellipsis,
+            ).animate().fade(duration: 500.ms, delay: 200.ms).slide(),
+            onTap: () {
+              setState(() {
+                _selectedIndex = 0;
+                name = 'Departments';
+                pages = [body(context, departments)];
+              });
+            },
           ),
-          onTap: () {
-            setState(() {
-              _selectedIndex = 0;
-              name = 'Departments';
-              pages = [body(context, departments)];
-            });
-          },
-        ),
-        commandBar: CommandBar(
-          isCompact: true,
-          mainAxisAlignment: MainAxisAlignment.end,
-          overflowBehavior: CommandBarOverflowBehavior.noWrap,
-          primaryItems: [
-            CommandBarBuilderItem(
-              builder: (context, mode, w) => Tooltip(
-                message: "Add a new department",
-                child: w,
-              ),
-              wrappedItem: CommandBarButton(
-                onPressed: () {
-                  setState(() {
-                    pages = [body(context, departments)];
+          commandBar: SizedBox(
+            width: 200,
+            child: CommandBar(
+              mainAxisAlignment: MainAxisAlignment.end,
+              overflowBehavior: CommandBarOverflowBehavior.noWrap,
+              primaryItems: [
+                CommandBarBuilderItem(
+                  builder: (context, mode, w) => Tooltip(
+                    message: "Add a new department",
+                    child: w,
+                  ),
+                  wrappedItem: CommandBarButton(
+                    onPressed: () {
+                      setState(() {
+                        pages = [body(context, departments)];
 
-                    pages.add(AddDepartment(
-                      onPressed: () {
-                        setState(() {
-                          departments = DepartmentModel.getDepartmentNames();
-                          pages = [body(context, departments)];
-                          _selectedIndex = 0;
-                          name = 'Departments';
-                        });
-                      },
-                    ));
-                    _selectedIndex = 1;
-                    name = 'Departments > Add department';
-                  });
-                },
-                label: const Text('Add department'),
-                icon: const Icon(FluentIcons.add),
-              ),
+                        pages.add(AddDepartment(
+                          onPressed: () {
+                            setState(() {
+                              departments =
+                                  DepartmentModel.getDepartmentNames();
+                              pages = [body(context, departments)];
+                              _selectedIndex = 0;
+                              name = 'Departments';
+                            });
+                          },
+                        ).animate().fade().slideY(
+                            begin: .25,
+                            end: 0,
+                            duration: 400.ms,
+                            curve: Curves.easeOut));
+                        _selectedIndex = 1;
+                        name = 'Departments > Add department';
+                      });
+                    },
+                    label: const Text('Add department'),
+                    icon: const Icon(FluentIcons.add),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       content: pages[_selectedIndex],
@@ -99,7 +113,7 @@ class _DepartmentState extends State<Department> {
                           title: Text(e!),
                           onPressed: () {
                             setState(() {
-                              pages.add(postPage(context, e));
+                              pages.add(DepartmentDetails(name: e));
                               name = 'Departments > $e';
                               _selectedIndex = 1;
                             });
@@ -108,65 +122,20 @@ class _DepartmentState extends State<Department> {
                       ),
                     ),
                   )
-                  .toList(),
+                  .toList()
+                  .animate(interval: 100.ms)
+                  .fade()
+                  .slideY(
+                      begin: .5,
+                      end: 0,
+                      duration: 500.ms,
+                      delay: 200.ms,
+                      curve: Curves.easeIn),
             );
           }
           return const Center(
             child: ProgressBar(),
           );
         });
-  }
-
-  Widget postPage(BuildContext context, String name) {
-    return ScaffoldPage(
-      content: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: FutureBuilder<DepartmentModel>(
-          future: DepartmentModel.getDepartmentDetails(name),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return material.DataTable(
-                columns: [
-                  const material.DataColumn(label: Text('Name')),
-                  material.DataColumn(
-                      label: Text(snapshot.data!.name ?? 'N/A')),
-                ],
-                rows: [
-                  material.DataRow(
-                    cells: [
-                      const material.DataCell(Text('Code')),
-                      material.DataCell(Text(snapshot.data!.code.toString())),
-                    ],
-                  ),
-                  material.DataRow(
-                    cells: [
-                      const material.DataCell(Text('Floor')),
-                      material.DataCell(Text(snapshot.data!.floor.toString())),
-                    ],
-                  ),
-                  material.DataRow(
-                    cells: [
-                      const material.DataCell(Text('Building')),
-                      material.DataCell(Text(snapshot.data!.building ?? 'N/A')),
-                    ],
-                  ),
-                  material.DataRow(
-                    cells: [
-                      const material.DataCell(Text('Letter Code')),
-                      material.DataCell(
-                          Text(snapshot.data!.letterCode ?? 'N/A')),
-                    ],
-                  ),
-                ],
-              );
-            } else {
-              return const Center(
-                child: ProgressBar(),
-              );
-            }
-          },
-        ),
-      ),
-    );
   }
 }

@@ -90,8 +90,8 @@ class _AddDepartmentState extends State<AddDepartment> {
                 controller: buildingController,
                 placeholder: 'Building',
                 validator: (value) {
-                  if (value == null || value.trim().length < 5) {
-                    return 'The name must be of at least length 5';
+                  if (value == null || value.trim().isEmpty) {
+                    return 'The name must be provided';
                   }
                   return null;
                 },

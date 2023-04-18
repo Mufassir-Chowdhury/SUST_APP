@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sust_app/components/database_model.dart';
+import 'package:sust_app/components/simple_list_page.dart';
 import 'package:sust_app/routes/management/department/add_department.dart';
 import 'package:sust_app/routes/management/department/department_details.dart';
 import 'package:sust_app/routes/people/student_details.dart';
@@ -18,7 +19,8 @@ class _StudentState extends State<Student> {
   int _selectedIndex = 0;
   late Future<List<StudentModel?>> students;
   late List<Widget> pages;
-  String name = 'Student';
+  String root = 'Student';
+  String title = 'Student';
 
   @override
   void initState() {
@@ -30,66 +32,40 @@ class _StudentState extends State<Student> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage(
-      header: SizedBox(
-        width: 1000,
-        child: PageHeader(
-          title: GestureDetector(
-            child: Text(
-              name,
-              overflow: TextOverflow.ellipsis,
-            ).animate().fade(duration: 500.ms, delay: 200.ms).slide(),
-            onTap: () {
-              setState(() {
-                _selectedIndex = 0;
-                name = 'Student';
-                pages = [body(context, students)];
-              });
-            },
-          ),
-          commandBar: SizedBox(
-            width: 200,
-            child: CommandBar(
-              mainAxisAlignment: MainAxisAlignment.end,
-              overflowBehavior: CommandBarOverflowBehavior.noWrap,
-              primaryItems: [
-                CommandBarBuilderItem(
-                  builder: (context, mode, w) => Tooltip(
-                    message: "Add a new person",
-                    child: w,
-                  ),
-                  wrappedItem: CommandBarButton(
-                    onPressed: () {
-                      setState(() {
-                        pages = [body(context, students)];
+      header: Header(
+        name: title,
+        onHeaderPress: () {
+          setState(() {
+            _selectedIndex = 0;
+            title = root;
+            pages = [body(context, students)];
+          });
+        },
+        onAddPress: () {
+          setState(() {
+            pages = [body(context, students)];
 
-                        pages.add(AddDepartment(
-                          onPressed: () {
-                            setState(() {
-                              students = StudentModel.getStudentNames();
-                              pages = [body(context, students)];
-                              _selectedIndex = 0;
-                              name = 'Student';
-                            });
-                          },
-                        ).animate().fade().slideY(
-                            begin: .25,
-                            end: 0,
-                            duration: 400.ms,
-                            curve: Curves.easeOut));
-                        _selectedIndex = 1;
-                        name = 'Student > Add Student';
-                      });
-                    },
-                    label: const Text('Add Student'),
-                    icon: const Icon(FluentIcons.add),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+            pages.add(addDepartmentWidget(context).animate().fade().slideY(
+                begin: .25, end: 0, duration: 400.ms, curve: Curves.easeOut));
+            _selectedIndex = 1;
+            title = '$root > Add ${root.toLowerCase()}';
+          });
+        },
       ),
       content: pages[_selectedIndex],
+    );
+  }
+
+  AddDepartment addDepartmentWidget(BuildContext context) {
+    return AddDepartment(
+      onPressed: () {
+        setState(() {
+          students = StudentModel.getStudentNames();
+          pages = [body(context, students)];
+          _selectedIndex = 0;
+          title = 'Student';
+        });
+      },
     );
   }
 
@@ -112,7 +88,7 @@ class _StudentState extends State<Student> {
                           onPressed: () {
                             setState(() {
                               pages.add(StudentDetails(id: e.id!));
-                              name = 'Student > ${e.name}';
+                              title = 'Student > ${e.name}';
                               _selectedIndex = 1;
                             });
                           },

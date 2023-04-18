@@ -7,25 +7,60 @@ import 'package:flutter/foundation.dart';
 part 'database_model.freezed.dart';
 part 'database_model.g.dart';
 
+// TODO use unions
+
+// @freezed
+// class Status with _$Status {
+//   @JsonSerializable(fieldRename: FieldRename.snake)
+//   const factory Status.department({
+//     String? time,
+//     String? status,
+//     String? detail,
+//     List<DepartmentModel>? result,
+//   }) = _DepartmentStatus;
+//   @JsonSerializable(fieldRename: FieldRename.snake)
+//   const factory Status.student({
+//     String? time,
+//     String? status,
+//     String? detail,
+//     List<StudentModel>? result,
+//   }) = _StudentStatus;
+//   // const factory Status({
+//   //   String? time,
+//   //   String? status,
+//   //   String? detail,
+//   //   List<Model>? result,
+//   // }) = _Status;
+
+//   factory Status.fromJson(Map<String, Object?> json) => _$StatusFromJson(json);
+// }
+
 @freezed
-class Status with _$Status {
+class DepartmentStatus with _$DepartmentStatus {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory Status({
+  const factory DepartmentStatus({
     String? time,
     String? status,
     String? detail,
     List<DepartmentModel>? result,
-  }) = _Status;
+  }) = _DepartmentStatus;
 
-  factory Status.fromJson(Map<String, Object?> json) => _$StatusFromJson(json);
+  factory DepartmentStatus.fromJson(Map<String, Object?> json) =>
+      _$DepartmentStatusFromJson(json);
 }
 
 @freezed
-class Model with _$Model {
-  factory Model.department(DepartmentModel department) = _DepartmentResult;
-  factory Model.student(StudentModel student) = _StudentResult;
+class StudentStatus with _$StudentStatus {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory StudentStatus({
+    String? time,
+    String? status,
+    String? detail,
+    List<StudentModel>? result,
+  }) = _StudentStatus;
 
-  factory Model.fromJson(Map<String, dynamic> json) => _$ModelFromJson(json);
+  factory StudentStatus.fromJson(Map<String, Object?> json) =>
+      _$StudentStatusFromJson(json);
 }
 
 @freezed
@@ -47,9 +82,9 @@ class DepartmentModel with _$DepartmentModel {
   static Future<List<String?>> getDepartmentNames() async {
     final http.Response response =
         await post('''SELECT name FROM department;''');
-    return Status.fromJson(jsonDecode(response.body)[0])
+    return DepartmentStatus.fromJson(jsonDecode(response.body)[0])
         .result!
-        .map((e) => e.name)
+        .map(((e) => e.name))
         .toList();
   }
 
@@ -57,13 +92,16 @@ class DepartmentModel with _$DepartmentModel {
       String departmentName) async {
     final http.Response response = await post('''SELECT * FROM department
                   WHERE name = "$departmentName";''');
-    return Status.fromJson(jsonDecode(response.body)[0]).result![0];
+    print(DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0]);
+
+    return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 
   static Future<String> createDepartment(DepartmentModel department) async {
     final http.Response response = await post(
         '''CREATE department CONTENT ${jsonEncode(department.toJson()).toString()}''');
-    Status status = Status.fromJson(jsonDecode(response.body)[0]);
+    DepartmentStatus status =
+        DepartmentStatus.fromJson(jsonDecode(response.body)[0]);
     if (status.status == 'ERR') {
       if (status.detail!.contains('Database record') &&
           status.detail!.contains('already exists')) {
@@ -87,10 +125,10 @@ class DepartmentModel with _$DepartmentModel {
 class StudentModel with _$StudentModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory StudentModel({
-    int? id,
+    String? id,
     String? name,
     DepartmentModel? department,
-    EmailModel? building,
+    EmailModel? email,
     String? gender,
     int? session,
     int? currentSemester,
@@ -103,12 +141,16 @@ class StudentModel with _$StudentModel {
   factory StudentModel.fromJson(Map<String, Object?> json) =>
       _$StudentModelFromJson(json);
 
-  static Future<List<String?>> getStudentNames() async {
-    final http.Response response = await post('''SELECT name FROM student;''');
-    return Status.fromJson(jsonDecode(response.body)[0])
-        .result!
-        .map((e) => e.name)
-        .toList();
+  static Future<List<StudentModel?>> getStudentNames() async {
+    final http.Response response =
+        await post('''SELECT name, id FROM student;''');
+    return StudentStatus.fromJson(jsonDecode(response.body)[0]).result!;
+  }
+
+  static Future<StudentModel> getStudentDetails(String id) async {
+    final http.Response response =
+        await post('''SELECT * FROM $id FETCH department;''');
+    return StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 }
 

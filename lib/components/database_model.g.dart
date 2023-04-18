@@ -6,7 +6,8 @@ part of 'database_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Status _$$_StatusFromJson(Map<String, dynamic> json) => _$_Status(
+_$_DepartmentStatus _$$_DepartmentStatusFromJson(Map<String, dynamic> json) =>
+    _$_DepartmentStatus(
       time: json['time'] as String?,
       status: json['status'] as String?,
       detail: json['detail'] as String?,
@@ -15,35 +16,30 @@ _$_Status _$$_StatusFromJson(Map<String, dynamic> json) => _$_Status(
           .toList(),
     );
 
-Map<String, dynamic> _$$_StatusToJson(_$_Status instance) => <String, dynamic>{
+Map<String, dynamic> _$$_DepartmentStatusToJson(_$_DepartmentStatus instance) =>
+    <String, dynamic>{
       'time': instance.time,
       'status': instance.status,
       'detail': instance.detail,
       'result': instance.result,
     };
 
-_$_DepartmentResult _$$_DepartmentResultFromJson(Map<String, dynamic> json) =>
-    _$_DepartmentResult(
-      DepartmentModel.fromJson(json['department'] as Map<String, dynamic>),
-      $type: json['runtimeType'] as String?,
+_$_StudentStatus _$$_StudentStatusFromJson(Map<String, dynamic> json) =>
+    _$_StudentStatus(
+      time: json['time'] as String?,
+      status: json['status'] as String?,
+      detail: json['detail'] as String?,
+      result: (json['result'] as List<dynamic>?)
+          ?.map((e) => StudentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$$_DepartmentResultToJson(_$_DepartmentResult instance) =>
+Map<String, dynamic> _$$_StudentStatusToJson(_$_StudentStatus instance) =>
     <String, dynamic>{
-      'department': instance.department,
-      'runtimeType': instance.$type,
-    };
-
-_$_StudentResult _$$_StudentResultFromJson(Map<String, dynamic> json) =>
-    _$_StudentResult(
-      StudentModel.fromJson(json['student'] as Map<String, dynamic>),
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$_StudentResultToJson(_$_StudentResult instance) =>
-    <String, dynamic>{
-      'student': instance.student,
-      'runtimeType': instance.$type,
+      'time': instance.time,
+      'status': instance.status,
+      'detail': instance.detail,
+      'result': instance.result,
     };
 
 _$_DepartmentModel _$$_DepartmentModelFromJson(Map<String, dynamic> json) =>
@@ -70,15 +66,15 @@ Map<String, dynamic> _$$_DepartmentModelToJson(_$_DepartmentModel instance) =>
 
 _$_StudentModel _$$_StudentModelFromJson(Map<String, dynamic> json) =>
     _$_StudentModel(
-      id: json['id'] as int?,
+      id: json['id'] as String?,
       name: json['name'] as String?,
       department: json['department'] == null
           ? null
           : DepartmentModel.fromJson(
               json['department'] as Map<String, dynamic>),
-      building: json['building'] == null
+      email: json['email'] == null
           ? null
-          : EmailModel.fromJson(json['building'] as Map<String, dynamic>),
+          : EmailModel.fromJson(json['email'] as Map<String, dynamic>),
       gender: json['gender'] as String?,
       session: json['session'] as int?,
       currentSemester: json['current_semester'] as int?,
@@ -97,7 +93,7 @@ Map<String, dynamic> _$$_StudentModelToJson(_$_StudentModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'department': instance.department,
-      'building': instance.building,
+      'email': instance.email,
       'gender': instance.gender,
       'session': instance.session,
       'current_semester': instance.currentSemester,

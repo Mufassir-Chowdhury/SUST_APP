@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Status _$StatusFromJson(Map<String, dynamic> json) {
-  return _Status.fromJson(json);
+DepartmentStatus _$DepartmentStatusFromJson(Map<String, dynamic> json) {
+  return _DepartmentStatus.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Status {
+mixin _$DepartmentStatus {
   String? get time => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get detail => throw _privateConstructorUsedError;
@@ -27,13 +27,15 @@ mixin _$Status {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StatusCopyWith<Status> get copyWith => throw _privateConstructorUsedError;
+  $DepartmentStatusCopyWith<DepartmentStatus> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StatusCopyWith<$Res> {
-  factory $StatusCopyWith(Status value, $Res Function(Status) then) =
-      _$StatusCopyWithImpl<$Res, Status>;
+abstract class $DepartmentStatusCopyWith<$Res> {
+  factory $DepartmentStatusCopyWith(
+          DepartmentStatus value, $Res Function(DepartmentStatus) then) =
+      _$DepartmentStatusCopyWithImpl<$Res, DepartmentStatus>;
   @useResult
   $Res call(
       {String? time,
@@ -43,9 +45,9 @@ abstract class $StatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StatusCopyWithImpl<$Res, $Val extends Status>
-    implements $StatusCopyWith<$Res> {
-  _$StatusCopyWithImpl(this._value, this._then);
+class _$DepartmentStatusCopyWithImpl<$Res, $Val extends DepartmentStatus>
+    implements $DepartmentStatusCopyWith<$Res> {
+  _$DepartmentStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -82,9 +84,11 @@ class _$StatusCopyWithImpl<$Res, $Val extends Status>
 }
 
 /// @nodoc
-abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
-  factory _$$_StatusCopyWith(_$_Status value, $Res Function(_$_Status) then) =
-      __$$_StatusCopyWithImpl<$Res>;
+abstract class _$$_DepartmentStatusCopyWith<$Res>
+    implements $DepartmentStatusCopyWith<$Res> {
+  factory _$$_DepartmentStatusCopyWith(
+          _$_DepartmentStatus value, $Res Function(_$_DepartmentStatus) then) =
+      __$$_DepartmentStatusCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -95,10 +99,11 @@ abstract class _$$_StatusCopyWith<$Res> implements $StatusCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StatusCopyWithImpl<$Res>
-    extends _$StatusCopyWithImpl<$Res, _$_Status>
-    implements _$$_StatusCopyWith<$Res> {
-  __$$_StatusCopyWithImpl(_$_Status _value, $Res Function(_$_Status) _then)
+class __$$_DepartmentStatusCopyWithImpl<$Res>
+    extends _$DepartmentStatusCopyWithImpl<$Res, _$_DepartmentStatus>
+    implements _$$_DepartmentStatusCopyWith<$Res> {
+  __$$_DepartmentStatusCopyWithImpl(
+      _$_DepartmentStatus _value, $Res Function(_$_DepartmentStatus) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +114,7 @@ class __$$_StatusCopyWithImpl<$Res>
     Object? detail = freezed,
     Object? result = freezed,
   }) {
-    return _then(_$_Status(
+    return _then(_$_DepartmentStatus(
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -133,16 +138,18 @@ class __$$_StatusCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _$_Status with DiagnosticableTreeMixin implements _Status {
-  const _$_Status(
+class _$_DepartmentStatus
+    with DiagnosticableTreeMixin
+    implements _DepartmentStatus {
+  const _$_DepartmentStatus(
       {this.time,
       this.status,
       this.detail,
       final List<DepartmentModel>? result})
       : _result = result;
 
-  factory _$_Status.fromJson(Map<String, dynamic> json) =>
-      _$$_StatusFromJson(json);
+  factory _$_DepartmentStatus.fromJson(Map<String, dynamic> json) =>
+      _$$_DepartmentStatusFromJson(json);
 
   @override
   final String? time;
@@ -162,14 +169,14 @@ class _$_Status with DiagnosticableTreeMixin implements _Status {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Status(time: $time, status: $status, detail: $detail, result: $result)';
+    return 'DepartmentStatus(time: $time, status: $status, detail: $detail, result: $result)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Status'))
+      ..add(DiagnosticsProperty('type', 'DepartmentStatus'))
       ..add(DiagnosticsProperty('time', time))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('detail', detail))
@@ -180,7 +187,7 @@ class _$_Status with DiagnosticableTreeMixin implements _Status {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Status &&
+            other is _$_DepartmentStatus &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.detail, detail) || other.detail == detail) &&
@@ -195,25 +202,26 @@ class _$_Status with DiagnosticableTreeMixin implements _Status {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StatusCopyWith<_$_Status> get copyWith =>
-      __$$_StatusCopyWithImpl<_$_Status>(this, _$identity);
+  _$$_DepartmentStatusCopyWith<_$_DepartmentStatus> get copyWith =>
+      __$$_DepartmentStatusCopyWithImpl<_$_DepartmentStatus>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StatusToJson(
+    return _$$_DepartmentStatusToJson(
       this,
     );
   }
 }
 
-abstract class _Status implements Status {
-  const factory _Status(
+abstract class _DepartmentStatus implements DepartmentStatus {
+  const factory _DepartmentStatus(
       {final String? time,
       final String? status,
       final String? detail,
-      final List<DepartmentModel>? result}) = _$_Status;
+      final List<DepartmentModel>? result}) = _$_DepartmentStatus;
 
-  factory _Status.fromJson(Map<String, dynamic> json) = _$_Status.fromJson;
+  factory _DepartmentStatus.fromJson(Map<String, dynamic> json) =
+      _$_DepartmentStatus.fromJson;
 
   @override
   String? get time;
@@ -225,422 +233,225 @@ abstract class _Status implements Status {
   List<DepartmentModel>? get result;
   @override
   @JsonKey(ignore: true)
-  _$$_StatusCopyWith<_$_Status> get copyWith =>
+  _$$_DepartmentStatusCopyWith<_$_DepartmentStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Model _$ModelFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'department':
-      return _DepartmentResult.fromJson(json);
-    case 'student':
-      return _StudentResult.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'Model',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
+StudentStatus _$StudentStatusFromJson(Map<String, dynamic> json) {
+  return _StudentStatus.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Model {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(DepartmentModel department) department,
-    required TResult Function(StudentModel student) student,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DepartmentModel department)? department,
-    TResult? Function(StudentModel student)? student,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DepartmentModel department)? department,
-    TResult Function(StudentModel student)? student,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DepartmentResult value) department,
-    required TResult Function(_StudentResult value) student,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DepartmentResult value)? department,
-    TResult? Function(_StudentResult value)? student,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DepartmentResult value)? department,
-    TResult Function(_StudentResult value)? student,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+mixin _$StudentStatus {
+  String? get time => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get detail => throw _privateConstructorUsedError;
+  List<StudentModel>? get result => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StudentStatusCopyWith<StudentStatus> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ModelCopyWith<$Res> {
-  factory $ModelCopyWith(Model value, $Res Function(Model) then) =
-      _$ModelCopyWithImpl<$Res, Model>;
+abstract class $StudentStatusCopyWith<$Res> {
+  factory $StudentStatusCopyWith(
+          StudentStatus value, $Res Function(StudentStatus) then) =
+      _$StudentStatusCopyWithImpl<$Res, StudentStatus>;
+  @useResult
+  $Res call(
+      {String? time,
+      String? status,
+      String? detail,
+      List<StudentModel>? result});
 }
 
 /// @nodoc
-class _$ModelCopyWithImpl<$Res, $Val extends Model>
-    implements $ModelCopyWith<$Res> {
-  _$ModelCopyWithImpl(this._value, this._then);
+class _$StudentStatusCopyWithImpl<$Res, $Val extends StudentStatus>
+    implements $StudentStatusCopyWith<$Res> {
+  _$StudentStatusCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? result = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<StudentModel>?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_DepartmentResultCopyWith<$Res> {
-  factory _$$_DepartmentResultCopyWith(
-          _$_DepartmentResult value, $Res Function(_$_DepartmentResult) then) =
-      __$$_DepartmentResultCopyWithImpl<$Res>;
+abstract class _$$_StudentStatusCopyWith<$Res>
+    implements $StudentStatusCopyWith<$Res> {
+  factory _$$_StudentStatusCopyWith(
+          _$_StudentStatus value, $Res Function(_$_StudentStatus) then) =
+      __$$_StudentStatusCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({DepartmentModel department});
-
-  $DepartmentModelCopyWith<$Res> get department;
+  $Res call(
+      {String? time,
+      String? status,
+      String? detail,
+      List<StudentModel>? result});
 }
 
 /// @nodoc
-class __$$_DepartmentResultCopyWithImpl<$Res>
-    extends _$ModelCopyWithImpl<$Res, _$_DepartmentResult>
-    implements _$$_DepartmentResultCopyWith<$Res> {
-  __$$_DepartmentResultCopyWithImpl(
-      _$_DepartmentResult _value, $Res Function(_$_DepartmentResult) _then)
+class __$$_StudentStatusCopyWithImpl<$Res>
+    extends _$StudentStatusCopyWithImpl<$Res, _$_StudentStatus>
+    implements _$$_StudentStatusCopyWith<$Res> {
+  __$$_StudentStatusCopyWithImpl(
+      _$_StudentStatus _value, $Res Function(_$_StudentStatus) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? department = null,
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? result = freezed,
   }) {
-    return _then(_$_DepartmentResult(
-      null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel,
+    return _then(_$_StudentStatus(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value._result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<StudentModel>?,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DepartmentModelCopyWith<$Res> get department {
-    return $DepartmentModelCopyWith<$Res>(_value.department, (value) {
-      return _then(_value.copyWith(department: value));
-    });
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_DepartmentResult
-    with DiagnosticableTreeMixin
-    implements _DepartmentResult {
-  _$_DepartmentResult(this.department, {final String? $type})
-      : $type = $type ?? 'department';
 
-  factory _$_DepartmentResult.fromJson(Map<String, dynamic> json) =>
-      _$$_DepartmentResultFromJson(json);
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$_StudentStatus with DiagnosticableTreeMixin implements _StudentStatus {
+  const _$_StudentStatus(
+      {this.time, this.status, this.detail, final List<StudentModel>? result})
+      : _result = result;
+
+  factory _$_StudentStatus.fromJson(Map<String, dynamic> json) =>
+      _$$_StudentStatusFromJson(json);
 
   @override
-  final DepartmentModel department;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  final String? time;
+  @override
+  final String? status;
+  @override
+  final String? detail;
+  final List<StudentModel>? _result;
+  @override
+  List<StudentModel>? get result {
+    final value = _result;
+    if (value == null) return null;
+    if (_result is EqualUnmodifiableListView) return _result;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Model.department(department: $department)';
+    return 'StudentStatus(time: $time, status: $status, detail: $detail, result: $result)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Model.department'))
-      ..add(DiagnosticsProperty('department', department));
+      ..add(DiagnosticsProperty('type', 'StudentStatus'))
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('detail', detail))
+      ..add(DiagnosticsProperty('result', result));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DepartmentResult &&
-            (identical(other.department, department) ||
-                other.department == department));
+            other is _$_StudentStatus &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            const DeepCollectionEquality().equals(other._result, _result));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, department);
+  int get hashCode => Object.hash(runtimeType, time, status, detail,
+      const DeepCollectionEquality().hash(_result));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DepartmentResultCopyWith<_$_DepartmentResult> get copyWith =>
-      __$$_DepartmentResultCopyWithImpl<_$_DepartmentResult>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(DepartmentModel department) department,
-    required TResult Function(StudentModel student) student,
-  }) {
-    return department(this.department);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DepartmentModel department)? department,
-    TResult? Function(StudentModel student)? student,
-  }) {
-    return department?.call(this.department);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DepartmentModel department)? department,
-    TResult Function(StudentModel student)? student,
-    required TResult orElse(),
-  }) {
-    if (department != null) {
-      return department(this.department);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DepartmentResult value) department,
-    required TResult Function(_StudentResult value) student,
-  }) {
-    return department(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DepartmentResult value)? department,
-    TResult? Function(_StudentResult value)? student,
-  }) {
-    return department?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DepartmentResult value)? department,
-    TResult Function(_StudentResult value)? student,
-    required TResult orElse(),
-  }) {
-    if (department != null) {
-      return department(this);
-    }
-    return orElse();
-  }
+  _$$_StudentStatusCopyWith<_$_StudentStatus> get copyWith =>
+      __$$_StudentStatusCopyWithImpl<_$_StudentStatus>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DepartmentResultToJson(
+    return _$$_StudentStatusToJson(
       this,
     );
   }
 }
 
-abstract class _DepartmentResult implements Model {
-  factory _DepartmentResult(final DepartmentModel department) =
-      _$_DepartmentResult;
+abstract class _StudentStatus implements StudentStatus {
+  const factory _StudentStatus(
+      {final String? time,
+      final String? status,
+      final String? detail,
+      final List<StudentModel>? result}) = _$_StudentStatus;
 
-  factory _DepartmentResult.fromJson(Map<String, dynamic> json) =
-      _$_DepartmentResult.fromJson;
+  factory _StudentStatus.fromJson(Map<String, dynamic> json) =
+      _$_StudentStatus.fromJson;
 
-  DepartmentModel get department;
+  @override
+  String? get time;
+  @override
+  String? get status;
+  @override
+  String? get detail;
+  @override
+  List<StudentModel>? get result;
+  @override
   @JsonKey(ignore: true)
-  _$$_DepartmentResultCopyWith<_$_DepartmentResult> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_StudentResultCopyWith<$Res> {
-  factory _$$_StudentResultCopyWith(
-          _$_StudentResult value, $Res Function(_$_StudentResult) then) =
-      __$$_StudentResultCopyWithImpl<$Res>;
-  @useResult
-  $Res call({StudentModel student});
-
-  $StudentModelCopyWith<$Res> get student;
-}
-
-/// @nodoc
-class __$$_StudentResultCopyWithImpl<$Res>
-    extends _$ModelCopyWithImpl<$Res, _$_StudentResult>
-    implements _$$_StudentResultCopyWith<$Res> {
-  __$$_StudentResultCopyWithImpl(
-      _$_StudentResult _value, $Res Function(_$_StudentResult) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? student = null,
-  }) {
-    return _then(_$_StudentResult(
-      null == student
-          ? _value.student
-          : student // ignore: cast_nullable_to_non_nullable
-              as StudentModel,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $StudentModelCopyWith<$Res> get student {
-    return $StudentModelCopyWith<$Res>(_value.student, (value) {
-      return _then(_value.copyWith(student: value));
-    });
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_StudentResult with DiagnosticableTreeMixin implements _StudentResult {
-  _$_StudentResult(this.student, {final String? $type})
-      : $type = $type ?? 'student';
-
-  factory _$_StudentResult.fromJson(Map<String, dynamic> json) =>
-      _$$_StudentResultFromJson(json);
-
-  @override
-  final StudentModel student;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Model.student(student: $student)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Model.student'))
-      ..add(DiagnosticsProperty('student', student));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_StudentResult &&
-            (identical(other.student, student) || other.student == student));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, student);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_StudentResultCopyWith<_$_StudentResult> get copyWith =>
-      __$$_StudentResultCopyWithImpl<_$_StudentResult>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(DepartmentModel department) department,
-    required TResult Function(StudentModel student) student,
-  }) {
-    return student(this.student);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(DepartmentModel department)? department,
-    TResult? Function(StudentModel student)? student,
-  }) {
-    return student?.call(this.student);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(DepartmentModel department)? department,
-    TResult Function(StudentModel student)? student,
-    required TResult orElse(),
-  }) {
-    if (student != null) {
-      return student(this.student);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DepartmentResult value) department,
-    required TResult Function(_StudentResult value) student,
-  }) {
-    return student(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DepartmentResult value)? department,
-    TResult? Function(_StudentResult value)? student,
-  }) {
-    return student?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DepartmentResult value)? department,
-    TResult Function(_StudentResult value)? student,
-    required TResult orElse(),
-  }) {
-    if (student != null) {
-      return student(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_StudentResultToJson(
-      this,
-    );
-  }
-}
-
-abstract class _StudentResult implements Model {
-  factory _StudentResult(final StudentModel student) = _$_StudentResult;
-
-  factory _StudentResult.fromJson(Map<String, dynamic> json) =
-      _$_StudentResult.fromJson;
-
-  StudentModel get student;
-  @JsonKey(ignore: true)
-  _$$_StudentResultCopyWith<_$_StudentResult> get copyWith =>
+  _$$_StudentStatusCopyWith<_$_StudentStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -931,10 +742,10 @@ StudentModel _$StudentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StudentModel {
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   DepartmentModel? get department => throw _privateConstructorUsedError;
-  EmailModel? get building => throw _privateConstructorUsedError;
+  EmailModel? get email => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
   int? get session => throw _privateConstructorUsedError;
   int? get currentSemester => throw _privateConstructorUsedError;
@@ -956,10 +767,10 @@ abstract class $StudentModelCopyWith<$Res> {
       _$StudentModelCopyWithImpl<$Res, StudentModel>;
   @useResult
   $Res call(
-      {int? id,
+      {String? id,
       String? name,
       DepartmentModel? department,
-      EmailModel? building,
+      EmailModel? email,
       String? gender,
       int? session,
       int? currentSemester,
@@ -969,7 +780,7 @@ abstract class $StudentModelCopyWith<$Res> {
       ResultModel? result});
 
   $DepartmentModelCopyWith<$Res>? get department;
-  $EmailModelCopyWith<$Res>? get building;
+  $EmailModelCopyWith<$Res>? get email;
   $PersonalModelCopyWith<$Res>? get personal;
   $ResultModelCopyWith<$Res>? get result;
 }
@@ -990,7 +801,7 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? department = freezed,
-    Object? building = freezed,
+    Object? email = freezed,
     Object? gender = freezed,
     Object? session = freezed,
     Object? currentSemester = freezed,
@@ -1003,7 +814,7 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1012,9 +823,9 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as DepartmentModel?,
-      building: freezed == building
-          ? _value.building
-          : building // ignore: cast_nullable_to_non_nullable
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as EmailModel?,
       gender: freezed == gender
           ? _value.gender
@@ -1061,13 +872,13 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $EmailModelCopyWith<$Res>? get building {
-    if (_value.building == null) {
+  $EmailModelCopyWith<$Res>? get email {
+    if (_value.email == null) {
       return null;
     }
 
-    return $EmailModelCopyWith<$Res>(_value.building!, (value) {
-      return _then(_value.copyWith(building: value) as $Val);
+    return $EmailModelCopyWith<$Res>(_value.email!, (value) {
+      return _then(_value.copyWith(email: value) as $Val);
     });
   }
 
@@ -1105,10 +916,10 @@ abstract class _$$_StudentModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {String? id,
       String? name,
       DepartmentModel? department,
-      EmailModel? building,
+      EmailModel? email,
       String? gender,
       int? session,
       int? currentSemester,
@@ -1120,7 +931,7 @@ abstract class _$$_StudentModelCopyWith<$Res>
   @override
   $DepartmentModelCopyWith<$Res>? get department;
   @override
-  $EmailModelCopyWith<$Res>? get building;
+  $EmailModelCopyWith<$Res>? get email;
   @override
   $PersonalModelCopyWith<$Res>? get personal;
   @override
@@ -1141,7 +952,7 @@ class __$$_StudentModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? department = freezed,
-    Object? building = freezed,
+    Object? email = freezed,
     Object? gender = freezed,
     Object? session = freezed,
     Object? currentSemester = freezed,
@@ -1154,7 +965,7 @@ class __$$_StudentModelCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1163,9 +974,9 @@ class __$$_StudentModelCopyWithImpl<$Res>
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
               as DepartmentModel?,
-      building: freezed == building
-          ? _value.building
-          : building // ignore: cast_nullable_to_non_nullable
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as EmailModel?,
       gender: freezed == gender
           ? _value.gender
@@ -1207,7 +1018,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
       {this.id,
       this.name,
       this.department,
-      this.building,
+      this.email,
       this.gender,
       this.session,
       this.currentSemester,
@@ -1220,13 +1031,13 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
       _$$_StudentModelFromJson(json);
 
   @override
-  final int? id;
+  final String? id;
   @override
   final String? name;
   @override
   final DepartmentModel? department;
   @override
-  final EmailModel? building;
+  final EmailModel? email;
   @override
   final String? gender;
   @override
@@ -1244,7 +1055,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StudentModel(id: $id, name: $name, department: $department, building: $building, gender: $gender, session: $session, currentSemester: $currentSemester, bloodGroup: $bloodGroup, privilage: $privilage, personal: $personal, result: $result)';
+    return 'StudentModel(id: $id, name: $name, department: $department, email: $email, gender: $gender, session: $session, currentSemester: $currentSemester, bloodGroup: $bloodGroup, privilage: $privilage, personal: $personal, result: $result)';
   }
 
   @override
@@ -1255,7 +1066,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('department', department))
-      ..add(DiagnosticsProperty('building', building))
+      ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('gender', gender))
       ..add(DiagnosticsProperty('session', session))
       ..add(DiagnosticsProperty('currentSemester', currentSemester))
@@ -1274,8 +1085,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.department, department) ||
                 other.department == department) &&
-            (identical(other.building, building) ||
-                other.building == building) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.session, session) || other.session == session) &&
             (identical(other.currentSemester, currentSemester) ||
@@ -1296,7 +1106,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
       id,
       name,
       department,
-      building,
+      email,
       gender,
       session,
       currentSemester,
@@ -1321,10 +1131,10 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
 
 abstract class _StudentModel implements StudentModel {
   const factory _StudentModel(
-      {final int? id,
+      {final String? id,
       final String? name,
       final DepartmentModel? department,
-      final EmailModel? building,
+      final EmailModel? email,
       final String? gender,
       final int? session,
       final int? currentSemester,
@@ -1337,13 +1147,13 @@ abstract class _StudentModel implements StudentModel {
       _$_StudentModel.fromJson;
 
   @override
-  int? get id;
+  String? get id;
   @override
   String? get name;
   @override
   DepartmentModel? get department;
   @override
-  EmailModel? get building;
+  EmailModel? get email;
   @override
   String? get gender;
   @override

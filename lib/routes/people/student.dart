@@ -16,7 +16,7 @@ class Student extends StatefulWidget {
 
 class _StudentState extends State<Student> {
   int _selectedIndex = 0;
-  late Future<List<String?>> students;
+  late Future<List<StudentModel?>> students;
   late List<Widget> pages;
   String name = 'Student';
 
@@ -93,9 +93,9 @@ class _StudentState extends State<Student> {
     );
   }
 
-  FutureBuilder<List<String?>> body(
-      BuildContext context, Future<List<String?>> students) {
-    return FutureBuilder<List<String?>>(
+  FutureBuilder<List<StudentModel?>> body(
+      BuildContext context, Future<List<StudentModel?>> students) {
+    return FutureBuilder<List<StudentModel?>>(
         future: students,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -108,11 +108,11 @@ class _StudentState extends State<Student> {
                       child: Card(
                         padding: const EdgeInsets.all(5),
                         child: ListTile(
-                          title: Text(e!),
+                          title: Text(e!.name!),
                           onPressed: () {
                             setState(() {
-                              pages.add(StudentDetails(name: e));
-                              name = 'Student > $e';
+                              pages.add(StudentDetails(id: e.id!));
+                              name = 'Student > ${e.name}';
                               _selectedIndex = 1;
                             });
                           },

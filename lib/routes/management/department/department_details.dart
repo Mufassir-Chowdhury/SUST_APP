@@ -10,7 +10,7 @@ class DepartmentDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage(
-      content: FutureBuilder<DepartmentModel>(
+      content: FutureBuilder<DepartmentModel?>(
         future: DepartmentModel.getDepartmentDetails(name),
         builder: (context, snapshot) {
           if (snapshot.hasData) {

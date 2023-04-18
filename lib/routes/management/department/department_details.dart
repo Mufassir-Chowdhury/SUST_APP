@@ -4,14 +4,14 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sust_app/components/database_model.dart';
 
 class DepartmentDetails extends StatelessWidget {
-  const DepartmentDetails({super.key, required this.name});
-  final String name;
+  const DepartmentDetails({super.key, required this.id});
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage(
       content: FutureBuilder<DepartmentModel?>(
-        future: DepartmentModel.getDepartmentDetails(name),
+        future: DepartmentModel.getDepartmentDetails(id),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return material.DataTable(

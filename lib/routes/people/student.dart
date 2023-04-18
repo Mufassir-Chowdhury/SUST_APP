@@ -5,7 +5,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sust_app/components/database_model.dart';
 import 'package:sust_app/components/simple_list_page.dart';
 import 'package:sust_app/routes/management/department/add_department.dart';
-import 'package:sust_app/routes/management/department/department_details.dart';
 import 'package:sust_app/routes/people/student_details.dart';
 
 class Student extends StatefulWidget {
@@ -26,7 +25,17 @@ class _StudentState extends State<Student> {
   void initState() {
     super.initState();
     students = StudentModel.getStudentNames();
-    pages = [body(context, students)];
+    pages = [
+      SimpleListBuilder<StudentModel>(
+          nameList: StudentModel.getStudentNames(),
+          onPressed: (name, id) {
+            setState(() {
+              pages.add(StudentDetails(id: id));
+              title = '$root > $name';
+              _selectedIndex = 1;
+            });
+          })
+    ];
   }
 
   @override
@@ -38,12 +47,32 @@ class _StudentState extends State<Student> {
           setState(() {
             _selectedIndex = 0;
             title = root;
-            pages = [body(context, students)];
+            pages = [
+              SimpleListBuilder<StudentModel>(
+                  nameList: StudentModel.getStudentNames(),
+                  onPressed: (name, id) {
+                    setState(() {
+                      pages.add(StudentDetails(id: id));
+                      title = '$root > $name';
+                      _selectedIndex = 1;
+                    });
+                  })
+            ];
           });
         },
         onAddPress: () {
           setState(() {
-            pages = [body(context, students)];
+            pages = [
+              SimpleListBuilder<StudentModel>(
+                  nameList: StudentModel.getStudentNames(),
+                  onPressed: (name, id) {
+                    setState(() {
+                      pages.add(StudentDetails(id: id));
+                      title = '$root > $name';
+                      _selectedIndex = 1;
+                    });
+                  })
+            ];
 
             pages.add(addDepartmentWidget(context).animate().fade().slideY(
                 begin: .25, end: 0, duration: 400.ms, curve: Curves.easeOut));
@@ -61,55 +90,22 @@ class _StudentState extends State<Student> {
       onPressed: () {
         setState(() {
           students = StudentModel.getStudentNames();
-          pages = [body(context, students)];
+          pages = [
+            SimpleListBuilder<StudentModel>(
+              nameList: StudentModel.getStudentNames(),
+              onPressed: (name, id) {
+                setState(() {
+                  pages.add(StudentDetails(id: id));
+                  title = '$root > $name';
+                  _selectedIndex = 1;
+                });
+              },
+            )
+          ];
           _selectedIndex = 0;
-          title = 'Student';
+          title = root;
         });
       },
     );
-  }
-
-  FutureBuilder<List<StudentModel?>> body(
-      BuildContext context, Future<List<StudentModel?>> students) {
-    return FutureBuilder<List<StudentModel?>>(
-        future: students,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: snapshot.data!
-                  .map<Widget>(
-                    (e) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Card(
-                        padding: const EdgeInsets.all(5),
-                        child: ListTile(
-                          title: Text(e!.name!),
-                          onPressed: () {
-                            setState(() {
-                              pages.add(StudentDetails(id: e.id!));
-                              title = 'Student > ${e.name}';
-                              _selectedIndex = 1;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList()
-                  .animate(interval: 100.ms)
-                  .fade()
-                  .slideY(
-                      begin: .5,
-                      end: 0,
-                      duration: 500.ms,
-                      delay: 200.ms,
-                      curve: Curves.easeIn),
-            );
-          }
-          return const Center(
-            child: ProgressBar(),
-          );
-        });
   }
 }

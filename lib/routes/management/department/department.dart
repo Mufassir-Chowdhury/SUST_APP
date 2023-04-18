@@ -6,7 +6,7 @@ import 'package:sust_app/components/database_model.dart';
 import 'package:sust_app/components/simple_list_page.dart';
 import 'package:sust_app/routes/management/department/add_department.dart';
 import 'package:sust_app/routes/management/department/department_details.dart';
-
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 // TODO fix header width
 
 class Department extends StatefulWidget {
@@ -18,7 +18,7 @@ class Department extends StatefulWidget {
 
 class _DepartmentState extends State<Department> {
   int _selectedIndex = 0;
-  late Future<List<String?>> departments;
+  late Future<List<DepartmentModel?>> departments;
   late List<Widget> pages;
   String root = 'Departments';
   String title = 'Departments';
@@ -28,12 +28,12 @@ class _DepartmentState extends State<Department> {
     super.initState();
     departments = DepartmentModel.getDepartmentNames();
     pages = [
-      SimpleListBuilder(
-          departments: DepartmentModel.getDepartmentNames(),
-          onPressed: (e) {
+      SimpleListBuilder<DepartmentModel>(
+          nameList: DepartmentModel.getDepartmentNames(),
+          onPressed: (name, id) {
             setState(() {
-              pages.add(DepartmentDetails(name: e));
-              title = '$root > $e';
+              pages.add(DepartmentDetails(id: id));
+              title = '$root > $name';
               _selectedIndex = 1;
             });
           })
@@ -50,12 +50,12 @@ class _DepartmentState extends State<Department> {
             _selectedIndex = 0;
             title = root;
             pages = [
-              SimpleListBuilder(
-                  departments: DepartmentModel.getDepartmentNames(),
-                  onPressed: (e) {
+              SimpleListBuilder<DepartmentModel>(
+                  nameList: DepartmentModel.getDepartmentNames(),
+                  onPressed: (name, id) {
                     setState(() {
-                      pages.add(DepartmentDetails(name: e));
-                      title = '$root > $e';
+                      pages.add(DepartmentDetails(id: id));
+                      title = '$root > $name';
                       _selectedIndex = 1;
                     });
                   })
@@ -65,12 +65,12 @@ class _DepartmentState extends State<Department> {
         onAddPress: () {
           setState(() {
             pages = [
-              SimpleListBuilder(
-                  departments: DepartmentModel.getDepartmentNames(),
-                  onPressed: (e) {
+              SimpleListBuilder<DepartmentModel>(
+                  nameList: DepartmentModel.getDepartmentNames(),
+                  onPressed: (name, id) {
                     setState(() {
-                      pages.add(DepartmentDetails(name: e));
-                      title = '$root > $e';
+                      pages.add(DepartmentDetails(id: id));
+                      title = '$root > $name';
                       _selectedIndex = 1;
                     });
                   })
@@ -93,12 +93,12 @@ class _DepartmentState extends State<Department> {
         setState(() {
           departments = DepartmentModel.getDepartmentNames();
           pages = [
-            SimpleListBuilder(
-              departments: DepartmentModel.getDepartmentNames(),
-              onPressed: (e) {
+            SimpleListBuilder<DepartmentModel>(
+              nameList: DepartmentModel.getDepartmentNames(),
+              onPressed: (name, id) {
                 setState(() {
-                  pages.add(DepartmentDetails(name: e));
-                  title = '$root > $e';
+                  pages.add(DepartmentDetails(id: id));
+                  title = '$root > $name';
                   _selectedIndex = 1;
                 });
               },
@@ -109,54 +109,5 @@ class _DepartmentState extends State<Department> {
         });
       },
     );
-  }
-}
-
-class SimpleListBuilder extends StatelessWidget {
-  const SimpleListBuilder(
-      {super.key, required this.departments, required this.onPressed});
-  final Future<List<String?>> departments;
-  final Function(String name) onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<String?>>(
-        future: departments,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            snapshot.data!.toList();
-            return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              children: snapshot.data!
-                  .map<Widget>(
-                    (e) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Card(
-                        padding: const EdgeInsets.all(5),
-                        child: ListTile(
-                          title: Text(e!),
-                          onPressed: () {
-                            onPressed(e);
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList()
-                  .animate(interval: 100.ms)
-                  .fade()
-                  .slideY(
-                      begin: .5,
-                      end: 0,
-                      duration: 500.ms,
-                      delay: 200.ms,
-                      curve: Curves.easeIn),
-            );
-          }
-          return const Center(
-            child: ProgressBar(),
-          );
-        });
-    ;
   }
 }

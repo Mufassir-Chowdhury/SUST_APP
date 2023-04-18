@@ -79,21 +79,14 @@ class DepartmentModel with _$DepartmentModel {
   factory DepartmentModel.fromJson(Map<String, Object?> json) =>
       _$DepartmentModelFromJson(json);
 
-  static Future<List<String?>> getDepartmentNames() async {
+  static Future<List<DepartmentModel?>> getDepartmentNames() async {
     final http.Response response =
-        await post('''SELECT name FROM department;''');
-    return DepartmentStatus.fromJson(jsonDecode(response.body)[0])
-        .result!
-        .map(((e) => e.name))
-        .toList();
+        await post('''SELECT name, id FROM department;''');
+    return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
-  static Future<DepartmentModel> getDepartmentDetails(
-      String departmentName) async {
-    final http.Response response = await post('''SELECT * FROM department
-                  WHERE name = "$departmentName";''');
-    print(DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0]);
-
+  static Future<DepartmentModel> getDepartmentDetails(String id) async {
+    final http.Response response = await post('''SELECT * FROM $id;''');
     return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 

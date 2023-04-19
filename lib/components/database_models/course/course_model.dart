@@ -28,7 +28,7 @@ class CourseModel with _$CourseModel {
   const factory CourseModel({
     String? id,
     double? credit,
-    String? title,
+    String? name,
     DepartmentModel? department,
     String? type,
     List<SyllabusModel>? syllabus,
@@ -37,13 +37,13 @@ class CourseModel with _$CourseModel {
   factory CourseModel.fromJson(Map<String, Object?> json) =>
       _$CourseModelFromJson(json);
 
-  static Future<List<CourseModel?>> getAdminNames() async {
+  static Future<List<CourseModel?>> getCourseNames() async {
     final http.Response response =
-        await post('''SELECT name, id FROM admin;''');
+        await post('''SELECT name, id FROM course;''');
     return CourseStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
-  static Future<CourseModel> getAdminDetails(String id) async {
+  static Future<CourseModel> getCourseDetails(String id) async {
     final http.Response response =
         await post('''SELECT * FROM $id FETCH department;''');
     return CourseStatus.fromJson(jsonDecode(response.body)[0]).result![0];

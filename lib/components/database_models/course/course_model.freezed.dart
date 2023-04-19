@@ -240,7 +240,7 @@ CourseModel _$CourseModelFromJson(Map<String, dynamic> json) {
 mixin _$CourseModel {
   String? get id => throw _privateConstructorUsedError;
   double? get credit => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   DepartmentModel? get department => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   List<SyllabusModel>? get syllabus => throw _privateConstructorUsedError;
@@ -260,7 +260,7 @@ abstract class $CourseModelCopyWith<$Res> {
   $Res call(
       {String? id,
       double? credit,
-      String? title,
+      String? name,
       DepartmentModel? department,
       String? type,
       List<SyllabusModel>? syllabus});
@@ -283,7 +283,7 @@ class _$CourseModelCopyWithImpl<$Res, $Val extends CourseModel>
   $Res call({
     Object? id = freezed,
     Object? credit = freezed,
-    Object? title = freezed,
+    Object? name = freezed,
     Object? department = freezed,
     Object? type = freezed,
     Object? syllabus = freezed,
@@ -297,9 +297,9 @@ class _$CourseModelCopyWithImpl<$Res, $Val extends CourseModel>
           ? _value.credit
           : credit // ignore: cast_nullable_to_non_nullable
               as double?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       department: freezed == department
           ? _value.department
@@ -340,7 +340,7 @@ abstract class _$$_CourseModelCopyWith<$Res>
   $Res call(
       {String? id,
       double? credit,
-      String? title,
+      String? name,
       DepartmentModel? department,
       String? type,
       List<SyllabusModel>? syllabus});
@@ -362,7 +362,7 @@ class __$$_CourseModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? credit = freezed,
-    Object? title = freezed,
+    Object? name = freezed,
     Object? department = freezed,
     Object? type = freezed,
     Object? syllabus = freezed,
@@ -376,9 +376,9 @@ class __$$_CourseModelCopyWithImpl<$Res>
           ? _value.credit
           : credit // ignore: cast_nullable_to_non_nullable
               as double?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       department: freezed == department
           ? _value.department
@@ -403,7 +403,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
   const _$_CourseModel(
       {this.id,
       this.credit,
-      this.title,
+      this.name,
       this.department,
       this.type,
       final List<SyllabusModel>? syllabus})
@@ -417,7 +417,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
   @override
   final double? credit;
   @override
-  final String? title;
+  final String? name;
   @override
   final DepartmentModel? department;
   @override
@@ -434,7 +434,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CourseModel(id: $id, credit: $credit, title: $title, department: $department, type: $type, syllabus: $syllabus)';
+    return 'CourseModel(id: $id, credit: $credit, name: $name, department: $department, type: $type, syllabus: $syllabus)';
   }
 
   @override
@@ -444,7 +444,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
       ..add(DiagnosticsProperty('type', 'CourseModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('credit', credit))
-      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('department', department))
       ..add(DiagnosticsProperty('type', type))
       ..add(DiagnosticsProperty('syllabus', syllabus));
@@ -457,7 +457,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
             other is _$_CourseModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.credit, credit) || other.credit == credit) &&
-            (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.department, department) ||
                 other.department == department) &&
             (identical(other.type, type) || other.type == type) &&
@@ -466,7 +466,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, credit, title, department,
+  int get hashCode => Object.hash(runtimeType, id, credit, name, department,
       type, const DeepCollectionEquality().hash(_syllabus));
 
   @JsonKey(ignore: true)
@@ -487,7 +487,7 @@ abstract class _CourseModel implements CourseModel {
   const factory _CourseModel(
       {final String? id,
       final double? credit,
-      final String? title,
+      final String? name,
       final DepartmentModel? department,
       final String? type,
       final List<SyllabusModel>? syllabus}) = _$_CourseModel;
@@ -500,7 +500,7 @@ abstract class _CourseModel implements CourseModel {
   @override
   double? get credit;
   @override
-  String? get title;
+  String? get name;
   @override
   DepartmentModel? get department;
   @override

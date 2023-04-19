@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
+import 'package:sust_app/routes/management/course/course.dart';
 import 'package:sust_app/routes/management/department/department.dart';
 import 'package:sust_app/routes/people/admin.dart';
 import 'package:sust_app/routes/people/student.dart';
@@ -66,7 +67,7 @@ class _AdminPageState extends State<AdminPage> {
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),
                   title: const Text('Courses'),
-                  body: bodyItem(),
+                  body: const Course(),
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),

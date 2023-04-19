@@ -28,7 +28,7 @@ _$_CourseModel _$$_CourseModelFromJson(Map<String, dynamic> json) =>
     _$_CourseModel(
       id: json['id'] as String?,
       credit: (json['credit'] as num?)?.toDouble(),
-      title: json['title'] as String?,
+      name: json['name'] as String?,
       department: json['department'] == null
           ? null
           : DepartmentModel.fromJson(
@@ -43,7 +43,7 @@ Map<String, dynamic> _$$_CourseModelToJson(_$_CourseModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'credit': instance.credit,
-      'title': instance.title,
+      'name': instance.name,
       'department': instance.department,
       'type': instance.type,
       'syllabus': instance.syllabus,

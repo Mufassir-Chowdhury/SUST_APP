@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/post.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
@@ -37,10 +38,10 @@ class DepartmentModel with _$DepartmentModel {
   factory DepartmentModel.fromJson(Map<String, Object?> json) =>
       _$DepartmentModelFromJson(json);
 
-  static Future<List<DepartmentModel?>> getDepartmentNames() async {
-    final http.Response response =
-        await post('''SELECT name, id FROM department;''');
-    return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result!;
+  static Future<List<ListModel>> getDepartmentListTile() async {
+    final http.Response response = await post(
+        '''SELECT name AS title, letterCode AS subtitle, id AS id FROM department;''');
+    return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
   static Future<DepartmentModel> getDepartmentDetails(String id) async {

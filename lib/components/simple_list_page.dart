@@ -76,9 +76,9 @@ class SimpleListBuilder<T> extends StatelessWidget {
                           child: Card(
                             padding: const EdgeInsets.all(5),
                             child: ListTile(
-                              title: Text(snapshot.data![index]!.name),
+                              title: Text(snapshot.data![index]!.title),
                               onPressed: () {
-                                onPressed(snapshot.data![index]!.name,
+                                onPressed(snapshot.data![index]!.title,
                                     snapshot.data![index]!.id);
                               },
                             ),

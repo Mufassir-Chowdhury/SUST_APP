@@ -43,10 +43,10 @@ class StudentModel with _$StudentModel {
   factory StudentModel.fromJson(Map<String, Object?> json) =>
       _$StudentModelFromJson(json);
 
-  static Future<List<StudentModel?>> getStudentNames() async {
-    final http.Response response =
-        await post('''SELECT name, id FROM student;''');
-    return StudentStatus.fromJson(jsonDecode(response.body)[0]).result!;
+  static Future<List<ListModel>> getStudentListTile() async {
+    final http.Response response = await post(
+        '''SELECT name AS title, department.name AS subtitle, id AS id FROM student;''');
+    return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
   static Future<StudentModel> getStudentDetails(String id) async {

@@ -14,6 +14,399 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ListStatus _$ListStatusFromJson(Map<String, dynamic> json) {
+  return _ListStatus.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ListStatus {
+  String? get time => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get detail => throw _privateConstructorUsedError;
+  List<ListModel>? get result => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ListStatusCopyWith<ListStatus> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ListStatusCopyWith<$Res> {
+  factory $ListStatusCopyWith(
+          ListStatus value, $Res Function(ListStatus) then) =
+      _$ListStatusCopyWithImpl<$Res, ListStatus>;
+  @useResult
+  $Res call(
+      {String? time, String? status, String? detail, List<ListModel>? result});
+}
+
+/// @nodoc
+class _$ListStatusCopyWithImpl<$Res, $Val extends ListStatus>
+    implements $ListStatusCopyWith<$Res> {
+  _$ListStatusCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? result = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<ListModel>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ListStatusCopyWith<$Res>
+    implements $ListStatusCopyWith<$Res> {
+  factory _$$_ListStatusCopyWith(
+          _$_ListStatus value, $Res Function(_$_ListStatus) then) =
+      __$$_ListStatusCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? time, String? status, String? detail, List<ListModel>? result});
+}
+
+/// @nodoc
+class __$$_ListStatusCopyWithImpl<$Res>
+    extends _$ListStatusCopyWithImpl<$Res, _$_ListStatus>
+    implements _$$_ListStatusCopyWith<$Res> {
+  __$$_ListStatusCopyWithImpl(
+      _$_ListStatus _value, $Res Function(_$_ListStatus) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? result = freezed,
+  }) {
+    return _then(_$_ListStatus(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      result: freezed == result
+          ? _value._result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<ListModel>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$_ListStatus with DiagnosticableTreeMixin implements _ListStatus {
+  const _$_ListStatus(
+      {this.time, this.status, this.detail, final List<ListModel>? result})
+      : _result = result;
+
+  factory _$_ListStatus.fromJson(Map<String, dynamic> json) =>
+      _$$_ListStatusFromJson(json);
+
+  @override
+  final String? time;
+  @override
+  final String? status;
+  @override
+  final String? detail;
+  final List<ListModel>? _result;
+  @override
+  List<ListModel>? get result {
+    final value = _result;
+    if (value == null) return null;
+    if (_result is EqualUnmodifiableListView) return _result;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ListStatus(time: $time, status: $status, detail: $detail, result: $result)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ListStatus'))
+      ..add(DiagnosticsProperty('time', time))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('detail', detail))
+      ..add(DiagnosticsProperty('result', result));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ListStatus &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            const DeepCollectionEquality().equals(other._result, _result));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, time, status, detail,
+      const DeepCollectionEquality().hash(_result));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ListStatusCopyWith<_$_ListStatus> get copyWith =>
+      __$$_ListStatusCopyWithImpl<_$_ListStatus>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ListStatusToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ListStatus implements ListStatus {
+  const factory _ListStatus(
+      {final String? time,
+      final String? status,
+      final String? detail,
+      final List<ListModel>? result}) = _$_ListStatus;
+
+  factory _ListStatus.fromJson(Map<String, dynamic> json) =
+      _$_ListStatus.fromJson;
+
+  @override
+  String? get time;
+  @override
+  String? get status;
+  @override
+  String? get detail;
+  @override
+  List<ListModel>? get result;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ListStatusCopyWith<_$_ListStatus> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ListModel _$ListModelFromJson(Map<String, dynamic> json) {
+  return _ListModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ListModel {
+  String? get title => throw _privateConstructorUsedError;
+  String? get subtitle => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ListModelCopyWith<ListModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ListModelCopyWith<$Res> {
+  factory $ListModelCopyWith(ListModel value, $Res Function(ListModel) then) =
+      _$ListModelCopyWithImpl<$Res, ListModel>;
+  @useResult
+  $Res call({String? title, String? subtitle, String? id});
+}
+
+/// @nodoc
+class _$ListModelCopyWithImpl<$Res, $Val extends ListModel>
+    implements $ListModelCopyWith<$Res> {
+  _$ListModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_value.copyWith(
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ListModelCopyWith<$Res> implements $ListModelCopyWith<$Res> {
+  factory _$$_ListModelCopyWith(
+          _$_ListModel value, $Res Function(_$_ListModel) then) =
+      __$$_ListModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? title, String? subtitle, String? id});
+}
+
+/// @nodoc
+class __$$_ListModelCopyWithImpl<$Res>
+    extends _$ListModelCopyWithImpl<$Res, _$_ListModel>
+    implements _$$_ListModelCopyWith<$Res> {
+  __$$_ListModelCopyWithImpl(
+      _$_ListModel _value, $Res Function(_$_ListModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? subtitle = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_$_ListModel(
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$_ListModel with DiagnosticableTreeMixin implements _ListModel {
+  const _$_ListModel({this.title, this.subtitle, this.id});
+
+  factory _$_ListModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ListModelFromJson(json);
+
+  @override
+  final String? title;
+  @override
+  final String? subtitle;
+  @override
+  final String? id;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ListModel(title: $title, subtitle: $subtitle, id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ListModel'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('subtitle', subtitle))
+      ..add(DiagnosticsProperty('id', id));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ListModel &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, subtitle, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ListModelCopyWith<_$_ListModel> get copyWith =>
+      __$$_ListModelCopyWithImpl<_$_ListModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ListModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ListModel implements ListModel {
+  const factory _ListModel(
+      {final String? title,
+      final String? subtitle,
+      final String? id}) = _$_ListModel;
+
+  factory _ListModel.fromJson(Map<String, dynamic> json) =
+      _$_ListModel.fromJson;
+
+  @override
+  String? get title;
+  @override
+  String? get subtitle;
+  @override
+  String? get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ListModelCopyWith<_$_ListModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 EmailModel _$EmailModelFromJson(Map<String, dynamic> json) {
   return _EmailModel.fromJson(json);
 }

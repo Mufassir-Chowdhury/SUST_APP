@@ -33,6 +33,33 @@ part 'common_model.g.dart';
 // }
 
 @freezed
+class ListStatus with _$ListStatus {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory ListStatus({
+    String? time,
+    String? status,
+    String? detail,
+    List<ListModel>? result,
+  }) = _ListStatus;
+
+  factory ListStatus.fromJson(Map<String, Object?> json) =>
+      _$ListStatusFromJson(json);
+}
+
+@freezed
+class ListModel with _$ListModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory ListModel({
+    String? title,
+    String? subtitle,
+    String? id,
+  }) = _ListModel;
+
+  factory ListModel.fromJson(Map<String, Object?> json) =>
+      _$ListModelFromJson(json);
+}
+
+@freezed
 class EmailModel with _$EmailModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory EmailModel({

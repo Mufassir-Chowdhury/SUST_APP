@@ -4,7 +4,7 @@ DEFINE TABLE teacher SCHEMAFULL;
 
 DEFINE FIELD name ON teacher TYPE string 
     ASSERT $value != NONE 
-    AND $value = /^[A-Za-z ]+$/ 
+    AND $value = /^[A-Za-z. ]+$/ 
     AND string::len($value) >= 3;
 
 DEFINE FIELD department ON teacher TYPE record(department) 
@@ -26,8 +26,7 @@ DEFINE FIELD email.academic ON teacher TYPE string
     AND parse::email::host($value) = 'sust.edu' 
     AND parse::email::user($value) >= 3;
 
-DEFINE INDEX academic_email ON teacher FIELDS email.
-academic UNIQUE;
+DEFINE INDEX academic_email ON teacher FIELDS email.academic UNIQUE;
 
 DEFINE FIELD gender ON teacher TYPE string 
     ASSERT $value INSIDE ['male', 'female'];
@@ -39,12 +38,12 @@ DEFINE FIELD personal ON teacher TYPE object;
 
 DEFINE FIELD personal.father ON teacher TYPE string 
     ASSERT $value != NONE 
-    AND $value = /^[A-Za-z ]+$/ 
+    AND $value = /^[A-Za-z. ]+$/ 
     AND string::len($value) >= 3;
 
 DEFINE FIELD personal.mother ON teacher TYPE string 
     ASSERT $value != NONE 
-    AND $value = /^[A-Za-z ]+$/ 
+    AND $value = /^[A-Za-z. ]+$/ 
     AND string::len($value) >= 3;
 
 --TODO
@@ -107,6 +106,26 @@ CREATE teacher CONTENT {
         birthday: "2001-07-10T07:18:52Z",
         phone: 01771144308,
         hometown: string::trim('Sylhet'),
+    },
+};
+
+CREATE teacher CONTENT {
+    id : 2016331033,
+    name: string::trim('Mr. X'),
+    department: department:CSE,
+    designation : string::trim('Lecturer'),
+    email: {
+       personal: string::trim('mac22214u@gmail.com'),
+       academic:string::trim( 'mufassir73@sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    blood_group: string::trim('B+'),
+    personal: {
+        father: string::trim('Mr. Y'),
+        mother: string::trim('Mrs. Z'),
+        birthday: "2001-07-10T07:18:52Z",
+        phone: 01771144308,
+        hometown: string::trim('Khulna'),
     },
 };
 ```

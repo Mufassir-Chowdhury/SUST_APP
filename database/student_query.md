@@ -9,7 +9,7 @@ DEFINE table student SCHEMAFULL;
 
 DEFINE FIELD name ON student TYPE string 
     ASSERT $value != NONE 
-    AND $value = /^[A-Za-z ]+$/ 
+    AND $value = /^[A-Za-z. ]+$/ 
     AND string::len($value) >= 3;
 
 DEFINE FIELD department ON student TYPE record(department) 
@@ -51,19 +51,19 @@ DEFINE FIELD blood_group ON student TYPE string
 
 DEFINE FIELD privilege ON student TYPE string 
     ASSERT $value = NONE 
-    OR ($value = /^[A-Za-z ]+$/ 
+    OR ($value = /^[A-Za-z. ]+$/ 
     AND string::len($value) > 1);
 
 DEFINE FIELD personal ON student TYPE object;
 
 DEFINE FIELD personal.father ON student TYPE string 
     ASSERT $value != NONE 
-    AND $value = /^[A-Za-z ]+$/ 
+    AND $value = /^[A-Za-z. ]+$/ 
     AND string::len($value) >= 3;
 
 DEFINE FIELD personal.mother ON student TYPE string 
     ASSERT $value != NONE 
-    AND $value = /^[A-Za-z ]+$/ 
+    AND $value = /^[A-Za-z. ]+$/ 
     AND string::len($value) >= 3;
 
 --TODO
@@ -185,7 +185,7 @@ CREATE student CONTENT {
         grade: string::trim('A'),
         total_credit: 160,
     },
-    
+
 };
 
 ```

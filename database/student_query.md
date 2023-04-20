@@ -190,6 +190,17 @@ CREATE student CONTENT {
 
 ```
 
+### getting name, department name, registration of all students
+```sql
+select name, department.name, id 
+from student;
+```
+
+### getting all information of a specific student
+```sql
+select * from student:id fetch department;
+```
+
 ### getting metadata using id
 ```sql
 select id, name, department.name, semester 

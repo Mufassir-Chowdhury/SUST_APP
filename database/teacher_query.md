@@ -129,3 +129,18 @@ CREATE teacher CONTENT {
     },
 };
 ```
+
+### getting information of all teacher
+```sql
+select id, name, department.name
+from teacher;
+```
+
+### getting all information of a specific teacher
+```sql
+select * 
+from teacher
+fetch department;
+```
+
+

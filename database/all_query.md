@@ -1,4 +1,8 @@
 ```sql
+surreal start --log debug --user root --pass root memory
+```
+
+```sql
 DEFINE TABLE department SCHEMAFULL;
 
 DEFINE FIELD code ON department TYPE number 
@@ -190,6 +194,33 @@ CREATE student CONTENT {
     
 };
 
+CREATE student CONTENT {
+    id : 2019331013,
+    name: string::trim('Asanul Haque Kiron'),
+    department: department:CSE,
+    email: {
+       personal: string::trim('asanulhaquekiron@gmail.com'),
+       academic:string::trim( 'asanul13@student.sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    session: 2019,
+    current_semester: 5,
+    blood_group: string::trim('A+'),
+    personal: {
+        father: string::trim('Md Mojammel Haque'),
+        mother: string::trim('Most Ayasha Siddika'),
+        birthday: "2000-12-03T07:18:52Z",
+        phone: 01771144308,
+        hometown: string::trim('Naogaon'),
+    },
+    result: {
+        cgpa: 3.94,
+        grade: string::trim('A'),
+        total_credit: 160,
+    },
+    
+};
+
 
 
 
@@ -252,4 +283,25 @@ DEFINE FIELD personal.hometown ON teacher TYPE string
     ASSERT $value != NONE 
     AND $value = /^[A-Za-z, ]+$/ 
     AND string::len($value) >= 3;  
+
+
+CREATE teacher CONTENT {
+    id : 2019331073,
+    name: string::trim('Mufassir Ahmad Chowdhury'),
+    department: department:CSE,
+    designation : string::trim('Lecturer'),
+    email: {
+       personal: string::trim('mac22214u@gmail.com'),
+       academic:string::trim( 'mufassir73@sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    blood_group: string::trim('B+'),
+    personal: {
+        father: string::trim('Hafiz Md Mashhud Chowdhury'),
+        mother: string::trim('Afsana Begum'),
+        birthday: "2001-07-10T07:18:52Z",
+        phone: 01771144308,
+        hometown: string::trim('Sylhet'),
+    },
+};
 ```

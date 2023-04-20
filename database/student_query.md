@@ -1,3 +1,4 @@
+### To create the table `student`
 ```sql
 DEFINE table student SCHEMAFULL;
 
@@ -96,8 +97,39 @@ DEFINE FIELD result.total_credit ON student TYPE float
 
 ```
 
+### `student` adding format
+```sql
+CREATE student CONTENT {
+    id : $value (number),
+    name: string::trim($value (string)),
+    department: string::concat('department:', $value(string)),
+    email: {
+       personal: string::trim($value (string)),
+       academic:string::trim($value (string)),
+    },
+    gender: string::lowercase($value (string)),
+    session: $value (number),
+    current_semester: $value (number),
+    blood_group: string::trim($value (string)),
+    privilege: string::trim($value (string)),
+    personal: {
+        father: string::trim($value (string)),
+        mother: string::trim($value (string)),
+        birthday: $value (datetime),
+        phone: $value (number),
+        hometown: string::trim($value (string)),
+    },
+    result: {
+        cgpa: $value (float),
+        grade: string::trim($value (string)),
+        total_credit: $value (float),
+    },
+    
+};
 
+```
 
+### Example to insert some values
 ```sql
 
 CREATE student CONTENT {
@@ -128,4 +160,62 @@ CREATE student CONTENT {
     
 };
 
+
+CREATE student CONTENT {
+    id : 2019331013,
+    name: string::trim('Asanul Haque Kiron'),
+    department: department:CSE,
+    email: {
+       personal: string::trim('asanulhaquekiron@gmail.com'),
+       academic:string::trim( 'asanul13@student.sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    session: 2019,
+    current_semester: 5,
+    blood_group: string::trim('A+'),
+    personal: {
+        father: string::trim('Md Mojammel Haque'),
+        mother: string::trim('Most Ayasha Siddika'),
+        birthday: "2000-12-03T07:18:52Z",
+        phone: 01771144308,
+        hometown: string::trim('Naogaon'),
+    },
+    result: {
+        cgpa: 3.94,
+        grade: string::trim('A'),
+        total_credit: 160,
+    },
+    
+};
+
+```
+
+### getting metadata using id
+```sql
+select id, name, department.name, semester 
+from student:id; 
+```
+
+### getting all information using id
+```sql
+select *, department.* from student:id;
+```
+
+### getting people of the same department
+```sql
+select id,name
+from student
+where department = (select value department from student:id);
+```
+
+### getting people of the same batch
+```sql
+select id from student 
+where session = (select value session from student.id);
+```
+
+### getting people of the same department and batch
+```sql
+select id from student
+where [session, department] = [(select value session from student:2019331013),(select value department from student:2019331013)] 
 ```

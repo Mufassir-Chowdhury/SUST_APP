@@ -1,3 +1,4 @@
+### To create the table `teacher`
 ```sql
 DEFINE TABLE teacher SCHEMAFULL;
 
@@ -8,6 +9,9 @@ DEFINE FIELD name ON teacher TYPE string
 
 DEFINE FIELD department ON teacher TYPE record(department) 
     ASSERT $value != NONE;
+
+define field designation on teacher type string
+    assert $value inside ['Lecturer', 'Assistant Professor', 'Professor'];
 
 DEFINE FIELD email ON teacher TYPE object;
 
@@ -61,6 +65,48 @@ DEFINE FIELD personal.hometown ON teacher TYPE string
 
 ```
 
+### `teacher` adding format
 ```sql
+CREATE teacher CONTENT {
+    id : $value (number),
+    name: string::trim($value (string)),
+    department: string::concat('department:', $value(string)),
+    designation : string::trim($value (string)),
+    email: {
+       personal: string::trim($value (string)),
+       academic:string::trim($value (string)),
+    },
+    gender: string::lowercase($value (string)),
+    blood_group: string::trim($value (string)),
+    personal: {
+        father: string::trim($value (string)),
+        mother: string::trim($value (string)),
+        birthday: $value (datetime),
+        phone: $value (number),
+        hometown: string::trim($value (string)),
+    },
+};
+```
 
+### Example to insert some value
+```sql
+CREATE teacher CONTENT {
+    id : 2019331073,
+    name: string::trim('Mufassir Ahmad Chowdhury'),
+    department: department:CSE,
+    designation : string::trim('Lecturer'),
+    email: {
+       personal: string::trim('mac22214u@gmail.com'),
+       academic:string::trim( 'mufassir73@sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    blood_group: string::trim('B+'),
+    personal: {
+        father: string::trim('Hafiz Md Mashhud Chowdhury'),
+        mother: string::trim('Afsana Begum'),
+        birthday: "2001-07-10T07:18:52Z",
+        phone: 01771144308,
+        hometown: string::trim('Sylhet'),
+    },
+};
 ```

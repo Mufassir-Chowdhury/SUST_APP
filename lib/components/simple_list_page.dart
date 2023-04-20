@@ -77,6 +77,7 @@ class SimpleListBuilder<T> extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             child: ListTile(
                               title: Text(snapshot.data![index]!.title),
+                              subtitle: Text(snapshot.data![index]!.subtitle),
                               onPressed: () {
                                 onPressed(snapshot.data![index]!.title,
                                     snapshot.data![index]!.id);
@@ -106,7 +107,7 @@ class SimpleListPage<T> extends StatefulWidget {
       required this.detailsPage});
   final String root;
   final Function() loadNames;
-  final Function(String id) detailsPage;
+  final Function(String id, String name) detailsPage;
 
   @override
   State<SimpleListPage> createState() => _SimpleListPageState<T>();
@@ -170,7 +171,7 @@ class _SimpleListPageState<T> extends State<SimpleListPage> {
         nameList: widget.loadNames(),
         onPressed: (name, id) {
           setState(() {
-            pages.add(widget.detailsPage(id));
+            pages.add(widget.detailsPage(id, name));
             title = '${widget.root} > $name';
             _selectedIndex = 1;
           });

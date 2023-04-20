@@ -1,8 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/department/department_model.dart';
 import 'package:sust_app/components/simple_list_page.dart';
-import 'package:sust_app/routes/management/department/department_details.dart';
+import 'package:sust_app/components/details_page.dart';
 
 class Department extends StatelessWidget {
   const Department({super.key});
@@ -12,10 +13,26 @@ class Department extends StatelessWidget {
     return SimpleListPage<ListModel>(
       root: root,
       loadNames: () {
-        return DepartmentModel.getDepartmentListTile();
+        return DepartmentModel.getListTile();
       },
-      detailsPage: (String id) {
-        return DepartmentDetails(id: id);
+      detailsPage: (String id, String name) {
+        return DetailsPage(
+          id: id,
+          name: name,
+          loadDetails: (String id) {
+            return DepartmentModel.getDetails(id);
+          },
+          showTable: (DepartmentModel? data) {
+            return data!.toJson().entries.map((element) {
+              return material.DataRow(
+                cells: [
+                  material.DataCell(Text(element.key.toUpperCase())),
+                  material.DataCell(Text(element.value.toString())),
+                ],
+              );
+            }).toList();
+          },
+        );
       },
     );
   }

@@ -38,13 +38,13 @@ class DepartmentModel with _$DepartmentModel {
   factory DepartmentModel.fromJson(Map<String, Object?> json) =>
       _$DepartmentModelFromJson(json);
 
-  static Future<List<ListModel>> getDepartmentListTile() async {
+  static Future<List<ListModel>> getListTile() async {
     final http.Response response = await post(
-        '''SELECT name AS title, letterCode AS subtitle, id AS id FROM department;''');
+        '''SELECT name AS title, letter_code AS subtitle, id AS id FROM department;''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
-  static Future<DepartmentModel> getDepartmentDetails(String id) async {
+  static Future<DepartmentModel> getDetails(String id) async {
     final http.Response response = await post('''SELECT * FROM $id;''');
     return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }

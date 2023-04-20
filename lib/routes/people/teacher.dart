@@ -1,8 +1,9 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/teacher/teacher_model.dart';
+import 'package:sust_app/components/details_page.dart';
 import 'package:sust_app/components/simple_list_page.dart';
-import 'package:sust_app/routes/people/teacher_details.dart';
 
 class Teacher extends StatelessWidget {
   const Teacher({super.key});
@@ -12,10 +13,28 @@ class Teacher extends StatelessWidget {
     return SimpleListPage<ListModel>(
       root: root,
       loadNames: () {
-        return TeacherModel.getTeacherListTile();
+        return TeacherModel.getListTile();
       },
-      detailsPage: (String id) {
-        return TeacherDetails(id: id);
+      detailsPage: (String id, String name) {
+        return DetailsPage(
+          id: id,
+          name: name,
+          loadDetails: (String id) {
+            return TeacherModel.getDetails(id);
+          },
+          showTable: (TeacherModel? data) {
+            return data!.toJson().entries.map(
+              (element) {
+                return material.DataRow(
+                  cells: [
+                    material.DataCell(Text(element.key.toUpperCase())),
+                    material.DataCell(Text(element.value.toString())),
+                  ],
+                );
+              },
+            ).toList();
+          },
+        );
       },
     );
   }

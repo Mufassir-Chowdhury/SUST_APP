@@ -40,13 +40,13 @@ class AdminModel with _$AdminModel {
   factory AdminModel.fromJson(Map<String, Object?> json) =>
       _$AdminModelFromJson(json);
 
-  static Future<List<ListModel>> getAdminListTile() async {
+  static Future<List<ListModel>> getListTile() async {
     final http.Response response = await post(
         '''SELECT name AS title, department.name AS subtitle, id AS id FROM admin;''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
-  static Future<AdminModel> getAdminDetails(String id) async {
+  static Future<AdminModel> getDetails(String id) async {
     final http.Response response =
         await post('''SELECT * FROM $id FETCH department;''');
     return AdminStatus.fromJson(jsonDecode(response.body)[0]).result![0];

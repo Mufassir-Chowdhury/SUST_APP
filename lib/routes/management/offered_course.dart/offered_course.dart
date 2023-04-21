@@ -1,10 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:sust_app/components/database_models/common_model.dart';
-import 'package:sust_app/components/database_models/course/course_model.dart';
 import 'package:sust_app/components/database_models/offered_course/offered_course_model.dart';
 import 'package:sust_app/components/details_page.dart';
 import 'package:sust_app/components/simple_list_page.dart';
+import 'package:sust_app/routes/management/offered_course.dart/add_offered_course.dart';
 
 class OfferedCourse extends StatelessWidget {
   const OfferedCourse({super.key});
@@ -12,6 +12,11 @@ class OfferedCourse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleListPage<ListModel>(
+      add: (load) {
+        return AddOfferedCourse(
+          onPressed: load,
+        );
+      },
       root: root,
       loadNames: () {
         return OfferedCourseModel.getListTile();

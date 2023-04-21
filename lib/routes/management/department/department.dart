@@ -4,6 +4,7 @@ import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/department/department_model.dart';
 import 'package:sust_app/components/simple_list_page.dart';
 import 'package:sust_app/components/details_page.dart';
+import 'package:sust_app/routes/management/department/add_department.dart';
 
 class Department extends StatelessWidget {
   const Department({super.key});
@@ -11,6 +12,11 @@ class Department extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleListPage<ListModel>(
+      add: (load) {
+        return AddDepartment(
+          onPressed: load,
+        );
+      },
       root: root,
       loadNames: () {
         return DepartmentModel.getListTile();

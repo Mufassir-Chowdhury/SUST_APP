@@ -21,14 +21,16 @@ class DetailsPage<T> extends StatelessWidget {
         future: loadDetails(id),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return DataTable(
-              columns: [
-                const DataColumn(label: Text('Name')),
-                DataColumn(label: Text(name)),
-              ],
-              rows: [
-                ...showTable(snapshot.data),
-              ],
+            return SingleChildScrollView(
+              child: DataTable(
+                columns: [
+                  const DataColumn(label: Text('Name')),
+                  DataColumn(label: Text(name)),
+                ],
+                rows: [
+                  ...showTable(snapshot.data),
+                ],
+              ),
             );
           } else {
             return const Center(

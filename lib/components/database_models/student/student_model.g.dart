@@ -28,10 +28,7 @@ _$_StudentModel _$$_StudentModelFromJson(Map<String, dynamic> json) =>
     _$_StudentModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
-      department: json['department'] == null
-          ? null
-          : DepartmentModel.fromJson(
-              json['department'] as Map<String, dynamic>),
+      department: json['department'] as String?,
       email: json['email'] == null
           ? null
           : EmailModel.fromJson(json['email'] as Map<String, dynamic>),

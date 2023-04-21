@@ -3,9 +3,9 @@ import 'package:sust_app/components/window_actions.dart';
 import 'package:sust_app/routes/management/course/course.dart';
 import 'package:sust_app/routes/management/department/department.dart';
 import 'package:sust_app/routes/management/offered_course.dart/offered_course.dart';
-import 'package:sust_app/routes/people/admin.dart';
-import 'package:sust_app/routes/people/student.dart';
-import 'package:sust_app/routes/people/teacher.dart';
+import 'package:sust_app/routes/people/admin/admin.dart';
+import 'package:sust_app/routes/people/student/student.dart';
+import 'package:sust_app/routes/people/teacher/teacher.dart';
 import 'package:window_manager/window_manager.dart';
 
 class AdminPage extends StatefulWidget {

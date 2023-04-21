@@ -49,9 +49,9 @@ class DepartmentModel with _$DepartmentModel {
     return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 
-  static Future<String> createDepartment(DepartmentModel department) async {
+  static Future<String> create(DepartmentModel department) async {
     final http.Response response = await post(
-        '''CREATE department CONTENT ${jsonEncode(department.toJson()).toString()}''');
+        '''CREATE department:${department.id} CONTENT ${jsonEncode(department.toJson()).toString()}''');
     DepartmentStatus status =
         DepartmentStatus.fromJson(jsonDecode(response.body)[0]);
     if (status.status == 'ERR') {

@@ -1,28 +1,34 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:sust_app/components/database_models/admin/admin_model.dart';
 import 'package:sust_app/components/database_models/common_model.dart';
-import 'package:sust_app/components/database_models/teacher/teacher_model.dart';
 import 'package:sust_app/components/details_page.dart';
 import 'package:sust_app/components/simple_list_page.dart';
+import 'package:sust_app/routes/people/admin/add_admin.dart';
 
-class Teacher extends StatelessWidget {
-  const Teacher({super.key});
-  final String root = 'Teacher';
+class Admin extends StatelessWidget {
+  const Admin({super.key});
+  final String root = 'Admin';
   @override
   Widget build(BuildContext context) {
     return SimpleListPage<ListModel>(
+      add: (load) {
+        return AddAdmin(
+          onPressed: load,
+        );
+      },
       root: root,
       loadNames: () {
-        return TeacherModel.getListTile();
+        return AdminModel.getListTile();
       },
       detailsPage: (String id, String name) {
         return DetailsPage(
           id: id,
           name: name,
           loadDetails: (String id) {
-            return TeacherModel.getDetails(id);
+            return AdminModel.getDetails(id);
           },
-          showTable: (TeacherModel? data) {
+          showTable: (AdminModel? data) {
             return data!.toJson().entries.map(
               (element) {
                 return material.DataRow(

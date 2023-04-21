@@ -4,6 +4,7 @@ import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/course/course_model.dart';
 import 'package:sust_app/components/details_page.dart';
 import 'package:sust_app/components/simple_list_page.dart';
+import 'package:sust_app/routes/management/course/add_course.dart';
 
 class Course extends StatelessWidget {
   const Course({super.key});
@@ -11,6 +12,11 @@ class Course extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleListPage<ListModel>(
+      add: (load) {
+        return AddCourse(
+          onPressed: load,
+        );
+      },
       root: root,
       loadNames: () {
         return CourseModel.getListTile();

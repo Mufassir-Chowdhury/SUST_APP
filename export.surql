@@ -17,14 +17,14 @@ DEFINE FIELD email ON admin TYPE object;
 DEFINE FIELD email.academic ON admin TYPE string;
 DEFINE FIELD email.personal ON admin TYPE string;
 DEFINE FIELD gender ON admin TYPE string;
-DEFINE FIELD id ON admin TYPE number;
+DEFINE FIELD id ON admin TYPE string;
 DEFINE FIELD name ON admin TYPE string;
 DEFINE FIELD personal ON admin TYPE object;
 DEFINE FIELD personal.birthday ON admin TYPE datetime;
 DEFINE FIELD personal.father ON admin TYPE string;
 DEFINE FIELD personal.hometown ON admin TYPE string;
 DEFINE FIELD personal.mother ON admin TYPE string;
-DEFINE FIELD personal.phone ON admin TYPE number;
+DEFINE FIELD personal.phone ON admin TYPE string;
 
 DEFINE INDEX academic_email ON admin FIELDS email.academic UNIQUE;
 DEFINE INDEX id ON admin FIELDS id UNIQUE;
@@ -79,14 +79,14 @@ DEFINE FIELD email ON student TYPE object;
 DEFINE FIELD email.academic ON student TYPE string;
 DEFINE FIELD email.personal ON student TYPE string;
 DEFINE FIELD gender ON student TYPE string;
-DEFINE FIELD id ON student TYPE number;
+DEFINE FIELD id ON student TYPE string;
 DEFINE FIELD name ON student TYPE string;
 DEFINE FIELD personal ON student TYPE object;
 DEFINE FIELD personal.birthday ON student TYPE datetime;
 DEFINE FIELD personal.father ON student TYPE string;
 DEFINE FIELD personal.hometown ON student TYPE string;
 DEFINE FIELD personal.mother ON student TYPE string;
-DEFINE FIELD personal.phone ON student TYPE number;
+DEFINE FIELD personal.phone ON student TYPE string;
 DEFINE FIELD privilage ON student TYPE string;
 DEFINE FIELD result ON student TYPE object;
 DEFINE FIELD result.cgpa ON student TYPE number;
@@ -112,14 +112,14 @@ DEFINE FIELD email ON teacher TYPE object;
 DEFINE FIELD email.academic ON teacher TYPE string;
 DEFINE FIELD email.personal ON teacher TYPE string;
 DEFINE FIELD gender ON teacher TYPE string;
-DEFINE FIELD id ON teacher TYPE number;
+DEFINE FIELD id ON teacher TYPE string;
 DEFINE FIELD name ON teacher TYPE string;
 DEFINE FIELD personal ON teacher TYPE object;
 DEFINE FIELD personal.birthday ON teacher TYPE datetime;
 DEFINE FIELD personal.father ON teacher TYPE string;
 DEFINE FIELD personal.hometown ON teacher TYPE string;
 DEFINE FIELD personal.mother ON teacher TYPE string;
-DEFINE FIELD personal.phone ON teacher TYPE number;
+DEFINE FIELD personal.phone ON teacher TYPE string;
 
 DEFINE INDEX academic_email ON teacher FIELDS email.academic UNIQUE;
 DEFINE INDEX id ON teacher FIELDS id UNIQUE;
@@ -136,7 +136,7 @@ BEGIN TRANSACTION;
 -- TABLE DATA: admin
 -- ------------------------------
 
-UPDATE admin:2019331004 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Something', email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: admin:2019331004, name: 'Mr. X', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: 1771144308 } };
+UPDATE admin:2019331004 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Something', email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: admin:2019331004, name: 'Mr. X', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: '01771144308' } };
 
 -- ------------------------------
 -- TABLE DATA: course
@@ -151,19 +151,20 @@ UPDATE course:CSE222 CONTENT { credit: 3, department: department:CSE, id: course
 UPDATE department:CSE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', code: 331, floor: 3, id: department:CSE, letter_code: 'CSE', minor_course_code: 'D', name: 'Computer Science and Engineering' };
 UPDATE department:ECO CONTENT { building: 'D', code: 330, floor: 3, id: department:ECO, letter_code: 'ECO', minor_course_code: 'B', name: 'Economics' };
 UPDATE department:PHY CONTENT { building: 'A', code: 132, floor: 1, id: department:PHY, letter_code: 'PHY', minor_course_code: 'a', name: 'Physics' };
+UPDATE department:SNW CONTENT { building: 'ds', code: 106, floor: 1, id: department:SNW, letter_code: 'SNW', minor_course_code: 'S', name: 'SOME noew department' };
 UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', code: 123, floor: 1, id: department:SWE, letter_code: 'SWE', minor_course_code: 'A', name: 'Software Engineering' };
 
 -- ------------------------------
 -- TABLE DATA: student
 -- ------------------------------
 
-UPDATE student:2019331073 CONTENT { blood_group: 'B+', current_semester: 5, department: department:CSE, email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: student:2019331073, name: 'Mufassir Ahmad Chowdhury', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Hafiz Md Mashhud Chowdhury', hometown: 'Sylhet', mother: 'Afsana Begum', phone: 1771144308 }, privilage: 'CR', result: { cgpa: 4, grade: 'A+', total_credit: 160 }, session: 2019 };
+UPDATE student:2019331073 CONTENT { blood_group: 'B+', current_semester: 5, department: department:CSE, email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: student:2019331073, name: 'Mufassir Ahmad Chowdhury', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Hafiz Md Mashhud Chowdhury', hometown: 'Sylhet', mother: 'Afsana Begum', phone: '01771144308' }, privilage: 'CR', result: { cgpa: 4, grade: 'A+', total_credit: 160 }, session: 2019 };
 
 -- ------------------------------
 -- TABLE DATA: teacher
 -- ------------------------------
 
-UPDATE teacher:2019331002 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Professor', email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: teacher:2019331002, name: 'Mainul Hasan', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: 1771144308 } };
+UPDATE teacher:2019331002 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Professor', email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: teacher:2019331002, name: 'Mainul Hasan', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: '01771144308' } };
 
 -- ------------------------------
 -- TRANSACTION

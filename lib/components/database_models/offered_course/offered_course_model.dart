@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sust_app/components/database_models/common_model.dart';
-import 'package:sust_app/components/database_models/department/department_model.dart';
 import 'package:sust_app/components/post.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';

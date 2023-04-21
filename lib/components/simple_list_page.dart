@@ -1,7 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:sust_app/routes/management/department/add_department.dart';
 
 class Header extends StatelessWidget {
   const Header(
@@ -104,10 +103,12 @@ class SimpleListPage<T> extends StatefulWidget {
       {super.key,
       required this.root,
       required this.loadNames,
-      required this.detailsPage});
+      required this.detailsPage,
+      required this.add});
   final String root;
   final Function() loadNames;
   final Function(String id, String name) detailsPage;
+  final Widget Function(VoidCallback load) add;
 
   @override
   State<SimpleListPage> createState() => _SimpleListPageState<T>();
@@ -139,9 +140,13 @@ class _SimpleListPageState<T> extends State<SimpleListPage> {
               pages = [simpleListPage()];
 
               pages.add(
-                AddDepartment(
-                  onPressed: loadListPage,
-                ).animate().fade().slideY(
+                widget
+                    .add(
+                      loadListPage,
+                    )
+                    .animate()
+                    .fade()
+                    .slideY(
                       begin: .25,
                       end: 0,
                       duration: 400.ms,

@@ -1,15 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/database_models/department/department_model.dart';
 
-class AddDepartment extends StatefulWidget {
-  const AddDepartment({super.key, this.onPressed});
+class AddOfferedCourse extends StatefulWidget {
+  const AddOfferedCourse({super.key, this.onPressed});
   final VoidCallback? onPressed;
 
   @override
-  State<AddDepartment> createState() => _AddDepartmentState();
+  State<AddOfferedCourse> createState() => _AddOfferedCourseState();
 }
 
-class _AddDepartmentState extends State<AddDepartment> {
+class _AddOfferedCourseState extends State<AddOfferedCourse> {
   int numberBoxValue = 100;
   int floorBoxValue = 1;
   bool errorFound = false;

@@ -54,7 +54,7 @@ _$_PersonalModel _$$_PersonalModelFromJson(Map<String, dynamic> json) =>
       father: json['father'] as String?,
       mother: json['mother'] as String?,
       birthday: json['birthday'] as String?,
-      phone: json['phone'] as String?,
+      phone: json['phone'] as int?,
       hometown: json['hometown'] as String?,
     );
 

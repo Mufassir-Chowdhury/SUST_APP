@@ -581,7 +581,7 @@ mixin _$PersonalModel {
   String? get father => throw _privateConstructorUsedError;
   String? get mother => throw _privateConstructorUsedError;
   String? get birthday => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
+  int? get phone => throw _privateConstructorUsedError;
   String? get hometown => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -600,7 +600,7 @@ abstract class $PersonalModelCopyWith<$Res> {
       {String? father,
       String? mother,
       String? birthday,
-      String? phone,
+      int? phone,
       String? hometown});
 }
 
@@ -639,7 +639,7 @@ class _$PersonalModelCopyWithImpl<$Res, $Val extends PersonalModel>
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       hometown: freezed == hometown
           ? _value.hometown
           : hometown // ignore: cast_nullable_to_non_nullable
@@ -660,7 +660,7 @@ abstract class _$$_PersonalModelCopyWith<$Res>
       {String? father,
       String? mother,
       String? birthday,
-      String? phone,
+      int? phone,
       String? hometown});
 }
 
@@ -697,7 +697,7 @@ class __$$_PersonalModelCopyWithImpl<$Res>
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       hometown: freezed == hometown
           ? _value.hometown
           : hometown // ignore: cast_nullable_to_non_nullable
@@ -723,7 +723,7 @@ class _$_PersonalModel with DiagnosticableTreeMixin implements _PersonalModel {
   @override
   final String? birthday;
   @override
-  final String? phone;
+  final int? phone;
   @override
   final String? hometown;
 
@@ -782,7 +782,7 @@ abstract class _PersonalModel implements PersonalModel {
       {final String? father,
       final String? mother,
       final String? birthday,
-      final String? phone,
+      final int? phone,
       final String? hometown}) = _$_PersonalModel;
 
   factory _PersonalModel.fromJson(Map<String, dynamic> json) =
@@ -795,7 +795,7 @@ abstract class _PersonalModel implements PersonalModel {
   @override
   String? get birthday;
   @override
-  String? get phone;
+  int? get phone;
   @override
   String? get hometown;
   @override

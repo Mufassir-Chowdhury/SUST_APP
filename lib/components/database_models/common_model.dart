@@ -78,7 +78,7 @@ class PersonalModel with _$PersonalModel {
     String? father,
     String? mother,
     String? birthday,
-    String? phone,
+    int? phone,
     String? hometown,
   }) = _PersonalModel;
 

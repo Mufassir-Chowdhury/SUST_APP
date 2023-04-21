@@ -49,7 +49,9 @@ class StudentModel with _$StudentModel {
   }
 
   static Future<StudentModel> getDetails(String id) async {
+    print('Here to get details: d$id');
     final http.Response response = await post('''SELECT * FROM $id''');
+    print(StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0]);
     return StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 

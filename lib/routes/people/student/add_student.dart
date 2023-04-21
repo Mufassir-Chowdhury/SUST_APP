@@ -47,13 +47,13 @@ class _AddStudentState extends State<AddStudent> {
     'Male',
     'Female',
   ];
-
+  int idBoxValue = 0;
   int sessionBoxValue = 0;
   int semesterBoxValue = 0;
+  int phoneBoxValue = 0;
 
   String birthday = '';
 
-  TextEditingController idController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
   TextEditingController nameController = TextEditingController();
@@ -83,15 +83,20 @@ class _AddStudentState extends State<AddStudent> {
                     children: [
                       const Text('Add a new student'),
                       const SizedBox(height: 20),
-                      TextFormBox(
-                        controller: idController,
+                      const Text('ID'),
+                      NumberBox(
                         placeholder: 'ID',
-                        validator: (value) {
-                          if (value == null || value.trim().length != 10) {
-                            return 'The name must be exactly of length 10';
-                          }
-                          return null;
+                        value: idBoxValue,
+                        min: 1000000000,
+                        max: 9999999999,
+                        onChanged: (int? n) {
+                          n != null
+                              ? setState(() {
+                                  idBoxValue = n;
+                                })
+                              : null;
                         },
+                        mode: SpinButtonPlacementMode.inline,
                       ),
                       const SizedBox(height: 20),
                       TextFormBox(
@@ -163,6 +168,7 @@ class _AddStudentState extends State<AddStudent> {
                         },
                       ),
                       const SizedBox(height: 20),
+                      const Text('Session'),
                       NumberBox(
                         placeholder: 'Session',
                         value: sessionBoxValue,
@@ -263,22 +269,27 @@ class _AddStudentState extends State<AddStudent> {
                         },
                       ),
                       const SizedBox(height: 20),
-                      TextFormBox(
-                        controller: phoneController,
+                      const Text('Phone Number'),
+                      NumberBox(
                         placeholder: 'Phone Number',
-                        validator: (value) {
-                          if (value == null || value.trim().length != 11) {
-                            return 'The name must be of exactly length 11';
-                          }
-                          return null;
+                        value: phoneBoxValue,
+                        min: 1000000000,
+                        max: 9999999999,
+                        onChanged: (int? n) {
+                          n != null
+                              ? setState(() {
+                                  phoneBoxValue = n;
+                                })
+                              : null;
                         },
+                        mode: SpinButtonPlacementMode.inline,
                       ),
                       const SizedBox(height: 20),
                       Button(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             StudentModel studentModel = StudentModel(
-                              id: idController.text,
+                              id: idBoxValue.toString(),
                               name: nameController.text,
                               department: departmentSelected,
                               email: EmailModel(
@@ -293,7 +304,7 @@ class _AddStudentState extends State<AddStudent> {
                                 father: fatherNameController.text,
                                 mother: motherNameController.text,
                                 birthday: birthday,
-                                phone: phoneController.text,
+                                phone: phoneBoxValue,
                                 hometown: hometownController.text,
                               ),
                             );

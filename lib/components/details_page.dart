@@ -21,6 +21,7 @@ class DetailsPage<T> extends StatelessWidget {
         future: loadDetails(id),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            print(snapshot.data);
             return SingleChildScrollView(
               child: DataTable(
                 columns: [

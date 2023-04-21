@@ -148,6 +148,8 @@ DEFINE FIELD personal.phone ON student TYPE number
     AND string::startsWith(<string> $value, '1') 
     AND string::len(<string> $value) = 10;
 
+DEFINE INDEX phone ON student FIELDS personal.phone UNIQUE;
+
 DEFINE FIELD personal.hometown ON student TYPE string 
     ASSERT $value != NONE 
     AND $value = /^[A-Za-z, ]+$/ 
@@ -210,7 +212,7 @@ CREATE student CONTENT {
         father: string::trim('Md Mojammel Haque'),
         mother: string::trim('Most Ayasha Siddika'),
         birthday: "2000-12-03T07:18:52Z",
-        phone: 01771144308,
+        phone: 01771144309,
         hometown: string::trim('Naogaon'),
     },
     result: {
@@ -234,6 +236,9 @@ DEFINE FIELD name ON teacher TYPE string
 
 DEFINE FIELD department ON teacher TYPE record(department) 
     ASSERT $value != NONE;
+
+define field designation on teacher type string
+    assert $value inside ['Lecturer', 'Assistant Professor', 'Professor'];
 
 DEFINE FIELD email ON teacher TYPE object;
 
@@ -279,6 +284,8 @@ DEFINE FIELD personal.phone ON teacher TYPE number
     AND string::startsWith(<string> $value, '1') 
     AND string::len(<string> $value) = 10;
 
+DEFINE INDEX phone ON teacher FIELDS personal.phone UNIQUE;
+
 DEFINE FIELD personal.hometown ON teacher TYPE string 
     ASSERT $value != NONE 
     AND $value = /^[A-Za-z, ]+$/ 
@@ -320,7 +327,7 @@ CREATE teacher CONTENT {
         father: string::trim('Mr. Y'),
         mother: string::trim('Mrs. Z'),
         birthday: "2001-07-10T07:18:52Z",
-        phone: 01771144308,
+        phone: 01771144309,
         hometown: string::trim('Khulna'),
     },
 };
@@ -387,11 +394,52 @@ DEFINE FIELD personal.phone ON admin TYPE number
     AND string::startsWith(<string> $value, '1') 
     AND string::len(<string> $value) = 10;
 
+DEFINE INDEX phone ON admin FIELDS personal.phone UNIQUE;
+
 DEFINE FIELD personal.hometown ON admin TYPE string 
     ASSERT $value != NONE 
     AND $value = /^[A-Za-z, ]+$/ 
     AND string::len($value) >= 3;
 
 
+CREATE admin CONTENT {
+    id : 2019331004,
+    name: string::trim('Mr. X'),
+    department: department:CSE,
+	designation: string::trim("Assistant Something"),
+    email: {
+       personal: string::trim('mac22214u@gmail.com'),
+       academic: string::trim('mufassir73@sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    blood_group: string::trim('B+'),
+    personal: {
+        father: string::trim('Mr. X'),
+        mother: string::trim('Mrs. Y'),
+        birthday: "2001-07-10T07:18:52Z",
+        phone: 01771144308,
+        hometown: string::trim('Sylhet'),
+    },
+};
+
+CREATE admin CONTENT {
+    id : 2019331002,
+    name: string::trim('Mr. Xx'),
+    department: department:CSE,
+	designation: string::trim("Assistant Something"),
+    email: {
+       personal: string::trim('mac2221@gmail.com'),
+       academic: string::trim('mufassir@sust.edu'),
+    },
+    gender: string::lowercase('male'),
+    blood_group: string::trim('B+'),
+    personal: {
+        father: string::trim('Mr. X'),
+        mother: string::trim('Mrs. Y'),
+        birthday: "2001-07-10T07:18:52Z",
+        phone: 01771144309,
+        hometown: string::trim('Sylhet'),
+    },
+};
 
 ```

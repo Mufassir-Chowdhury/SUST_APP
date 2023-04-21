@@ -77,6 +77,8 @@ DEFINE FIELD personal.phone ON student TYPE number
     AND string::startsWith(<string> $value, '1') 
     AND string::len(<string> $value) = 10;
 
+DEFINE INDEX phone ON student FIELDS personal.phone UNIQUE;
+
 DEFINE FIELD personal.hometown ON student TYPE string 
     ASSERT $value != NONE 
     AND $value = /^[A-Za-z, ]+$/ 
@@ -177,7 +179,7 @@ CREATE student CONTENT {
         father: string::trim('Md Mojammel Haque'),
         mother: string::trim('Most Ayasha Siddika'),
         birthday: "2000-12-03T07:18:52Z",
-        phone: 01771144308,
+        phone: 01771144309,
         hometown: string::trim('Naogaon'),
     },
     result: {

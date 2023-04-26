@@ -1,7 +1,7 @@
 ### duplicate `id`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331073,
     ...,
 };
@@ -12,7 +12,7 @@ CREATE admin CONTENT {
   {
     "time": "147.8µs",
     "status": "ERR",
-    "detail": "Database record `admin:2019331073` already exists"
+    "detail": "Database record `teacher:2019331073` already exists"
   }
 ]
 ```
@@ -21,7 +21,7 @@ CREATE admin CONTENT {
 
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     email: {
        personal: string::trim('mac22214u@gmail.com'),
@@ -37,7 +37,7 @@ CREATE admin CONTENT {
   {
     "time": "1.2667ms",
     "status": "ERR",
-    "detail": "Database index `personal_email` already contains 'mac22214u@gmail.com', with record `admin:2019331074`"
+    "detail": "Database index `personal_email` already contains 'mac22214u@gmail.com', with record `teacher:2019331074`"
   }
 ]
 ```
@@ -46,7 +46,7 @@ CREATE admin CONTENT {
 
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     email: {
        ...,
@@ -62,7 +62,7 @@ CREATE admin CONTENT {
   {
     "time": "1.5647ms",
     "status": "ERR",
-    "detail": "Database index `academic_email` already contains 'mufassir73@sust.edu', with record `admin:2019331074`"
+    "detail": "Database index `academic_email` already contains 'mufassir73@sust.edu', with record `teacher:2019331074`"
   }
 ]
 ```
@@ -71,7 +71,7 @@ CREATE admin CONTENT {
 
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     personal: {
         ...,
@@ -87,7 +87,7 @@ CREATE admin CONTENT {
   {
     "time": "1.3203ms",
     "status": "ERR",
-    "detail": "Database index `phone` already contains 1771144308, with record `admin:2019331074`"
+    "detail": "Database index `phone` already contains 1771144308, with record `teacher:2019331074`"
   }
 ]
 ```
@@ -95,7 +95,7 @@ CREATE admin CONTENT {
 ### wrong input in `name`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     name: string::trim('Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y'),
     ...,
@@ -107,7 +107,7 @@ CREATE admin CONTENT {
   {
     "time": "899.3µs",
     "status": "ERR",
-    "detail": "Found 'Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y' for field `name`, with record `admin:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
+    "detail": "Found 'Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y' for field `name`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
   }
 ]
 ```
@@ -117,9 +117,10 @@ CREATE admin CONTENT {
 ### wrong input in `designation`
 #### query
 ```sql
-CREATE admin CONTENT {
-    id : 2019331004,
-	designation: string::trim(''|'cr'|'exam, controller'|'head 1'),
+
+CREATE teacher CONTENT {
+    id : 2019331074,
+    designation : string::trim('Lectrer'|'1234'|'Asistant'),
     ...,
 };
 ```
@@ -127,9 +128,9 @@ CREATE admin CONTENT {
 ```json
 [
   {
-    "time": "893.9µs",
+    "time": "245.4µs",
     "status": "ERR",
-    "detail": "Found ''|'cr'|'exam, controller'|'head 1' for field `designation`, with record `admin:2019331004`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
+    "detail": "Found 'Lectrer'|'1234'|'Asistant' for field `designation`, with record `teacher:2019331074`, but field must conform to: $value INSIDE ['Lecturer', 'Assistant Professor', 'Professor']"
   }
 ]
 ```
@@ -137,7 +138,7 @@ CREATE admin CONTENT {
 ### wrong input in `email.personal`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     email: {
        personal: string::trim('mac22214gmail.com'|''|'1234'|'@gmail.com'),
@@ -152,7 +153,7 @@ CREATE admin CONTENT {
   {
     "time": "395µs",
     "status": "ERR",
-    "detail": "Found 'mac22214gmail.com'|''|'1234'|'@gmail.com' for field `email.personal`, with record `admin:2019331074`, but field must conform to: $value != NONE AND is::email($value)"
+    "detail": "Found 'mac22214gmail.com'|''|'1234'|'@gmail.com' for field `email.personal`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND is::email($value)"
   }
 ]
 ```
@@ -160,7 +161,7 @@ CREATE admin CONTENT {
 ### wrong input in `email.academic`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     email: {
        academic:string::trim( 'mufassir74@sut.edu'|''|'1234'|'asanul@student.sust.edu'|'13@sust.edu'),
@@ -183,7 +184,7 @@ CREATE admin CONTENT {
 ### wrong input in `gender`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     gender: string::lowercase('mle'|''|'1234'),
     ...,
@@ -195,7 +196,7 @@ CREATE admin CONTENT {
   {
     "time": "779.4µs",
     "status": "ERR",
-    "detail": "Found 'mle'|''|'1234' for field `gender`, with record `admin:2019331074`, but field must conform to: $value INSIDE ['male', 'female']"
+    "detail": "Found 'mle'|''|'1234' for field `gender`, with record `teacher:2019331074`, but field must conform to: $value INSIDE ['male', 'female']"
   }
 ]
 ```
@@ -203,7 +204,7 @@ CREATE admin CONTENT {
 ### wrong input in `blood_group`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     ...,
     blood_group: string::trim('B'|'123'|'b+'),
@@ -216,7 +217,7 @@ CREATE admin CONTENT {
   {
     "time": "6.5455ms",
     "status": "ERR",
-    "detail": "Found 'B'|'123'|'b+' for field `blood_group`, with record `admin:2019331074`, but field must conform to: $value INSIDE ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']"
+    "detail": "Found 'B'|'123'|'b+' for field `blood_group`, with record `teacher:2019331074`, but field must conform to: $value INSIDE ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']"
   }
 ]
 ```
@@ -224,7 +225,7 @@ CREATE admin CONTENT {
 ### wrong input in `personal.father`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     ...,
     personal : {
@@ -239,7 +240,7 @@ CREATE admin CONTENT {
   {
     "time": "899.3µs",
     "status": "ERR",
-    "detail": "Found 'Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y' for field `personal.father`, with record `admin:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
+    "detail": "Found 'Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y' for field `personal.father`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
   }
 ]
 ```
@@ -247,7 +248,7 @@ CREATE admin CONTENT {
 ### wrong input in `personal.mother`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     ...,
     personal : {
@@ -262,7 +263,7 @@ CREATE admin CONTENT {
   {
     "time": "899.3µs",
     "status": "ERR",
-    "detail": "Found 'Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y' for field `personal.mother`, with record `admin:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
+    "detail": "Found 'Mufassir Ahmad Chowdhury4'|''|'1234'|'mr. x, y' for field `personal.mother`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z. ]+$/ AND string::len($value) >= 3"
   }
 ]
 ```
@@ -270,7 +271,7 @@ CREATE admin CONTENT {
 ### wrong input in `personal.birthday`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     ...,
     personal: {
@@ -285,7 +286,7 @@ CREATE admin CONTENT {
   {
     "time": "683.4µs",
     "status": "ERR",
-    "detail": "Found '2023-04-24T16:20:27.412492Z' for field `personal.birthday`, with record `admin:2019331074`, but field must conform to: $value != NONE AND time::year($value) < time::year() - 15"
+    "detail": "Found '2023-04-24T16:20:27.412492Z' for field `personal.birthday`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND time::year($value) < time::year() - 15"
   }
 ]
 ```
@@ -293,7 +294,7 @@ CREATE admin CONTENT {
 ### wrong input in `personal.phone`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     ...,
     personal: {
@@ -308,7 +309,7 @@ CREATE admin CONTENT {
   {
     "time": "666.1µs",
     "status": "ERR",
-    "detail": "Found 771144309|2774782347 for field `personal.phone`, with record `admin:2019331074`, but field must conform to: $value != NONE AND math::round($value) = $value AND string::startsWith(<string> $value, '1') AND string::len(<string> $value) = 10"
+    "detail": "Found 771144309|2774782347 for field `personal.phone`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND math::round($value) = $value AND string::startsWith(<string> $value, '1') AND string::len(<string> $value) = 10"
   }
 ]
 ```
@@ -316,7 +317,7 @@ CREATE admin CONTENT {
 ### wrong input in `personal.hometown`
 #### query
 ```sql
-CREATE admin CONTENT {
+CREATE teacher CONTENT {
     id : 2019331074,
     ...,
     personal: {
@@ -331,7 +332,7 @@ CREATE admin CONTENT {
   {
     "time": "622.8µs",
     "status": "ERR",
-    "detail": "Found ''|'hi'|'rajshahi4'|'sylhet.'|'1234' for field `personal.hometown`, with record `admin:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z, ]+$/ AND string::len($value) >= 3"
+    "detail": "Found ''|'hi'|'rajshahi4'|'sylhet.'|'1234' for field `personal.hometown`, with record `teacher:2019331074`, but field must conform to: $value != NONE AND $value = /^[A-Za-z, ]+$/ AND string::len($value) >= 3"
   }
 ]
 ```

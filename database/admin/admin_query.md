@@ -133,3 +133,15 @@ CREATE admin CONTENT {
     },
 };
 ```
+
+
+
+### getting information of all admins
+```sql
+select name, department.name, id from admin;
+```
+
+### getting all information of a specific admin
+```sql
+select * from admin:id fetch department;
+```

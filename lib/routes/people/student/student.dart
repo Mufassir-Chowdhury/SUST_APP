@@ -22,12 +22,10 @@ class Student extends StatelessWidget {
         return StudentModel.getListTile();
       },
       detailsPage: (String id, String name) {
-        print("ID: $id, name: $name");
         return DetailsPage(
           id: id,
           name: name,
           loadDetails: (String id) {
-            print(id);
             return StudentModel.getDetails(id);
           },
           showTable: (StudentModel? data) {

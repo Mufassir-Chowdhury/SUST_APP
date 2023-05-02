@@ -304,7 +304,7 @@ class _AddStudentState extends State<AddStudent> {
                                 father: fatherNameController.text,
                                 mother: motherNameController.text,
                                 birthday: birthday,
-                                phone: phoneBoxValue,
+                                phone: phoneBoxValue.toString(),
                                 hometown: hometownController.text,
                               ),
                             );

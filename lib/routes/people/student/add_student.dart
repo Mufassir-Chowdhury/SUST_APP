@@ -172,8 +172,8 @@ class _AddStudentState extends State<AddStudent> {
                       NumberBox(
                         placeholder: 'Session',
                         value: sessionBoxValue,
-                        min: 100,
-                        max: 999,
+                        min: 1990,
+                        max: 9999,
                         onChanged: (int? n) {
                           n != null
                               ? setState(() {
@@ -189,7 +189,7 @@ class _AddStudentState extends State<AddStudent> {
                         placeholder: 'Current Semester',
                         value: semesterBoxValue,
                         min: 1,
-                        max: 10,
+                        max: 12,
                         onChanged: (int? n) {
                           n != null
                               ? setState(() {
@@ -222,8 +222,8 @@ class _AddStudentState extends State<AddStudent> {
                         controller: privilageController,
                         placeholder: 'Privilage',
                         validator: (value) {
-                          if (value == null || value.trim().length != 3) {
-                            return 'The name must be exactly of at length 3';
+                          if (value == null || value.trim().isEmpty) {
+                            return 'The name must be at least of at length 1';
                           }
                           return null;
                         },
@@ -244,8 +244,8 @@ class _AddStudentState extends State<AddStudent> {
                         controller: motherNameController,
                         placeholder: 'Mother Name',
                         validator: (value) {
-                          if (value == null || value.trim().length != 1) {
-                            return 'The name must be of exactly length 1';
+                          if (value == null || value.trim().isEmpty) {
+                            return 'The name must be of atleast length 1';
                           }
                           return null;
                         },

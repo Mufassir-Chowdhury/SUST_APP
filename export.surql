@@ -158,6 +158,7 @@ UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', 
 -- TABLE DATA: student
 -- ------------------------------
 
+UPDATE student:2019331013 CONTENT { blood_group: 'A+', current_semester: 12, department: department:CSE, email: { academic: 'asanul13@student.sust.edu', personal: 'asanul-neel@gmail.com' }, gender: 'Male', id: student:2019331013, name: 'Asanul Haque Neel', personal: { birthday: '2023-08-08T04:05:44.142690200Z', father: 'Neel er baba', hometown: 'Rajshahi', mother: 'Neel er ma', phone: '1919191919' }, privilage: 'CR', result: NULL, session: 2019 };
 UPDATE student:2019331073 CONTENT { blood_group: 'B+', current_semester: 5, department: department:CSE, email: { academic: 'mufassir73@student.sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: student:2019331073, name: 'Mufassir Ahmad Chowdhury', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Hafiz Md Mashhud Chowdhury', hometown: 'Sylhet', mother: 'Afsana Begum', phone: '01771144308' }, privilage: 'CR', result: { cgpa: 4, grade: 'A+', total_credit: 160 }, session: 2019 };
 
 -- ------------------------------

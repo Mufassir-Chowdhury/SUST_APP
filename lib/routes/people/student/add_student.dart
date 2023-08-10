@@ -52,10 +52,10 @@ class _AddStudentState extends State<AddStudent> {
   int semesterBoxValue = 0;
   int phoneBoxValue = 0;
 
-  String birthday = '';
+  String birthday =
+      DateTime.now().subtract(const Duration(days: 15 * 365)).toString();
 
   TextEditingController phoneController = TextEditingController();
-
   TextEditingController nameController = TextEditingController();
   TextEditingController departmentController = TextEditingController();
   TextEditingController personalEmailController = TextEditingController();
@@ -252,9 +252,12 @@ class _AddStudentState extends State<AddStudent> {
                       ),
                       const SizedBox(height: 20),
                       DatePicker(
-                        selected: DateTime.now(),
+                        selected: DateTime.parse(birthday),
+                        endYear: DateTime.now().year - 15,
                         onChanged: (value) {
-                          birthday = value.toString();
+                          setState(() {
+                            birthday = value.toString();
+                          });
                         },
                       ),
                       const SizedBox(height: 20),
@@ -295,7 +298,7 @@ class _AddStudentState extends State<AddStudent> {
                               email: EmailModel(
                                   personal: personalEmailController.text,
                                   academic: academicEmailController.text),
-                              gender: genderController.text,
+                              gender: genderController.text.toLowerCase(),
                               session: sessionBoxValue,
                               currentSemester: semesterBoxValue,
                               bloodGroup: bloodGroupController.text,

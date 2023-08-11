@@ -248,7 +248,7 @@ mixin _$OfferedCourseModel {
   String? get course => throw _privateConstructorUsedError;
   String? get department => throw _privateConstructorUsedError;
   int? get semester => throw _privateConstructorUsedError;
-  String? get usn => throw _privateConstructorUsedError;
+  int? get year => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -267,7 +267,7 @@ abstract class $OfferedCourseModelCopyWith<$Res> {
       String? course,
       String? department,
       int? semester,
-      String? usn});
+      int? year});
 }
 
 /// @nodoc
@@ -287,7 +287,7 @@ class _$OfferedCourseModelCopyWithImpl<$Res, $Val extends OfferedCourseModel>
     Object? course = freezed,
     Object? department = freezed,
     Object? semester = freezed,
-    Object? usn = freezed,
+    Object? year = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -306,10 +306,10 @@ class _$OfferedCourseModelCopyWithImpl<$Res, $Val extends OfferedCourseModel>
           ? _value.semester
           : semester // ignore: cast_nullable_to_non_nullable
               as int?,
-      usn: freezed == usn
-          ? _value.usn
-          : usn // ignore: cast_nullable_to_non_nullable
-              as String?,
+      year: freezed == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -327,7 +327,7 @@ abstract class _$$_OfferedCourseModelCopyWith<$Res>
       String? course,
       String? department,
       int? semester,
-      String? usn});
+      int? year});
 }
 
 /// @nodoc
@@ -345,7 +345,7 @@ class __$$_OfferedCourseModelCopyWithImpl<$Res>
     Object? course = freezed,
     Object? department = freezed,
     Object? semester = freezed,
-    Object? usn = freezed,
+    Object? year = freezed,
   }) {
     return _then(_$_OfferedCourseModel(
       id: freezed == id
@@ -364,10 +364,10 @@ class __$$_OfferedCourseModelCopyWithImpl<$Res>
           ? _value.semester
           : semester // ignore: cast_nullable_to_non_nullable
               as int?,
-      usn: freezed == usn
-          ? _value.usn
-          : usn // ignore: cast_nullable_to_non_nullable
-              as String?,
+      year: freezed == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -379,7 +379,7 @@ class _$_OfferedCourseModel
     with DiagnosticableTreeMixin
     implements _OfferedCourseModel {
   const _$_OfferedCourseModel(
-      {this.id, this.course, this.department, this.semester, this.usn});
+      {this.id, this.course, this.department, this.semester, this.year});
 
   factory _$_OfferedCourseModel.fromJson(Map<String, dynamic> json) =>
       _$$_OfferedCourseModelFromJson(json);
@@ -393,11 +393,11 @@ class _$_OfferedCourseModel
   @override
   final int? semester;
   @override
-  final String? usn;
+  final int? year;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'OfferedCourseModel(id: $id, course: $course, department: $department, semester: $semester, usn: $usn)';
+    return 'OfferedCourseModel(id: $id, course: $course, department: $department, semester: $semester, year: $year)';
   }
 
   @override
@@ -409,7 +409,7 @@ class _$_OfferedCourseModel
       ..add(DiagnosticsProperty('course', course))
       ..add(DiagnosticsProperty('department', department))
       ..add(DiagnosticsProperty('semester', semester))
-      ..add(DiagnosticsProperty('usn', usn));
+      ..add(DiagnosticsProperty('year', year));
   }
 
   @override
@@ -423,13 +423,13 @@ class _$_OfferedCourseModel
                 other.department == department) &&
             (identical(other.semester, semester) ||
                 other.semester == semester) &&
-            (identical(other.usn, usn) || other.usn == usn));
+            (identical(other.year, year) || other.year == year));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, course, department, semester, usn);
+      Object.hash(runtimeType, id, course, department, semester, year);
 
   @JsonKey(ignore: true)
   @override
@@ -452,7 +452,7 @@ abstract class _OfferedCourseModel implements OfferedCourseModel {
       final String? course,
       final String? department,
       final int? semester,
-      final String? usn}) = _$_OfferedCourseModel;
+      final int? year}) = _$_OfferedCourseModel;
 
   factory _OfferedCourseModel.fromJson(Map<String, dynamic> json) =
       _$_OfferedCourseModel.fromJson;
@@ -466,7 +466,7 @@ abstract class _OfferedCourseModel implements OfferedCourseModel {
   @override
   int? get semester;
   @override
-  String? get usn;
+  int? get year;
   @override
   @JsonKey(ignore: true)
   _$$_OfferedCourseModelCopyWith<_$_OfferedCourseModel> get copyWith =>

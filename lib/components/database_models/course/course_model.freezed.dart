@@ -241,7 +241,7 @@ mixin _$CourseModel {
   String? get id => throw _privateConstructorUsedError;
   double? get credit => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  DepartmentModel? get department => throw _privateConstructorUsedError;
+  String? get department => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   List<SyllabusModel>? get syllabus => throw _privateConstructorUsedError;
 
@@ -261,11 +261,9 @@ abstract class $CourseModelCopyWith<$Res> {
       {String? id,
       double? credit,
       String? name,
-      DepartmentModel? department,
+      String? department,
       String? type,
       List<SyllabusModel>? syllabus});
-
-  $DepartmentModelCopyWith<$Res>? get department;
 }
 
 /// @nodoc
@@ -304,7 +302,7 @@ class _$CourseModelCopyWithImpl<$Res, $Val extends CourseModel>
       department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel?,
+              as String?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -314,18 +312,6 @@ class _$CourseModelCopyWithImpl<$Res, $Val extends CourseModel>
           : syllabus // ignore: cast_nullable_to_non_nullable
               as List<SyllabusModel>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DepartmentModelCopyWith<$Res>? get department {
-    if (_value.department == null) {
-      return null;
-    }
-
-    return $DepartmentModelCopyWith<$Res>(_value.department!, (value) {
-      return _then(_value.copyWith(department: value) as $Val);
-    });
   }
 }
 
@@ -341,12 +327,9 @@ abstract class _$$_CourseModelCopyWith<$Res>
       {String? id,
       double? credit,
       String? name,
-      DepartmentModel? department,
+      String? department,
       String? type,
       List<SyllabusModel>? syllabus});
-
-  @override
-  $DepartmentModelCopyWith<$Res>? get department;
 }
 
 /// @nodoc
@@ -383,7 +366,7 @@ class __$$_CourseModelCopyWithImpl<$Res>
       department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel?,
+              as String?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -419,7 +402,7 @@ class _$_CourseModel with DiagnosticableTreeMixin implements _CourseModel {
   @override
   final String? name;
   @override
-  final DepartmentModel? department;
+  final String? department;
   @override
   final String? type;
   final List<SyllabusModel>? _syllabus;
@@ -488,7 +471,7 @@ abstract class _CourseModel implements CourseModel {
       {final String? id,
       final double? credit,
       final String? name,
-      final DepartmentModel? department,
+      final String? department,
       final String? type,
       final List<SyllabusModel>? syllabus}) = _$_CourseModel;
 
@@ -502,7 +485,7 @@ abstract class _CourseModel implements CourseModel {
   @override
   String? get name;
   @override
-  DepartmentModel? get department;
+  String? get department;
   @override
   String? get type;
   @override

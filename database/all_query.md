@@ -428,4 +428,44 @@ CREATE admin CONTENT {
     },
 };
 
+
+
+DEFINE TABLE course SCHEMAFULL;
+DEFINE FIELD id ON course TYPE string;
+DEFINE INDEX id ON course FIELDS id UNIQUE;
+
+DEFINE FIELD credit ON course TYPE float;
+
+DEFINE FIELD name ON course TYPE string;
+
+DEFINE FIELD department ON course TYPE record(department);
+DEFINE FIELD type ON course TYPE string;
+DEFINE FIELD syllabus ON course TYPE array;
+DEFINE FIELD syllabus.* ON course TYPE object;
+DEFINE FIELD syllabus.*.title ON course TYPE string;
+DEFINE FIELD syllabus.*.topics ON course TYPE array;
+DEFINE FIELD syllabus.*.topics.* ON course TYPE string;
+
+CREATE course:CSE222 CONTENT {
+	credit: 3,
+	name: 'Computer Science',
+	department: department:CSE,
+	type: 'theory',
+	syllabus: [
+		{
+			title: 'Topic 1',
+			topics: [
+				'Discussion',
+				'Something other than that',
+			],
+		},
+		{
+			title: 'Topic 2',
+			topics: [
+				'Discussion2',
+				'Something other than that',
+			],
+		},
+	],
+}
 ```

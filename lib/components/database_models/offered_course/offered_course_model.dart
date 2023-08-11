@@ -49,11 +49,19 @@ class OfferedCourseModel with _$OfferedCourseModel {
         .result![0];
   }
 
-  static Future<String> create(OfferedCourseModel offeredCourse) async {
+  static Future<String> create(
+      OfferedCourseModel offeredCourse, String? teacher) async {
     final http.Response response = await post(
         '''RELATE ${offeredCourse.department}->offers->${offeredCourse.course} CONTENT {semester: ${offeredCourse.semester}, year: ${offeredCourse.year}};''');
     OfferedCourseStatus status =
         OfferedCourseStatus.fromJson(jsonDecode(response.body)[0]);
+    if (status.status == 'OK') {
+      if (teacher != null) {
+        final http.Response response = await post(
+            '''RELATE $teacher->teaches->${status.result![0].id};''');
+        status = OfferedCourseStatus.fromJson(jsonDecode(response.body)[0]);
+      }
+    }
     if (status.status == 'ERR') {
       if (status.detail!.contains('Database record') &&
           status.detail!.contains('already exists')) {

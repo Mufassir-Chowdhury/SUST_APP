@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/course/course_model.dart';
+import 'package:sust_app/components/database_models/teacher/teacher_model.dart';
 import 'package:sust_app/components/database_models/department/department_model.dart';
 import 'package:sust_app/components/database_models/offered_course/offered_course_model.dart';
 
@@ -17,6 +18,10 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
     return DepartmentModel.getListTile();
   }
 
+  Future<List<ListModel>> loadTeachers() async {
+    return TeacherModel.getListTile();
+  }
+
   Future<List<ListModel>> loadCourses() async {
     return CourseModel.getListTile();
   }
@@ -26,10 +31,12 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
     super.initState();
     departments = loadDepartments();
     courses = loadCourses();
+    teachers = loadTeachers();
   }
 
   late Future<List<ListModel>> departments;
   late Future<List<ListModel>> courses;
+  late Future<List<ListModel>> teachers;
 
   int semesterBoxValue = 100;
   int yearBoxValue = 1;
@@ -37,9 +44,11 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
   String errorMessage = '';
   String? departmentSelected;
   String? courseSelected;
+  String? teacherSelected;
 
   TextEditingController departmentController = TextEditingController();
   TextEditingController courseController = TextEditingController();
+  TextEditingController teacherController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -47,7 +56,7 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
       padding: const EdgeInsets.all(20),
       children: [
         FutureBuilder<List<List<ListModel>>>(
-            future: Future.wait([departments, courses]),
+            future: Future.wait([departments, courses, teachers]),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Form(
@@ -91,6 +100,24 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
                         }).toList(),
                         onSelected: (item) {
                           setState(() => courseSelected = item.value);
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      AutoSuggestBox<String>(
+                        placeholder: 'Teacher',
+                        controller: teacherController,
+                        items: snapshot.data![2].map((teacher) {
+                          return AutoSuggestBoxItem<String>(
+                              value: teacher.id,
+                              label: teacher.title!,
+                              onFocusChange: (focused) {
+                                if (focused) {
+                                  debugPrint('Focused $teacher');
+                                }
+                              });
+                        }).toList(),
+                        onSelected: (item) {
+                          setState(() => teacherSelected = item.value);
                         },
                       ),
                       const SizedBox(height: 20),
@@ -138,7 +165,7 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
                             );
                             try {
                               await OfferedCourseModel.create(
-                                  addOfferedCourseModel);
+                                  addOfferedCourseModel, teacherSelected);
                               widget.onPressed!();
                             } catch (e) {
                               setState(() {

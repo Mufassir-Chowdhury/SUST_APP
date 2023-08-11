@@ -66,6 +66,12 @@ DEFINE INDEX letter_code ON department FIELDS letter_code UNIQUE;
 DEFINE INDEX name ON department FIELDS name UNIQUE;
 
 -- ------------------------------
+-- TABLE: offers
+-- ------------------------------
+
+DEFINE TABLE offers SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
 -- TABLE: student
 -- ------------------------------
 
@@ -151,6 +157,12 @@ UPDATE department:CSE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', 
 UPDATE department:ECO CONTENT { building: 'D', code: 330, floor: 3, id: department:ECO, letter_code: 'ECO', minor_course_code: 'B', name: 'Economics' };
 UPDATE department:PHY CONTENT { building: 'A', code: 132, floor: 1, id: department:PHY, letter_code: 'PHY', minor_course_code: 'a', name: 'Physics' };
 UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', code: 123, floor: 1, id: department:SWE, letter_code: 'SWE', minor_course_code: 'A', name: 'Software Engineering' };
+
+-- ------------------------------
+-- TABLE DATA: offers
+-- ------------------------------
+
+RELATE department:CSE -> offers:nupszdlarsipgzwytdpf -> course:CSE333 CONTENT { __: true, id: offers:nupszdlarsipgzwytdpf, in: department:CSE, out: course:CSE333, semester: 12, year: 2019 };
 
 -- ------------------------------
 -- TABLE DATA: student

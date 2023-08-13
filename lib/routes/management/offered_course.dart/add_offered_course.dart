@@ -72,13 +72,9 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
                         controller: departmentController,
                         items: snapshot.data![0].map((department) {
                           return AutoSuggestBoxItem<String>(
-                              value: department.id,
-                              label: department.title!,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $department');
-                                }
-                              });
+                            value: department.id,
+                            label: department.title!,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => departmentSelected = item.value);
@@ -90,13 +86,9 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
                         controller: courseController,
                         items: snapshot.data![1].map((course) {
                           return AutoSuggestBoxItem<String>(
-                              value: course.id,
-                              label: course.title!,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $course');
-                                }
-                              });
+                            value: course.id,
+                            label: course.title!,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => courseSelected = item.value);
@@ -108,13 +100,9 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
                         controller: teacherController,
                         items: snapshot.data![2].map((teacher) {
                           return AutoSuggestBoxItem<String>(
-                              value: teacher.id,
-                              label: teacher.title!,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $teacher');
-                                }
-                              });
+                            value: teacher.id,
+                            label: teacher.title!,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => teacherSelected = item.value);

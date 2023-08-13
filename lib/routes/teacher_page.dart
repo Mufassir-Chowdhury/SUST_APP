@@ -10,14 +10,14 @@ import 'package:sust_app/routes/people/student/student.dart';
 import 'package:sust_app/routes/people/teacher/teacher.dart';
 import 'package:window_manager/window_manager.dart';
 
-class AdminPage extends StatefulWidget {
-  const AdminPage({super.key});
+class TeacherPage extends StatefulWidget {
+  const TeacherPage({super.key});
 
   @override
-  State<AdminPage> createState() => _AdminPageState();
+  State<TeacherPage> createState() => _TeacherPageState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _TeacherPageState extends State<TeacherPage> {
   int _currentIndex = 0;
   String? selected;
   List<String> cats = <String>[

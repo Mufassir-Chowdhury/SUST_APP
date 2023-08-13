@@ -102,13 +102,9 @@ class _AddCourseState extends State<AddCourse> {
                         controller: departmentController,
                         items: snapshot.data!.map((department) {
                           return AutoSuggestBoxItem<String>(
-                              value: department.id,
-                              label: department.title!,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $department');
-                                }
-                              });
+                            value: department.id,
+                            label: department.title!,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => departmentSelected = item.value);
@@ -120,13 +116,9 @@ class _AddCourseState extends State<AddCourse> {
                         controller: typeController,
                         items: type.map((type) {
                           return AutoSuggestBoxItem<String>(
-                              value: type,
-                              label: type,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $type');
-                                }
-                              });
+                            value: type,
+                            label: type,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => typeSelected = item.value);

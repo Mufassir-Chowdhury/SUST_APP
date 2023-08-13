@@ -119,13 +119,9 @@ class _AddTeacherState extends State<AddTeacher> {
                         controller: departmentController,
                         items: snapshot.data!.map((department) {
                           return AutoSuggestBoxItem<String>(
-                              value: department.id,
-                              label: department.title!,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $department');
-                                }
-                              });
+                            value: department.id,
+                            label: department.title!,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => departmentSelected = item.value);
@@ -137,13 +133,9 @@ class _AddTeacherState extends State<AddTeacher> {
                         controller: designationController,
                         items: designations.map((designation) {
                           return AutoSuggestBoxItem<String>(
-                              value: designation,
-                              label: designation,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $designation');
-                                }
-                              });
+                            value: designation,
+                            label: designation,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => designationSelected = item.value);
@@ -177,13 +169,9 @@ class _AddTeacherState extends State<AddTeacher> {
                         controller: genderController,
                         items: genders.map((gender) {
                           return AutoSuggestBoxItem<String>(
-                              value: gender,
-                              label: gender,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $gender');
-                                }
-                              });
+                            value: gender,
+                            label: gender,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => genderSelected = item.value);
@@ -195,13 +183,9 @@ class _AddTeacherState extends State<AddTeacher> {
                         controller: bloodGroupController,
                         items: bloodGroups.map((bloodGroup) {
                           return AutoSuggestBoxItem<String>(
-                              value: bloodGroup,
-                              label: bloodGroup,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $bloodGroup');
-                                }
-                              });
+                            value: bloodGroup,
+                            label: bloodGroup,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => bloodGroupSelected = item.value);
@@ -232,7 +216,8 @@ class _AddTeacherState extends State<AddTeacher> {
                       const SizedBox(height: 20),
                       DatePicker(
                         selected: DateTime.parse(birthday),
-                        endYear: DateTime.now().year - 15,
+                        endDate: DateTime.now()
+                            .subtract(const Duration(days: 15 * 365)),
                         onChanged: (value) {
                           setState(() {
                             birthday = value.toString();

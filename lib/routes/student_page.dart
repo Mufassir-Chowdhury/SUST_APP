@@ -36,13 +36,9 @@ class _StudentPageState extends State<StudentPage> {
           autoSuggestBox: AutoSuggestBox<String>(
             items: cats.map((cat) {
               return AutoSuggestBoxItem<String>(
-                  value: cat,
-                  label: cat,
-                  onFocusChange: (focused) {
-                    if (focused) {
-                      debugPrint('Focused $cat');
-                    }
-                  });
+                value: cat,
+                label: cat,
+              );
             }).toList(),
             onSelected: (item) {
               setState(() => selected = item.value);

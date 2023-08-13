@@ -5,6 +5,13 @@
 OPTION IMPORT;
 
 -- ------------------------------
+-- SCOPES
+-- ------------------------------
+
+DEFINE SCOPE student SESSION 1d SIGNIN (SELECT * FROM student WHERE id = $username);
+DEFINE SCOPE teacher SESSION 1d SIGNIN (SELECT * FROM teacher WHERE id = $username);
+
+-- ------------------------------
 -- TABLE: admin
 -- ------------------------------
 

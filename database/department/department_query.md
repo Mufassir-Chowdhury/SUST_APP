@@ -24,8 +24,10 @@ DEFINE FIELD floor ON department TYPE number
     math::round($value) = $value;
 
 DEFINE FIELD minor_course_code ON department TYPE string 
-    ASSERT $value != NONE AND $value = /[A-Za-z]{1}/ 
+    ASSERT $value != NONE AND $value = /[A-Z]{1}/ 
     AND string::len($value) == 1;
+
+DEFINE INDEX minor_course_code ON department FIELDS minor_course_code UNIQUE;
 ```
 
 

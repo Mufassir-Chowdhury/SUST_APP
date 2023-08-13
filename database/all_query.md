@@ -27,8 +27,9 @@ DEFINE FIELD floor ON department TYPE number
     math::round($value) = $value;
 
 DEFINE FIELD minor_course_code ON department TYPE string 
-    ASSERT $value != NONE AND $value = /[A-Za-z]{1}/ 
+    ASSERT $value != NONE AND $value = /[A-Z]{1}/ 
     AND string::len($value) == 1;
+DEFINE INDEX minor_course_code ON department FIELDS minor_course_code UNIQUE;
 
 create department content {
     code : 331,
@@ -169,7 +170,7 @@ DEFINE FIELD result.total_credit ON student TYPE float
     AND $value >= 0 AND $value <= 160;
 
 CREATE student CONTENT {
-    id : 2019331073,
+    id : 2019331013
     name: string::trim('Mufassir Ahmad Chowdhury'),
     department: department:CSE,
     email: {

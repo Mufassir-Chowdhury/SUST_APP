@@ -30,7 +30,7 @@ class OfferedCourseModel with _$OfferedCourseModel {
     String? course,
     String? department,
     int? semester,
-    String? usn,
+    int? year,
   }) = _OfferedCourseModel;
 
   factory OfferedCourseModel.fromJson(Map<String, Object?> json) =>
@@ -44,8 +44,39 @@ class OfferedCourseModel with _$OfferedCourseModel {
 
   static Future<OfferedCourseModel> getDetails(String id) async {
     final http.Response response = await post(
-        '''SELECT id, ->course.name AS course, <-department.name AS department, semester, usn FROM $id SPLIT course, department;''');
+        '''SELECT id, ->course.name AS course, <-department.name AS department, semester, year FROM $id SPLIT course, department;''');
     return OfferedCourseStatus.fromJson(jsonDecode(response.body)[0])
         .result![0];
+  }
+
+  static Future<String> create(
+      OfferedCourseModel offeredCourse, String? teacher) async {
+    final http.Response response = await post(
+        '''RELATE ${offeredCourse.department}->offers->${offeredCourse.course} CONTENT {semester: ${offeredCourse.semester}, year: ${offeredCourse.year}};''');
+    OfferedCourseStatus status =
+        OfferedCourseStatus.fromJson(jsonDecode(response.body)[0]);
+    if (status.status == 'OK') {
+      if (teacher != null) {
+        final http.Response response = await post(
+            '''RELATE $teacher->teaches->${status.result![0].id};''');
+        status = OfferedCourseStatus.fromJson(jsonDecode(response.body)[0]);
+      }
+    }
+    if (status.status == 'ERR') {
+      if (status.detail!.contains('Database record') &&
+          status.detail!.contains('already exists')) {
+        throw 'Department letter code already exists';
+      } else if (status.detail!
+          .contains('Database index `minor_course_code` already contains')) {
+        throw 'Minor course code already exists';
+      } else if (status.detail!
+          .contains('Database index `name` already contains')) {
+        throw 'Department name already exists';
+      } else if (status.detail!
+          .contains('Database index `code` already contains')) {
+        throw 'Department code already exists';
+      }
+    }
+    return status.status!;
   }
 }

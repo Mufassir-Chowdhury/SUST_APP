@@ -74,10 +74,7 @@ create department content {
 
 DEFINE table student SCHEMAFULL;
 
-/*define field id on student type number
-    assert $value != none 
-    and string::len(<string>$value) = 10 and 
-    string::startsWith(<string>$value, '20') = true; */
+DEFINE FIELD id ON student TYPE string;
 
 DEFINE FIELD name ON student TYPE string 
     ASSERT $value != NONE 
@@ -143,11 +140,7 @@ DEFINE FIELD personal.birthday ON student TYPE datetime
     ASSERT $value != NONE AND 
     time::year($value) < time::year()-15;
 
-DEFINE FIELD personal.phone ON student TYPE number 
-    ASSERT $value != NONE 
-    AND math::round($value) = $value 
-    AND string::startsWith(<string> $value, '1') 
-    AND string::len(<string> $value) = 10;
+DEFINE FIELD personal.phone ON student TYPE string;
 
 DEFINE INDEX phone ON student FIELDS personal.phone UNIQUE;
 
@@ -159,18 +152,15 @@ DEFINE FIELD personal.hometown ON student TYPE string
 DEFINE FIELD result ON student TYPE object;
 
 DEFINE FIELD result.cgpa ON student TYPE float 
-    ASSERT $value != NONE 
-    AND $value >= 0 AND $value <= 4;
+    ASSERT $value == NONE OR $value >= 0 AND $value <= 4;
 
 DEFINE FIELD result.grade ON student TYPE string 
-    ASSERT $value INSIDE ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'F'];
+    ASSERT $value == NONE OR $value INSIDE ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'F'];
 
 DEFINE FIELD result.total_credit ON student TYPE float 
-    ASSERT $value != NONE 
-    AND $value >= 0 AND $value <= 160;
+    ASSERT $value == NONE OR $value >= 0 AND $value <= 160;
 
-CREATE student CONTENT {
-    id : 2019331013
+CREATE student:2019331073 CONTENT {
     name: string::trim('Mufassir Ahmad Chowdhury'),
     department: department:CSE,
     email: {
@@ -186,7 +176,7 @@ CREATE student CONTENT {
         father: string::trim('Hafiz Md Mashhud Chowdhury'),
         mother: string::trim('Afsana Begum'),
         birthday: "2001-07-10T07:18:52Z",
-        phone: 01771144308,
+        phone: string::trim('01771144308'),
         hometown: string::trim('Sylhet'),
     },
     result: {
@@ -197,8 +187,7 @@ CREATE student CONTENT {
     
 };
 
-CREATE student CONTENT {
-    id : 2019331013,
+CREATE student:2019331013 CONTENT {
     name: string::trim('Asanul Haque Kiron'),
     department: department:CSE,
     email: {
@@ -213,7 +202,7 @@ CREATE student CONTENT {
         father: string::trim('Md Mojammel Haque'),
         mother: string::trim('Most Ayasha Siddika'),
         birthday: "2000-12-03T07:18:52Z",
-        phone: 01771144309,
+        phone: string::trim('01771144309'),
         hometown: string::trim('Naogaon'),
     },
     result: {
@@ -229,6 +218,8 @@ CREATE student CONTENT {
 
 
 DEFINE TABLE teacher SCHEMAFULL;
+
+DEFINE FIELD id ON teacher TYPE string;
 
 DEFINE FIELD name ON teacher TYPE string 
     ASSERT $value != NONE 
@@ -279,11 +270,7 @@ DEFINE FIELD personal.birthday ON teacher TYPE datetime
     ASSERT $value != NONE AND 
     time::year($value) < time::year()-15;
 
-DEFINE FIELD personal.phone ON teacher TYPE number 
-    ASSERT $value != NONE 
-    AND math::round($value) = $value 
-    AND string::startsWith(<string> $value, '1') 
-    AND string::len(<string> $value) = 10;
+DEFINE FIELD personal.phone ON teacher TYPE string;
 
 DEFINE INDEX phone ON teacher FIELDS personal.phone UNIQUE;
 
@@ -293,8 +280,7 @@ DEFINE FIELD personal.hometown ON teacher TYPE string
     AND string::len($value) >= 3;  
 
 
-CREATE teacher CONTENT {
-    id : 2019331073,
+CREATE teacher:2019331073 CONTENT {
     name: string::trim('Mufassir Ahmad Chowdhury'),
     department: department:CSE,
     designation : string::trim('Lecturer'),
@@ -313,8 +299,7 @@ CREATE teacher CONTENT {
     },
 };
 
-CREATE teacher CONTENT {
-    id : 2016331033,
+CREATE teacher:2016331033 CONTENT {
     name: string::trim('Mr. X'),
     department: department:CSE,
     designation : string::trim('Lecturer'),
@@ -332,6 +317,7 @@ CREATE teacher CONTENT {
         hometown: string::trim('Khulna'),
     },
 };
+
 
 
 
@@ -443,4 +429,44 @@ CREATE admin CONTENT {
     },
 };
 
+
+
+DEFINE TABLE course SCHEMAFULL;
+DEFINE FIELD id ON course TYPE string;
+DEFINE INDEX id ON course FIELDS id UNIQUE;
+
+DEFINE FIELD credit ON course TYPE float;
+
+DEFINE FIELD name ON course TYPE string;
+
+DEFINE FIELD department ON course TYPE record(department);
+DEFINE FIELD type ON course TYPE string;
+DEFINE FIELD syllabus ON course TYPE array;
+DEFINE FIELD syllabus.* ON course TYPE object;
+DEFINE FIELD syllabus.*.title ON course TYPE string;
+DEFINE FIELD syllabus.*.topics ON course TYPE array;
+DEFINE FIELD syllabus.*.topics.* ON course TYPE string;
+
+CREATE course:CSE222 CONTENT {
+	credit: 3,
+	name: 'Computer Science',
+	department: department:CSE,
+	type: 'theory',
+	syllabus: [
+		{
+			title: 'Topic 1',
+			topics: [
+				'Discussion',
+				'Something other than that',
+			],
+		},
+		{
+			title: 'Topic 2',
+			topics: [
+				'Discussion2',
+				'Something other than that',
+			],
+		},
+	],
+}
 ```

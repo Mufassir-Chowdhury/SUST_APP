@@ -52,10 +52,10 @@ class _AddStudentState extends State<AddStudent> {
   int semesterBoxValue = 0;
   int phoneBoxValue = 0;
 
-  String birthday = '';
+  String birthday =
+      DateTime.now().subtract(const Duration(days: 15 * 365)).toString();
 
   TextEditingController phoneController = TextEditingController();
-
   TextEditingController nameController = TextEditingController();
   TextEditingController departmentController = TextEditingController();
   TextEditingController personalEmailController = TextEditingController();
@@ -115,13 +115,9 @@ class _AddStudentState extends State<AddStudent> {
                         controller: departmentController,
                         items: snapshot.data!.map((department) {
                           return AutoSuggestBoxItem<String>(
-                              value: department.id,
-                              label: department.title!,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $department');
-                                }
-                              });
+                            value: department.id,
+                            label: department.title!,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => departmentSelected = item.value);
@@ -155,13 +151,9 @@ class _AddStudentState extends State<AddStudent> {
                         controller: genderController,
                         items: genders.map((gender) {
                           return AutoSuggestBoxItem<String>(
-                              value: gender,
-                              label: gender,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $gender');
-                                }
-                              });
+                            value: gender,
+                            label: gender,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => genderSelected = item.value);
@@ -205,13 +197,9 @@ class _AddStudentState extends State<AddStudent> {
                         controller: bloodGroupController,
                         items: bloodGroups.map((bloodGroup) {
                           return AutoSuggestBoxItem<String>(
-                              value: bloodGroup,
-                              label: bloodGroup,
-                              onFocusChange: (focused) {
-                                if (focused) {
-                                  debugPrint('Focused $bloodGroup');
-                                }
-                              });
+                            value: bloodGroup,
+                            label: bloodGroup,
+                          );
                         }).toList(),
                         onSelected: (item) {
                           setState(() => bloodGroupSelected = item.value);
@@ -252,9 +240,13 @@ class _AddStudentState extends State<AddStudent> {
                       ),
                       const SizedBox(height: 20),
                       DatePicker(
-                        selected: DateTime.now(),
+                        selected: DateTime.parse(birthday),
+                        endDate: DateTime.now()
+                            .subtract(const Duration(days: 15 * 365)),
                         onChanged: (value) {
-                          birthday = value.toString();
+                          setState(() {
+                            birthday = value.toString();
+                          });
                         },
                       ),
                       const SizedBox(height: 20),
@@ -295,7 +287,7 @@ class _AddStudentState extends State<AddStudent> {
                               email: EmailModel(
                                   personal: personalEmailController.text,
                                   academic: academicEmailController.text),
-                              gender: genderController.text,
+                              gender: genderController.text.toLowerCase(),
                               session: sessionBoxValue,
                               currentSemester: semesterBoxValue,
                               bloodGroup: bloodGroupController.text,

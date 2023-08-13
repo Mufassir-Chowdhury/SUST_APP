@@ -29,10 +29,7 @@ _$_CourseModel _$$_CourseModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       credit: (json['credit'] as num?)?.toDouble(),
       name: json['name'] as String?,
-      department: json['department'] == null
-          ? null
-          : DepartmentModel.fromJson(
-              json['department'] as Map<String, dynamic>),
+      department: json['department'] as String?,
       type: json['type'] as String?,
       syllabus: (json['syllabus'] as List<dynamic>?)
           ?.map((e) => SyllabusModel.fromJson(e as Map<String, dynamic>))

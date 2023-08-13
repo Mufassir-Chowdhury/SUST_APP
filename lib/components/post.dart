@@ -11,3 +11,11 @@ post(request) async {
         'Authorization': 'Basic cm9vdDpyb290'
       });
 }
+
+signin(request) async {
+  return await http.post(Uri.parse("http://localhost:8000/signin"),
+      body: utf8.encode(request),
+      headers: {
+        'Accept': 'application/json',
+      });
+}

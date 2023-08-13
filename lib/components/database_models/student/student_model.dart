@@ -45,11 +45,12 @@ class StudentModel with _$StudentModel {
   static Future<List<ListModel>> getListTile() async {
     final http.Response response = await post(
         '''SELECT name AS title, department.name AS subtitle, id AS id FROM student;''');
+
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
   static Future<StudentModel> getDetails(String id) async {
-    final http.Response response = await post('''SELECT * FROM $id;''');
+    final http.Response response = await post('''SELECT * FROM $id''');
     return StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 

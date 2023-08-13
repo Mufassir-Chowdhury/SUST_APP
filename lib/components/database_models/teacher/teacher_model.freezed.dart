@@ -240,7 +240,7 @@ TeacherModel _$TeacherModelFromJson(Map<String, dynamic> json) {
 mixin _$TeacherModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  DepartmentModel? get department => throw _privateConstructorUsedError;
+  String? get department => throw _privateConstructorUsedError;
   String? get designation => throw _privateConstructorUsedError;
   EmailModel? get email => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
@@ -262,14 +262,13 @@ abstract class $TeacherModelCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
-      DepartmentModel? department,
+      String? department,
       String? designation,
       EmailModel? email,
       String? gender,
       String? bloodGroup,
       PersonalModel? personal});
 
-  $DepartmentModelCopyWith<$Res>? get department;
   $EmailModelCopyWith<$Res>? get email;
   $PersonalModelCopyWith<$Res>? get personal;
 }
@@ -308,7 +307,7 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
       department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel?,
+              as String?,
       designation: freezed == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
@@ -330,18 +329,6 @@ class _$TeacherModelCopyWithImpl<$Res, $Val extends TeacherModel>
           : personal // ignore: cast_nullable_to_non_nullable
               as PersonalModel?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DepartmentModelCopyWith<$Res>? get department {
-    if (_value.department == null) {
-      return null;
-    }
-
-    return $DepartmentModelCopyWith<$Res>(_value.department!, (value) {
-      return _then(_value.copyWith(department: value) as $Val);
-    });
   }
 
   @override
@@ -380,15 +367,13 @@ abstract class _$$_TeacherModelCopyWith<$Res>
   $Res call(
       {String? id,
       String? name,
-      DepartmentModel? department,
+      String? department,
       String? designation,
       EmailModel? email,
       String? gender,
       String? bloodGroup,
       PersonalModel? personal});
 
-  @override
-  $DepartmentModelCopyWith<$Res>? get department;
   @override
   $EmailModelCopyWith<$Res>? get email;
   @override
@@ -427,7 +412,7 @@ class __$$_TeacherModelCopyWithImpl<$Res>
       department: freezed == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel?,
+              as String?,
       designation: freezed == designation
           ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
@@ -474,7 +459,7 @@ class _$_TeacherModel with DiagnosticableTreeMixin implements _TeacherModel {
   @override
   final String? name;
   @override
-  final DepartmentModel? department;
+  final String? department;
   @override
   final String? designation;
   @override
@@ -548,7 +533,7 @@ abstract class _TeacherModel implements TeacherModel {
   const factory _TeacherModel(
       {final String? id,
       final String? name,
-      final DepartmentModel? department,
+      final String? department,
       final String? designation,
       final EmailModel? email,
       final String? gender,
@@ -563,7 +548,7 @@ abstract class _TeacherModel implements TeacherModel {
   @override
   String? get name;
   @override
-  DepartmentModel? get department;
+  String? get department;
   @override
   String? get designation;
   @override

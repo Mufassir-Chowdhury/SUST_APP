@@ -33,7 +33,7 @@ _$_OfferedCourseModel _$$_OfferedCourseModelFromJson(
       course: json['course'] as String?,
       department: json['department'] as String?,
       semester: json['semester'] as int?,
-      usn: json['usn'] as String?,
+      year: json['year'] as int?,
     );
 
 Map<String, dynamic> _$$_OfferedCourseModelToJson(
@@ -43,5 +43,5 @@ Map<String, dynamic> _$$_OfferedCourseModelToJson(
       'course': instance.course,
       'department': instance.department,
       'semester': instance.semester,
-      'usn': instance.usn,
+      'year': instance.year,
     };

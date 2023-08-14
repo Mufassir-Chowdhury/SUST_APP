@@ -36,9 +36,9 @@ class OfferedCourseModel with _$OfferedCourseModel {
   factory OfferedCourseModel.fromJson(Map<String, Object?> json) =>
       _$OfferedCourseModelFromJson(json);
 
-  static Future<List<ListModel>> getListTile() async {
+  static Future<List<ListModel>> getListTile(String? department) async {
     final http.Response response = await post(
-        '''SELECT id, ->course.name AS title, <-department.name AS subtitle FROM offers SPLIT title, subtitle''');
+        '''SELECT id, ->course.name AS title, <-department.name AS subtitle FROM offers SPLIT title, subtitle WHERE <-department = $department''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 

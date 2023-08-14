@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:sust_app/routes/admin_page.dart';
 import 'package:sust_app/routes/login_page.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:window_manager/window_manager.dart';
@@ -21,10 +22,8 @@ void main() async {
   });
   runApp(const MyApp(
     title: 'Login',
-    child: LoginPage(),
+    child: AdminPage(),
   ));
-  // runApp(const MyApp(title: 'Admin App', child: AdminPage()));
-  // runApp(const MyApp(title: 'Student App', child: StudentPage()));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,6 +1,4 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:provider/provider.dart';
-import 'package:sust_app/components/profile_model.dart';
 import 'package:sust_app/components/window_actions.dart';
 import 'package:sust_app/routes/management/course/course.dart';
 import 'package:sust_app/routes/management/department/department.dart';
@@ -28,11 +26,10 @@ class _TeacherPageState extends State<TeacherPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    print(Provider.of<ProfileModel>(context).name);
     return DragToMoveArea(
       child: NavigationView(
         appBar: const NavigationAppBar(
-          title: Text('Admin App'),
+          title: Text('Teacher App'),
           automaticallyImplyLeading: false,
           actions: WindowActions(),
         ),

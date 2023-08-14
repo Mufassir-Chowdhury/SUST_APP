@@ -28,10 +28,7 @@ _$_AdminModel _$$_AdminModelFromJson(Map<String, dynamic> json) =>
     _$_AdminModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
-      department: json['department'] == null
-          ? null
-          : DepartmentModel.fromJson(
-              json['department'] as Map<String, dynamic>),
+      department: json['department'] as String?,
       designation: json['designation'] as String?,
       email: json['email'] == null
           ? null

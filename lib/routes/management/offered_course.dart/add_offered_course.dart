@@ -1,9 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:provider/provider.dart';
 import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/course/course_model.dart';
 import 'package:sust_app/components/database_models/teacher/teacher_model.dart';
 import 'package:sust_app/components/database_models/department/department_model.dart';
 import 'package:sust_app/components/database_models/offered_course/offered_course_model.dart';
+import 'package:sust_app/components/profile_model.dart';
 
 class AddOfferedCourse extends StatefulWidget {
   const AddOfferedCourse({super.key, this.onPressed});
@@ -19,11 +21,13 @@ class _AddOfferedCourseState extends State<AddOfferedCourse> {
   }
 
   Future<List<ListModel>> loadTeachers() async {
-    return TeacherModel.getListTile();
+    return TeacherModel.getListTile(
+        Provider.of<ProfileModel>(context, listen: false).department);
   }
 
   Future<List<ListModel>> loadCourses() async {
-    return CourseModel.getListTile();
+    return CourseModel.getListTile(
+        Provider.of<ProfileModel>(context, listen: false).department);
   }
 
   @override

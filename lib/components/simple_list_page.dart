@@ -1,6 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:provider/provider.dart';
+import 'package:sust_app/components/profile_model.dart';
 
 class Header extends StatelessWidget {
   const Header(
@@ -24,25 +26,27 @@ class Header extends StatelessWidget {
           onHeaderPress();
         },
       ),
-      commandBar: SizedBox(
-        width: 200,
-        child: CommandBar(
-          mainAxisAlignment: MainAxisAlignment.end,
-          overflowBehavior: CommandBarOverflowBehavior.noWrap,
-          primaryItems: [
-            CommandBarBuilderItem(
-              builder: (context, mode, w) => w,
-              wrappedItem: CommandBarButton(
-                onPressed: () {
-                  onAddPress();
-                },
-                label: const Text('Add'),
-                icon: const Icon(FluentIcons.add),
+      commandBar: Provider.of<ProfileModel>(context).type == 'admin'
+          ? null
+          : SizedBox(
+              width: 200,
+              child: CommandBar(
+                mainAxisAlignment: MainAxisAlignment.end,
+                overflowBehavior: CommandBarOverflowBehavior.noWrap,
+                primaryItems: [
+                  CommandBarBuilderItem(
+                    builder: (context, mode, w) => w,
+                    wrappedItem: CommandBarButton(
+                      onPressed: () {
+                        onAddPress();
+                      },
+                      label: const Text('Add'),
+                      icon: const Icon(FluentIcons.add),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -37,9 +37,9 @@ class CourseModel with _$CourseModel {
   factory CourseModel.fromJson(Map<String, Object?> json) =>
       _$CourseModelFromJson(json);
 
-  static Future<List<ListModel>> getListTile() async {
+  static Future<List<ListModel>> getListTile(String? department) async {
     final http.Response response = await post(
-        '''SELECT name AS title, department.name AS subtitle, id AS id FROM course;''');
+        '''SELECT name AS title, department.name AS subtitle, id AS id FROM course WHERE department = $department;''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 

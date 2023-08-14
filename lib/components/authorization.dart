@@ -11,9 +11,9 @@ class Authorization {
 
   static login(String id, String password) async {
     final http.Response response1 = await signin(
-        '''{"ns": "test", "db": "test", "sc": "teacher", "username": "teacher:$id", "password": "$password"}''');
+        '''{"ns": "test", "db": "test", "sc": "teacher", "email": "$id", "password": "$password"}''');
     final http.Response response2 = await signin(
-        '''{"ns": "test", "db": "test", "sc": "student", "username": "student:$id", "password": "$password"}''');
+        '''{"ns": "test", "db": "test", "sc": "student", "email": "$id", "password": "$password"}''');
     if (jsonDecode(response1.body)['code'] == 200) {
       final jwt = JWT.decode(jsonDecode(response1.body)['token']);
       return Authorization(

@@ -1,8 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:provider/provider.dart';
 import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/offered_course/offered_course_model.dart';
 import 'package:sust_app/components/details_page.dart';
+import 'package:sust_app/components/profile_model.dart';
 import 'package:sust_app/components/simple_list_page.dart';
 import 'package:sust_app/routes/management/offered_course.dart/add_offered_course.dart';
 
@@ -19,7 +21,8 @@ class OfferedCourse extends StatelessWidget {
       },
       root: root,
       loadNames: () {
-        return OfferedCourseModel.getListTile();
+        return OfferedCourseModel.getListTile(
+            Provider.of<ProfileModel>(context, listen: false).department);
       },
       detailsPage: (String id, String name) {
         return DetailsPage(

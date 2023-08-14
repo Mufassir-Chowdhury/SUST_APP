@@ -1,8 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:provider/provider.dart';
 import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/teacher/teacher_model.dart';
 import 'package:sust_app/components/details_page.dart';
+import 'package:sust_app/components/profile_model.dart';
 import 'package:sust_app/components/simple_list_page.dart';
 import 'package:sust_app/routes/people/teacher/add_teacher.dart';
 
@@ -19,7 +21,8 @@ class Teacher extends StatelessWidget {
       },
       root: root,
       loadNames: () {
-        return TeacherModel.getListTile();
+        return TeacherModel.getListTile(
+            Provider.of<ProfileModel>(context, listen: false).department);
       },
       detailsPage: (String id, String name) {
         return DetailsPage(

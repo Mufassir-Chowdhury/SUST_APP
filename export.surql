@@ -5,6 +5,12 @@
 OPTION IMPORT;
 
 -- ------------------------------
+-- SCOPES
+-- ------------------------------
+
+DEFINE SCOPE student SESSION 1d SIGNIN (SELECT ->login->student.id AS id FROM user WHERE email = $email AND crypto::argon2::compare(password, $password) SPLIT ON id);
+
+-- ------------------------------
 -- TABLE: admin
 -- ------------------------------
 
@@ -66,6 +72,12 @@ DEFINE INDEX code ON department FIELDS code UNIQUE;
 DEFINE INDEX letter_code ON department FIELDS letter_code UNIQUE;
 DEFINE INDEX minor_course_code ON department FIELDS minor_course_code UNIQUE;
 DEFINE INDEX name ON department FIELDS name UNIQUE;
+
+-- ------------------------------
+-- TABLE: login
+-- ------------------------------
+
+DEFINE TABLE login SCHEMALESS PERMISSIONS NONE;
 
 -- ------------------------------
 -- TABLE: offers
@@ -138,6 +150,15 @@ DEFINE INDEX phone ON teacher FIELDS personal.phone UNIQUE;
 DEFINE TABLE teaches SCHEMALESS PERMISSIONS NONE;
 
 -- ------------------------------
+-- TABLE: user
+-- ------------------------------
+
+DEFINE TABLE user SCHEMAFULL;
+
+DEFINE FIELD email ON user TYPE string ASSERT $value != NONE AND is::email($value);
+DEFINE FIELD password ON user TYPE string ASSERT $value != NONE;
+
+-- ------------------------------
 -- TRANSACTION
 -- ------------------------------
 
@@ -166,6 +187,12 @@ UPDATE department:PHY CONTENT { building: 'A', code: 132, floor: 1, id: departme
 UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', code: 123, floor: 1, id: department:SWE, letter_code: 'SWE', minor_course_code: 'A', name: 'Software Engineering' };
 
 -- ------------------------------
+-- TABLE DATA: login
+-- ------------------------------
+
+RELATE user:aasa01kbaknch7ol17w7 -> login:a6j4uyrajbtxp64xegnp -> student:2019331073 CONTENT { __: true, id: login:a6j4uyrajbtxp64xegnp, in: user:aasa01kbaknch7ol17w7, out: student:2019331073 };
+
+-- ------------------------------
 -- TABLE DATA: offers
 -- ------------------------------
 
@@ -192,6 +219,12 @@ UPDATE teacher:2019331073 CONTENT { blood_group: 'B+', department: department:CS
 
 RELATE teacher:2019331073 -> teaches:o94o6fvp390utzmery77 -> offers:1jfzfa9qu33174ouv5nt CONTENT { __: true, id: teaches:o94o6fvp390utzmery77, in: teacher:2019331073, out: offers:1jfzfa9qu33174ouv5nt };
 RELATE teacher:2019331073 -> teaches:x700jf9ofic4o8lkfxnv -> offers:t5hazd30yi26x82u5n2l CONTENT { __: true, id: teaches:x700jf9ofic4o8lkfxnv, in: teacher:2019331073, out: offers:t5hazd30yi26x82u5n2l };
+
+-- ------------------------------
+-- TABLE DATA: user
+-- ------------------------------
+
+UPDATE user:aasa01kbaknch7ol17w7 CONTENT { email: 'mufassir73@student.sust.edu', id: user:aasa01kbaknch7ol17w7, password: '$argon2id$v=19$m=19456,t=2,p=1$c1fIG/sv0IV5k1UFScZVZg$92aoHf8Y/2wUWTBccYvJ1OmtbwkIAwCkaCksS3+w/b8' };
 
 -- ------------------------------
 -- TRANSACTION

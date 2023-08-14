@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sust_app/components/database_models/common_model.dart';
-import 'package:sust_app/components/database_models/department/department_model.dart';
 import 'package:sust_app/components/post.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
@@ -29,7 +28,7 @@ class AdminModel with _$AdminModel {
   const factory AdminModel({
     String? id,
     String? name,
-    DepartmentModel? department,
+    String? department,
     String? designation,
     EmailModel? email,
     String? gender,
@@ -47,8 +46,7 @@ class AdminModel with _$AdminModel {
   }
 
   static Future<AdminModel> getDetails(String id) async {
-    final http.Response response =
-        await post('''SELECT * FROM $id FETCH department;''');
+    final http.Response response = await post('''SELECT * FROM $id;''');
     return AdminStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 }

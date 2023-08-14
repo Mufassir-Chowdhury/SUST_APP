@@ -1,8 +1,13 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:sust_app/components/authorization.dart';
+import 'package:sust_app/components/database_models/admin/admin_model.dart';
+import 'package:sust_app/components/database_models/student/student_model.dart';
+import 'package:sust_app/components/database_models/teacher/teacher_model.dart';
 import 'package:sust_app/components/profile_model.dart';
 import 'package:sust_app/routes/admin_page.dart';
+import 'package:sust_app/routes/student_page.dart';
+import 'package:sust_app/routes/teacher_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -50,18 +55,58 @@ class _LoginPageState extends State<LoginPage> {
                   Authorization result = await Authorization.login(
                       usernameController.text, passwordController.text);
                   if (result.success) {
-                    Navigator.of(context)
-                        .push(FluentPageRoute(builder: (BuildContext context) {
-                      return ChangeNotifierProvider(
-                        create: ((context) => ProfileModel(
-                              name: "Mufassir Ahmad Chowdhury",
-                              email: "mac22214u@gmail.com",
-                              id: "2019331073",
-                              department: "CSE",
-                            )),
-                        child: const AdminPage(),
-                      );
-                    }));
+                    if (result.scope == 'teacher') {
+                      TeacherModel teacher =
+                          await TeacherModel.getDetails(result.id!);
+
+                      Navigator.of(context).push(
+                          FluentPageRoute(builder: (BuildContext context) {
+                        return ChangeNotifierProvider(
+                          create: ((context) => ProfileModel(
+                                name: teacher.name,
+                                email: teacher.email!.academic,
+                                id: teacher.id,
+                                department: teacher.department,
+                                type: 'teacher',
+                              )),
+                          child: const TeacherPage(),
+                        );
+                      }));
+                    } else if (result.scope == 'student') {
+                      StudentModel student =
+                          await StudentModel.getDetails(result.id!);
+
+                      Navigator.of(context).push(
+                          FluentPageRoute(builder: (BuildContext context) {
+                        return ChangeNotifierProvider(
+                          create: ((context) => ProfileModel(
+                                name: student.name,
+                                email: student.email!.academic,
+                                id: student.id,
+                                department: student.department,
+                                type: 'stduent',
+                              )),
+                          child: const StudentPage(),
+                        );
+                      }));
+                    } else {
+                      AdminModel admin =
+                          await AdminModel.getDetails(result.id!);
+
+                      Navigator.of(context).push(
+                          FluentPageRoute(builder: (BuildContext context) {
+                        return ChangeNotifierProvider(
+                          create: ((context) => ProfileModel(
+                                name: admin.name,
+                                email: admin.email!.academic,
+                                id: admin.id,
+                                department: admin.department,
+                                type: 'admin',
+                              )),
+                          child: const AdminPage(),
+                        );
+                      }));
+                    }
                   } else {
                     setState(() {
                       errorFound = true;

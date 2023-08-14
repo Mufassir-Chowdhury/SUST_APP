@@ -68,7 +68,7 @@ create department content {
     name : string::trim('Physics'),
     building : string::trim('A'),
     floor : 1,
-    minor_course_code : string::trim('a'),
+    minor_course_code : string::trim('C'),
 };
 
 
@@ -198,6 +198,8 @@ CREATE student:2019331013 CONTENT {
     session: 2019,
     current_semester: 5,
     blood_group: string::trim('A+'),
+        privilege: null,
+
     personal: {
         father: string::trim('Md Mojammel Haque'),
         mother: string::trim('Most Ayasha Siddika'),
@@ -323,6 +325,7 @@ CREATE teacher:2016331033 CONTENT {
 
 
 DEFINE TABLE admin SCHEMAFULL;
+DEFINE FIELD id ON admin TYPE string;
 
 DEFINE FIELD name ON admin TYPE string 
     ASSERT $value != NONE 
@@ -375,11 +378,7 @@ DEFINE FIELD personal.birthday ON admin TYPE datetime
     ASSERT $value != NONE AND 
     time::year($value) < time::year()-15;
 
-DEFINE FIELD personal.phone ON admin TYPE number 
-    ASSERT $value != NONE 
-    AND math::round($value) = $value 
-    AND string::startsWith(<string> $value, '1') 
-    AND string::len(<string> $value) = 10;
+DEFINE FIELD personal.phone ON admin TYPE string ;
 
 DEFINE INDEX phone ON admin FIELDS personal.phone UNIQUE;
 
@@ -389,8 +388,7 @@ DEFINE FIELD personal.hometown ON admin TYPE string
     AND string::len($value) >= 3;
 
 
-CREATE admin CONTENT {
-    id : 2019331004,
+CREATE admin:2019331004 CONTENT {
     name: string::trim('Mr. X'),
     department: department:CSE,
 	designation: string::trim("Assistant Something"),
@@ -404,13 +402,12 @@ CREATE admin CONTENT {
         father: string::trim('Mr. X'),
         mother: string::trim('Mrs. Y'),
         birthday: "2001-07-10T07:18:52Z",
-        phone: 01771144308,
+        phone: "01771144308",
         hometown: string::trim('Sylhet'),
     },
 };
 
-CREATE admin CONTENT {
-    id : 2019331002,
+CREATE admin:2019331002 CONTENT {
     name: string::trim('Mr. Xx'),
     department: department:CSE,
 	designation: string::trim("Assistant Something"),
@@ -424,7 +421,7 @@ CREATE admin CONTENT {
         father: string::trim('Mr. X'),
         mother: string::trim('Mrs. Y'),
         birthday: "2001-07-10T07:18:52Z",
-        phone: 01771144309,
+        phone: "01771144309",
         hometown: string::trim('Sylhet'),
     },
 };

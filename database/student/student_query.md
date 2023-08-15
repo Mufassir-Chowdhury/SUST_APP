@@ -101,8 +101,7 @@ DEFINE FIELD result.total_credit ON student TYPE float
 
 ### `student` adding format
 ```sql
-CREATE student CONTENT {
-    id : $value (number),
+CREATE student:$value(id) CONTENT {
     name: string::trim($value (string)),
     department: string::concat('department:', $value(string)),
     email: {
@@ -134,8 +133,7 @@ CREATE student CONTENT {
 ### Example to insert some values
 ```sql
 
-CREATE student CONTENT {
-    id : 2019331073,
+CREATE student:2019331073 CONTENT {
     name: string::trim('Mufassir Ahmad Chowdhury'),
     department: department:CSE,
     email: {
@@ -163,8 +161,7 @@ CREATE student CONTENT {
 };
 
 
-CREATE student CONTENT {
-    id : 2019331013,
+CREATE student:2019331013 CONTENT {
     name: string::trim('Asanul Haque Kiron'),
     department: department:CSE,
     email: {

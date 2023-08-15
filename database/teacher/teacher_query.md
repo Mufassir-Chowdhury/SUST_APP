@@ -68,8 +68,7 @@ DEFINE FIELD personal.hometown ON teacher TYPE string
 
 ### `teacher` adding format
 ```sql
-CREATE teacher CONTENT {
-    id : $value (number),
+CREATE teacher:$value(id) CONTENT {
     name: string::trim($value (string)),
     department: string::concat('department:', $value(string)),
     designation : string::trim($value (string)),
@@ -91,8 +90,7 @@ CREATE teacher CONTENT {
 
 ### Example to insert some value
 ```sql
-CREATE teacher CONTENT {
-    id : 2019331073,
+CREATE teacher:2019331073 CONTENT {
     name: string::trim('Mufassir Ahmad Chowdhury'),
     department: department:CSE,
     designation : string::trim('Lecturer'),
@@ -111,8 +109,7 @@ CREATE teacher CONTENT {
     },
 };
 
-CREATE teacher CONTENT {
-    id : 2016331033,
+CREATE teacher:2016331033 CONTENT {
     name: string::trim('Mr. X'),
     department: department:CSE,
     designation : string::trim('Lecturer'),

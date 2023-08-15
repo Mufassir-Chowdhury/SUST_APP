@@ -28,6 +28,10 @@ create user set email = 'mufassir@sust.edu', password = crypto::argon2::generate
 
 relate (select id from user where email = 'mufassir@sust.edu') -> login -> admin:2019331002;
 
+create user set email = 'mrx@sust.edu', password = crypto::argon2::generate("root");
+
+relate (select id from user where email = 'mrx@sust.edu') -> login -> admin:2019331004;
+
 Define scope teacher session 24h
 signin(select * from user where email = $email and password = crypto::argon2::compare(password, $pass));
 

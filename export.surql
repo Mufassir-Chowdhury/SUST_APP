@@ -8,7 +8,9 @@ OPTION IMPORT;
 -- SCOPES
 -- ------------------------------
 
+DEFINE SCOPE admin SESSION 1d SIGNIN (SELECT ->login->admin.id AS id FROM user WHERE email = $email AND crypto::argon2::compare(password, $password) SPLIT ON id);
 DEFINE SCOPE student SESSION 1d SIGNIN (SELECT ->login->student.id AS id FROM user WHERE email = $email AND crypto::argon2::compare(password, $password) SPLIT ON id);
+DEFINE SCOPE teacher SESSION 1d SIGNIN (SELECT ->login->teacher.id AS id FROM user WHERE email = $email AND crypto::argon2::compare(password, $password) SPLIT ON id);
 
 -- ------------------------------
 -- TABLE: admin

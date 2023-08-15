@@ -10,7 +10,11 @@ define field password on user type string assert $value != none;
 
 create user set email = 'mufassir73@student.sust.edu', password = crypto::argon2::generate("root");
 
-relate user:aasa01kbaknch7ol17w7 -> login -> student:2019331073;
+relate (select id from user where email = 'mufassir73@student.sust.edu') -> login -> student:2019331073;
+
+create user set email = 'asanul13@student.sust.edu', password = crypto::argon2::generate("neel");
+
+relate (select id from user where email = 'asanul13@student.sust.edu') -> login -> student:2019331013;
 
 Define scope teacher session 24h
 signin(select * from user where email = $email and password = crypto::argon2::compare(password, $pass));

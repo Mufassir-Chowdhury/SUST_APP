@@ -468,7 +468,7 @@ CREATE course:CSE222 CONTENT {
 };
 
 DEFINE SCOPE teacher SESSION 1d SIGNIN (SELECT * FROM teacher WHERE email = $username);
-DEFINE SCOPE student SESSION 1d SIGNIN (SELECT * FROM student WHERE email = $username);
+DEFINE SCOPE student SESSION 1d SIGNIN (SELECT * FROM student WHERE email.academic = $username);
 DEFINE SCOPE admin SESSION 1d SIGNIN (SELECT * FROM admin WHERE email = $username);
 
 ```

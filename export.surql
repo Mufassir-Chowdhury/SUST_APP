@@ -160,6 +160,8 @@ DEFINE TABLE user SCHEMAFULL;
 DEFINE FIELD email ON user TYPE string ASSERT $value != NONE AND is::email($value);
 DEFINE FIELD password ON user TYPE string ASSERT $value != NONE;
 
+DEFINE INDEX email ON user FIELDS email UNIQUE;
+
 -- ------------------------------
 -- TRANSACTION
 -- ------------------------------
@@ -192,7 +194,11 @@ UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', 
 -- TABLE DATA: login
 -- ------------------------------
 
+RELATE user:ws6uynksgs1kdr07b3r8 -> login:1sjkmi7o2a9f98a978gi -> teacher:2019331073 CONTENT { __: true, id: login:1sjkmi7o2a9f98a978gi, in: user:ws6uynksgs1kdr07b3r8, out: teacher:2019331073 };
+RELATE user:xz5o4prrbak776nivu4a -> login:2or2pea30ymoa6ko5905 -> student:2019331013 CONTENT { __: true, id: login:2or2pea30ymoa6ko5905, in: user:xz5o4prrbak776nivu4a, out: student:2019331013 };
 RELATE user:aasa01kbaknch7ol17w7 -> login:a6j4uyrajbtxp64xegnp -> student:2019331073 CONTENT { __: true, id: login:a6j4uyrajbtxp64xegnp, in: user:aasa01kbaknch7ol17w7, out: student:2019331073 };
+RELATE user:d9pu7wrq9qgg9ssojw78 -> login:jadeoaijybhx570kkrc3 -> admin:2019331002 CONTENT { __: true, id: login:jadeoaijybhx570kkrc3, in: user:d9pu7wrq9qgg9ssojw78, out: admin:2019331002 };
+RELATE user:3sx7fe9v6w58gag2b625 -> login:oh12q5ju4z4l60t2pn0a -> teacher:2016331033 CONTENT { __: true, id: login:oh12q5ju4z4l60t2pn0a, in: user:3sx7fe9v6w58gag2b625, out: teacher:2016331033 };
 
 -- ------------------------------
 -- TABLE DATA: offers
@@ -226,7 +232,11 @@ RELATE teacher:2019331073 -> teaches:x700jf9ofic4o8lkfxnv -> offers:t5hazd30yi26
 -- TABLE DATA: user
 -- ------------------------------
 
+UPDATE user:3sx7fe9v6w58gag2b625 CONTENT { email: 'xyz@sust.edu', id: user:3sx7fe9v6w58gag2b625, password: '$argon2id$v=19$m=19456,t=2,p=1$7JLreAVwXh73ALGEEjjtXw$DwpTTl/o2TwlZoooQ+9AC8MqwFCmpiIeGt7T54HU3Jc' };
 UPDATE user:aasa01kbaknch7ol17w7 CONTENT { email: 'mufassir73@student.sust.edu', id: user:aasa01kbaknch7ol17w7, password: '$argon2id$v=19$m=19456,t=2,p=1$c1fIG/sv0IV5k1UFScZVZg$92aoHf8Y/2wUWTBccYvJ1OmtbwkIAwCkaCksS3+w/b8' };
+UPDATE user:d9pu7wrq9qgg9ssojw78 CONTENT { email: 'mufassir@sust.edu', id: user:d9pu7wrq9qgg9ssojw78, password: '$argon2id$v=19$m=19456,t=2,p=1$z9bb3s0hsj/Y4eFgiOYeDw$FvNIPOqc39RLOnm1tf3/oALeopjHBh5u8+kDi/BEuWI' };
+UPDATE user:ws6uynksgs1kdr07b3r8 CONTENT { email: 'mufassir73@sust.edu', id: user:ws6uynksgs1kdr07b3r8, password: '$argon2id$v=19$m=19456,t=2,p=1$mPBgfJGt3zXLfBgw7m4+4A$sG5wE599w7moglTaMHc5ERT8nJNg77mNhB61M91R1Qg' };
+UPDATE user:xz5o4prrbak776nivu4a CONTENT { email: 'asanul13@student.sust.edu', id: user:xz5o4prrbak776nivu4a, password: '$argon2id$v=19$m=19456,t=2,p=1$bA8wPGQ2nVcvf29yRNdpVg$YlyMWq/crbG+rvpGk4IomFzYf2vnyDs0EtwFWlDXenQ' };
 
 -- ------------------------------
 -- TRANSACTION

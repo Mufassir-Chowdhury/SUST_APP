@@ -93,14 +93,13 @@ CREATE admin CONTENT {
 ### adding _admins_ via root
 
 ```sql
-CREATE admin CONTENT {
-    id : 2019331004,
+CREATE admin:2019331004 CONTENT {
     name: string::trim('Mr. X'),
     department: department:CSE,
 	designation: string::trim("Assistant Something"),
     email: {
        personal: string::trim('mac22214u@gmail.com'),
-       academic: string::trim('mufassir73@sust.edu'),
+       academic: string::trim('mrx@sust.edu'),
     },
     gender: string::lowercase('male'),
     blood_group: string::trim('B+'),
@@ -113,8 +112,7 @@ CREATE admin CONTENT {
     },
 };
 
-CREATE admin CONTENT {
-    id : 2019331002,
+CREATE admin:2019331002 CONTENT {
     name: string::trim('Mr. Xx'),
     department: department:CSE,
 	designation: string::trim("Assistant Something"),

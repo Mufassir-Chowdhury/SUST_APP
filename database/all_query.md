@@ -394,7 +394,7 @@ CREATE admin:2019331004 CONTENT {
 	designation: string::trim("Assistant Something"),
     email: {
        personal: string::trim('mac22214u@gmail.com'),
-       academic: string::trim('mufassir73@sust.edu'),
+       academic: string::trim('mrx@sust.edu'),
     },
     gender: string::lowercase('male'),
     blood_group: string::trim('B+'),

@@ -173,7 +173,7 @@ BEGIN TRANSACTION;
 -- ------------------------------
 
 UPDATE admin:2019331002 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Something', email: { academic: 'mufassir@sust.edu', personal: 'mac2221@gmail.com' }, gender: 'male', id: admin:2019331002, name: 'Mr. Xx', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: '01771144309' } };
-UPDATE admin:2019331004 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Something', email: { academic: 'mufassir73@sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: admin:2019331004, name: 'Mr. X', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: '01771144308' } };
+UPDATE admin:2019331004 CONTENT { blood_group: 'B+', department: department:CSE, designation: 'Assistant Something', email: { academic: 'mrx@sust.edu', personal: 'mac22214u@gmail.com' }, gender: 'male', id: admin:2019331004, name: 'Mr. X', personal: { birthday: '2001-07-10T07:18:52Z', father: 'Mr. X', hometown: 'Sylhet', mother: 'Mrs. Y', phone: '01771144308' } };
 
 -- ------------------------------
 -- TABLE DATA: course
@@ -199,6 +199,7 @@ RELATE user:xz5o4prrbak776nivu4a -> login:2or2pea30ymoa6ko5905 -> student:201933
 RELATE user:aasa01kbaknch7ol17w7 -> login:a6j4uyrajbtxp64xegnp -> student:2019331073 CONTENT { __: true, id: login:a6j4uyrajbtxp64xegnp, in: user:aasa01kbaknch7ol17w7, out: student:2019331073 };
 RELATE user:d9pu7wrq9qgg9ssojw78 -> login:jadeoaijybhx570kkrc3 -> admin:2019331002 CONTENT { __: true, id: login:jadeoaijybhx570kkrc3, in: user:d9pu7wrq9qgg9ssojw78, out: admin:2019331002 };
 RELATE user:3sx7fe9v6w58gag2b625 -> login:oh12q5ju4z4l60t2pn0a -> teacher:2016331033 CONTENT { __: true, id: login:oh12q5ju4z4l60t2pn0a, in: user:3sx7fe9v6w58gag2b625, out: teacher:2016331033 };
+RELATE user:hb4sfhwnejl13tkzhfpw -> login:s1ut92rd7ukzly37hbvr -> admin:2019331004 CONTENT { __: true, id: login:s1ut92rd7ukzly37hbvr, in: user:hb4sfhwnejl13tkzhfpw, out: admin:2019331004 };
 
 -- ------------------------------
 -- TABLE DATA: offers
@@ -235,6 +236,7 @@ RELATE teacher:2019331073 -> teaches:x700jf9ofic4o8lkfxnv -> offers:t5hazd30yi26
 UPDATE user:3sx7fe9v6w58gag2b625 CONTENT { email: 'xyz@sust.edu', id: user:3sx7fe9v6w58gag2b625, password: '$argon2id$v=19$m=19456,t=2,p=1$7JLreAVwXh73ALGEEjjtXw$DwpTTl/o2TwlZoooQ+9AC8MqwFCmpiIeGt7T54HU3Jc' };
 UPDATE user:aasa01kbaknch7ol17w7 CONTENT { email: 'mufassir73@student.sust.edu', id: user:aasa01kbaknch7ol17w7, password: '$argon2id$v=19$m=19456,t=2,p=1$c1fIG/sv0IV5k1UFScZVZg$92aoHf8Y/2wUWTBccYvJ1OmtbwkIAwCkaCksS3+w/b8' };
 UPDATE user:d9pu7wrq9qgg9ssojw78 CONTENT { email: 'mufassir@sust.edu', id: user:d9pu7wrq9qgg9ssojw78, password: '$argon2id$v=19$m=19456,t=2,p=1$z9bb3s0hsj/Y4eFgiOYeDw$FvNIPOqc39RLOnm1tf3/oALeopjHBh5u8+kDi/BEuWI' };
+UPDATE user:hb4sfhwnejl13tkzhfpw CONTENT { email: 'mrx@sust.edu', id: user:hb4sfhwnejl13tkzhfpw, password: '$argon2id$v=19$m=19456,t=2,p=1$mzO2HyrwcGWzE9TxXkIwHA$UM3Ql1K5ekDY0/yVOC+eLMooNt+U1Oi/ULyI3jTVV8k' };
 UPDATE user:ws6uynksgs1kdr07b3r8 CONTENT { email: 'mufassir73@sust.edu', id: user:ws6uynksgs1kdr07b3r8, password: '$argon2id$v=19$m=19456,t=2,p=1$mPBgfJGt3zXLfBgw7m4+4A$sG5wE599w7moglTaMHc5ERT8nJNg77mNhB61M91R1Qg' };
 UPDATE user:xz5o4prrbak776nivu4a CONTENT { email: 'asanul13@student.sust.edu', id: user:xz5o4prrbak776nivu4a, password: '$argon2id$v=19$m=19456,t=2,p=1$bA8wPGQ2nVcvf29yRNdpVg$YlyMWq/crbG+rvpGk4IomFzYf2vnyDs0EtwFWlDXenQ' };
 

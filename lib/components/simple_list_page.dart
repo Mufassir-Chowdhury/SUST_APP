@@ -26,7 +26,7 @@ class Header extends StatelessWidget {
           onHeaderPress();
         },
       ),
-      commandBar: Provider.of<ProfileModel>(context).type == 'admin'
+      commandBar: Provider.of<ProfileModel>(context).type != 'admin'
           ? null
           : SizedBox(
               width: 200,

@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
+import 'package:sust_app/routes/Administration/course_registration.dart';
 import 'package:window_manager/window_manager.dart';
 
 class StudentPage extends StatefulWidget {
@@ -96,7 +97,7 @@ class _StudentPageState extends State<StudentPage> {
             ),
             PaneItemExpander(
               icon: const Icon(FluentIcons.account_management),
-              title: const Text('Administrivia'),
+              title: const Text('Administration'),
               body: bodyItem(),
               items: [
                 PaneItem(
@@ -107,7 +108,7 @@ class _StudentPageState extends State<StudentPage> {
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),
                   title: const Text('Course Registration'),
-                  body: bodyItem(),
+                  body: const CourseRegistration(),
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),

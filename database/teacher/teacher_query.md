@@ -86,6 +86,8 @@ CREATE teacher:$value(id) CONTENT {
         hometown: string::trim($value (string)),
     },
 };
+create user set email = string::trim($value (string)), password = crypto::argon2::generate($value(string));
+relate (select id from user where email = string::trim($value (string))) -> login -> teacher:$value(id);
 ```
 
 ### Example to insert some value
@@ -108,6 +110,9 @@ CREATE teacher:2019331073 CONTENT {
         hometown: string::trim('Sylhet'),
     },
 };
+create user set email = 'mufassir73@sust.edu', password = crypto::argon2::generate("root");
+relate (select id from user where email = 'mufassir73@sust.edu') -> login -> teacher:2019331073;
+
 
 CREATE teacher:2016331033 CONTENT {
     name: string::trim('Mr. X'),
@@ -127,6 +132,8 @@ CREATE teacher:2016331033 CONTENT {
         hometown: string::trim('Khulna'),
     },
 };
+create user set email = 'mufassir73@sust.edu', password = crypto::argon2::generate("root");
+relate (select id from user where email = 'mufassir73@sust.edu') -> login -> teacher:2019331073;
 ```
 
 ### getting information of all teacher

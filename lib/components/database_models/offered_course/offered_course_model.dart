@@ -38,7 +38,7 @@ class OfferedCourseModel with _$OfferedCourseModel {
 
   static Future<List<ListModel>> getListTile(String? department) async {
     final http.Response response = await post(
-        '''SELECT id, ->course.name AS title, <-department.name AS subtitle FROM offers SPLIT title, subtitle WHERE <-department = $department''');
+        '''SELECT id, ->course.name AS title, <-(department where id=$department).name AS subtitle FROM offers SPLIT title, subtitle''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 

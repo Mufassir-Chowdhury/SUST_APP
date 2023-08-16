@@ -3,17 +3,12 @@
 DEFINE TABLE course SCHEMAFUL;
 ```
 
-### To create a field `course_code` with
+### To create a field `course_code` unique with
 - type `string`
 - lenght of `6 or 7 characters`
 ```sql
 define field course_code on course type string
     value meta::id(id);
-```
-
-### To make the `course_code` field `unique`
-```sql
-define index course_code on course fields course_code unique;
 ```
 
 ### To create a field `course_title` with

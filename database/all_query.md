@@ -428,27 +428,46 @@ CREATE admin:2019331002 CONTENT {
 
 
 
-DEFINE TABLE course SCHEMAFULL;
-DEFINE FIELD id ON course TYPE string;
-DEFINE INDEX id ON course FIELDS id UNIQUE;
+DEFINE TABLE course SCHEMAFUL;
 
-DEFINE FIELD credit ON course TYPE float;
+define field course_code on course type string
+    value meta::id(id);
 
-DEFINE FIELD name ON course TYPE string;
+define field name on course type string
+    assert $value != none
+    and $value = /^[A-Za-z ]+$/
+    and string::len($value) > 5;
 
-DEFINE FIELD department ON course TYPE record(department);
-DEFINE FIELD type ON course TYPE string;
-DEFINE FIELD syllabus ON course TYPE array;
-DEFINE FIELD syllabus.* ON course TYPE object;
-DEFINE FIELD syllabus.*.title ON course TYPE string;
-DEFINE FIELD syllabus.*.topics ON course TYPE array;
-DEFINE FIELD syllabus.*.topics.* ON course TYPE string;
+define index name on course fields name unique;
+
+define field credit on course type float
+    assert $value != none
+    and $value > 0 and $value <= 4;
+
+define field type on course type string
+    assert $value inside ['Lab', 'Theory', 'Thesis'];
+
+DEFINE FIELD department ON course TYPE record(department)
+    assert $value != none;
+
+define field syllabus on course type array;
+define field syllabus.* on course type object;
+
+define field syllabus.*.title on course type string 
+    assert $value != none
+    and $value = /^[A-Za-z ,&0-9]+$/
+    and string::len($value) > 5;
+
+define field syllabus.*.topics on course type array;
+define field syllabus.*.topics.* on course type string
+    assert $value != none
+    and string::len($value) > 5;
 
 CREATE course:CSE222 CONTENT {
 	credit: 3,
 	name: 'Computer Science',
 	department: department:CSE,
-	type: 'theory',
+	type: 'Theory',
 	syllabus: [
 		{
 			title: 'Topic 1',
@@ -467,8 +486,35 @@ CREATE course:CSE222 CONTENT {
 	],
 };
 
+CREATE course:CSE330 CONTENT {
+	credit: 2,
+	name: 'Web Tech',
+	department: department:CSE,
+	type: 'Lab',
+	syllabus: [
+		{
+			title: 'Topic 1',
+			topics: [
+				'Discussion',
+				'Something other than that',
+			],
+		},
+		{
+			title: 'Topic 2',
+			topics: [
+				'Discussion2',
+				'Something other than that',
+			],
+		},
+	],
+}
+
 DEFINE SCOPE teacher SESSION 1d SIGNIN (SELECT * FROM teacher WHERE email = $username);
 DEFINE SCOPE student SESSION 1d SIGNIN (SELECT * FROM student WHERE email.academic = $username);
 DEFINE SCOPE admin SESSION 1d SIGNIN (SELECT * FROM admin WHERE email = $username);
 
+```
+
+``` sql
+select ->(offers where semester=12 and year = )->course from department
 ```

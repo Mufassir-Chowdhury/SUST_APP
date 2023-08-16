@@ -124,9 +124,10 @@ CREATE student:$value(id) CONTENT {
         cgpa: $value (float),
         grade: string::trim($value (string)),
         total_credit: $value (float),
-    },
-    
+    },  
 };
+create user set email = string::trim($value (string)), password = crypto::argon2::generate($value(string));
+relate (select id from user where email = string::trim($value (string))) -> login -> student:$value(id);
 
 ```
 
@@ -157,8 +158,9 @@ CREATE student:2019331073 CONTENT {
         grade: string::trim('A+'),
         total_credit: 160,
     },
-    
 };
+create user set email = 'mufassir73@student.sust.edu', password = crypto::argon2::generate("root");
+relate (select id from user where email = 'mufassir73@student.sust.edu') -> login -> student:2019331073;
 
 
 CREATE student:2019331013 CONTENT {
@@ -184,8 +186,9 @@ CREATE student:2019331013 CONTENT {
         grade: string::trim('A'),
         total_credit: 160,
     },
-
 };
+create user set email = 'asanul13@student.sust.edu', password = crypto::argon2::generate("neel");
+relate (select id from user where email = 'asanul13@student.sust.edu') -> login -> student:2019331013;
 
 ```
 

@@ -88,6 +88,8 @@ CREATE admin CONTENT {
         hometown: string::trim($value (string)),
     },
 };
+create user set email = string::trim($value (string)), password = crypto::argon2::generate($value(string));
+relate (select id from user where email = string::trim($value (string))) -> login -> admin:$value(id);
 ```
 
 ### adding _admins_ via root
@@ -111,6 +113,9 @@ CREATE admin:2019331004 CONTENT {
         hometown: string::trim('Sylhet'),
     },
 };
+create user set email = 'mrx@sust.edu', password = crypto::argon2::generate("root");
+relate (select id from user where email = 'mrx@sust.edu') -> login -> admin:2019331004;
+
 
 CREATE admin:2019331002 CONTENT {
     name: string::trim('Mr. Xx'),
@@ -130,6 +135,9 @@ CREATE admin:2019331002 CONTENT {
         hometown: string::trim('Sylhet'),
     },
 };
+create user set email = 'mufassir@sust.edu', password = crypto::argon2::generate("root");
+relate (select id from user where email = 'mufassir@sust.edu') -> login -> admin:2019331002;
+
 ```
 
 

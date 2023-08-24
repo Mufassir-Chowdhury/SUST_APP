@@ -76,6 +76,12 @@ DEFINE INDEX minor_course_code ON department FIELDS minor_course_code UNIQUE;
 DEFINE INDEX name ON department FIELDS name UNIQUE;
 
 -- ------------------------------
+-- TABLE: follows
+-- ------------------------------
+
+DEFINE TABLE follows SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
 -- TABLE: login
 -- ------------------------------
 
@@ -86,6 +92,17 @@ DEFINE TABLE login SCHEMALESS PERMISSIONS NONE;
 -- ------------------------------
 
 DEFINE TABLE offers SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
+-- TABLE: routine
+-- ------------------------------
+
+DEFINE TABLE routine SCHEMAFULL;
+
+DEFINE FIELD building ON routine TYPE string ASSERT $value != NONE;
+DEFINE FIELD duration ON routine TYPE string ASSERT $value INSIDE ['1hr', '2hr', 3hr];
+DEFINE FIELD room ON routine TYPE string ASSERT $value != NONE;
+DEFINE FIELD time ON routine TYPE number ASSERT $value != NONE AND $value >= 8 AND $value <= 17;
 
 -- ------------------------------
 -- TABLE: student
@@ -198,6 +215,13 @@ UPDATE department:PHY CONTENT { building: 'A', code: 132, floor: 1, id: departme
 UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', code: 123, floor: 1, id: department:SWE, letter_code: 'SWE', minor_course_code: 'A', name: 'Software Engineering' };
 
 -- ------------------------------
+-- TABLE DATA: follows
+-- ------------------------------
+
+RELATE course:CSE222 -> follows:4gyn6go2nt1z45jw91bc -> routine:0890gz6xvnjc5oc9cgfc CONTENT { __: true, day: 'Monday', id: follows:4gyn6go2nt1z45jw91bc, in: course:CSE222, out: routine:0890gz6xvnjc5oc9cgfc, year: '2023' };
+RELATE course:CSE222 -> follows:5r64y6ulhrhdf8zapyax -> routine:0890gz6xvnjc5oc9cgfc CONTENT { __: true, day: 'Sunday', id: follows:5r64y6ulhrhdf8zapyax, in: course:CSE222, out: routine:0890gz6xvnjc5oc9cgfc, year: '2023' };
+
+-- ------------------------------
 -- TABLE DATA: login
 -- ------------------------------
 
@@ -225,6 +249,13 @@ RELATE department:CSE -> offers:stkue740iyvgmrklrtq7 -> course:CSE330 CONTENT { 
 RELATE department:CSE -> offers:t5hazd30yi26x82u5n2l -> course:CSE222 CONTENT { __: true, id: offers:t5hazd30yi26x82u5n2l, in: department:CSE, out: course:CSE222, semester: 12, year: 2019 };
 
 -- ------------------------------
+-- TABLE DATA: routine
+-- ------------------------------
+
+UPDATE routine:0890gz6xvnjc5oc9cgfc CONTENT { building: 'IICT', duration: '1hr', id: routine:0890gz6xvnjc5oc9cgfc, room: 'G-2', time: 9 };
+UPDATE routine:0sv0qyprii255ccv1vfl CONTENT { building: 'IICT', duration: '2hr', id: routine:0sv0qyprii255ccv1vfl, room: '304', time: 10 };
+
+-- ------------------------------
 -- TABLE DATA: student
 -- ------------------------------
 
@@ -241,6 +272,8 @@ UPDATE student:2023119144 CONTENT { blood_group: 'O+', current_semester: 5, depa
 -- ------------------------------
 
 RELATE student:2019331073 -> takes:2jepxv788in9t7t71q8g -> course:CSE330 CONTENT { __: true, id: takes:2jepxv788in9t7t71q8g, in: student:2019331073, out: course:CSE330, semester: 12, year: 2019 };
+RELATE student:2019331013 -> takes:4tnahxcwnlgpj6l634dl -> course:CSE222 CONTENT { __: true, id: takes:4tnahxcwnlgpj6l634dl, in: student:2019331013, out: course:CSE222, semester: 12, year: 2019 };
+RELATE student:2019331013 -> takes:cvq6uvnqf51c3vvuws97 -> course:CSE330 CONTENT { __: true, id: takes:cvq6uvnqf51c3vvuws97, in: student:2019331013, out: course:CSE330, semester: 12, year: 2019 };
 
 -- ------------------------------
 -- TABLE DATA: teacher

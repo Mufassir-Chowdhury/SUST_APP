@@ -1,7 +1,3 @@
-- time - datetime
-- duration - datetime
-- room - string
-- building - string
 
 ```sql
 DEFINE TABLE routine SCHEMAFULL;
@@ -37,15 +33,39 @@ create routine content {
 
 ### Relate a course with a routine
 ```sql 
-relate course:CSE222->follows->(select id from routine where time = 9 and ) set day = 'Sunday', year='2023'
+relate course:CSE330->follows->(select id from (create routine content {
+    time: 14,
+    duration: '1hr',
+    room: 'G-2',
+    building: 'IICT'
+})) set day='Wednesday', year='2023';
+
 ```
 
-### find a routine of a specfic day of a year of a course
+### find a routine  of a year of a course
 ```sql
-select course_code as code,
+--better
+select course_code as code, 
 <-(offers where year=2019 and semester=12)<-teaches<-teacher.name as name,
-->(follows where day='Sunday' and year=2023)->routine.* as routines
-from course:CSE222
+(select day, 
+->routine.* as routine
+from (select value  ->(follows where year=2023)
+from course:CSE222)) as class from course:CSE222 split name;
 
+--normal
+select <-course.course_code as code,
+<-course<-(offers where year=2019 and semester=12)<-teaches<-teacher.name as name,
+day, 
+->routine.* as routine
+from (select value  ->(follows where year=2023)
+from course:CSE222) split code, name;
 ```
+
+### find routine of a course in a perticular day
+```sql
+select ->(follows where day='Sunday' and year=2023)->routine.* as routine
+from course:CSE222
+```
+
+
 

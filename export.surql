@@ -58,6 +58,18 @@ DEFINE FIELD type ON course TYPE string ASSERT $value INSIDE ['Lab', 'Theory', '
 DEFINE INDEX name ON course FIELDS name UNIQUE;
 
 -- ------------------------------
+-- TABLE: dailyroutine
+-- ------------------------------
+
+DEFINE TABLE dailyroutine SCHEMAFULL;
+
+DEFINE FIELD building ON dailyroutine TYPE string ASSERT $value != NONE;
+DEFINE FIELD date ON dailyroutine TYPE datetime ASSERT $value != NONE;
+DEFINE FIELD duration ON dailyroutine TYPE string ASSERT $value INSIDE ['1hr', '2hr', 3hr];
+DEFINE FIELD room ON dailyroutine TYPE string ASSERT $value != NONE;
+DEFINE FIELD time ON dailyroutine TYPE number ASSERT $value != NONE AND $value >= 8 AND $value <= 18;
+
+-- ------------------------------
 -- TABLE: department
 -- ------------------------------
 
@@ -76,6 +88,24 @@ DEFINE INDEX minor_course_code ON department FIELDS minor_course_code UNIQUE;
 DEFINE INDEX name ON department FIELDS name UNIQUE;
 
 -- ------------------------------
+-- TABLE: follows
+-- ------------------------------
+
+DEFINE TABLE follows SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
+-- TABLE: has
+-- ------------------------------
+
+DEFINE TABLE has SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
+-- TABLE: having
+-- ------------------------------
+
+DEFINE TABLE having SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
 -- TABLE: login
 -- ------------------------------
 
@@ -86,6 +116,41 @@ DEFINE TABLE login SCHEMALESS PERMISSIONS NONE;
 -- ------------------------------
 
 DEFINE TABLE offers SCHEMALESS PERMISSIONS NONE;
+
+-- ------------------------------
+-- TABLE: post
+-- ------------------------------
+
+DEFINE TABLE post SCHEMAFULL;
+
+DEFINE FIELD description ON post TYPE string ASSERT $value != NONE;
+DEFINE FIELD info ON post TYPE object;
+DEFINE FIELD info.date ON post TYPE datetime ASSERT $value != NONE;
+DEFINE FIELD info.posted_by ON post TYPE record(teacher) ASSERT $value != NONE;
+DEFINE FIELD info.title ON post TYPE string ASSERT $value != NONE;
+DEFINE FIELD pdf ON post TYPE string;
+
+-- ------------------------------
+-- TABLE: resource
+-- ------------------------------
+
+DEFINE TABLE resource SCHEMAFULL;
+
+DEFINE FIELD date ON resource TYPE datetime ASSERT $value != NONE;
+DEFINE FIELD link ON resource TYPE string ASSERT $value != NONE;
+DEFINE FIELD posted_by ON resource TYPE record(student, admin, teacher) ASSERT $value != NONE;
+DEFINE FIELD title ON resource TYPE string ASSERT $value != NONE;
+
+-- ------------------------------
+-- TABLE: routine
+-- ------------------------------
+
+DEFINE TABLE routine SCHEMAFULL;
+
+DEFINE FIELD building ON routine TYPE string ASSERT $value != NONE;
+DEFINE FIELD duration ON routine TYPE string ASSERT $value INSIDE ['1hr', '2hr', 3hr];
+DEFINE FIELD room ON routine TYPE string ASSERT $value != NONE;
+DEFINE FIELD time ON routine TYPE number ASSERT $value != NONE AND $value >= 8 AND $value <= 17;
 
 -- ------------------------------
 -- TABLE: student
@@ -189,6 +254,12 @@ UPDATE course:CSE222 CONTENT { course_code: 'CSE222', credit: 3, department: dep
 UPDATE course:CSE330 CONTENT { course_code: 'CSE330', credit: 2, department: department:CSE, id: course:CSE330, name: 'Web Tech', syllabus: [{ title: 'Topic 1', topics: ['Discussion', 'Something other than that'] }, { title: 'Topic 2', topics: ['Discussion2', 'Something other than that'] }], type: 'Lab' };
 
 -- ------------------------------
+-- TABLE DATA: dailyroutine
+-- ------------------------------
+
+UPDATE dailyroutine:ndeb82uxfmwgybsuk2md CONTENT { building: 'IICT', date: '2023-08-24T19:32:45.564948Z', duration: '1hr', id: dailyroutine:ndeb82uxfmwgybsuk2md, room: 'G-2', time: 14 };
+
+-- ------------------------------
 -- TABLE DATA: department
 -- ------------------------------
 
@@ -196,6 +267,29 @@ UPDATE department:CSE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', 
 UPDATE department:ECO CONTENT { building: 'D', code: 330, floor: 3, id: department:ECO, letter_code: 'ECO', minor_course_code: 'B', name: 'Economics' };
 UPDATE department:PHY CONTENT { building: 'A', code: 132, floor: 1, id: department:PHY, letter_code: 'PHY', minor_course_code: 'C', name: 'Physics' };
 UPDATE department:SWE CONTENT { building: 'Dr. M. A. Wazed Miah IICT Building', code: 123, floor: 1, id: department:SWE, letter_code: 'SWE', minor_course_code: 'A', name: 'Software Engineering' };
+
+-- ------------------------------
+-- TABLE DATA: follows
+-- ------------------------------
+
+RELATE course:CSE330 -> follows:13wrgnxgn193h41lex3a -> routine:196j2rikt9dgikhpuelv CONTENT { __: true, day: 'Wednesday', id: follows:13wrgnxgn193h41lex3a, in: course:CSE330, out: routine:196j2rikt9dgikhpuelv, year: '2023' };
+RELATE course:CSE222 -> follows:4gyn6go2nt1z45jw91bc -> routine:0890gz6xvnjc5oc9cgfc CONTENT { __: true, day: 'Monday', id: follows:4gyn6go2nt1z45jw91bc, in: course:CSE222, out: routine:0890gz6xvnjc5oc9cgfc, year: '2023' };
+RELATE course:CSE222 -> follows:5r64y6ulhrhdf8zapyax -> routine:0890gz6xvnjc5oc9cgfc CONTENT { __: true, day: 'Sunday', id: follows:5r64y6ulhrhdf8zapyax, in: course:CSE222, out: routine:0890gz6xvnjc5oc9cgfc, year: '2023' };
+
+-- ------------------------------
+-- TABLE DATA: has
+-- ------------------------------
+
+RELATE course:CSE222 -> has:gdwh0a4n59m0wa8wukzk -> resource:a2lphbzcgp5ki4xe5jtv CONTENT { __: true, id: has:gdwh0a4n59m0wa8wukzk, in: course:CSE222, out: resource:a2lphbzcgp5ki4xe5jtv, type: 'Video', year: '2023' };
+RELATE course:CSE222 -> has:rxpwnox0962wrglsgb3m -> resource:5072z1qsmtzt96uave4x CONTENT { __: true, id: has:rxpwnox0962wrglsgb3m, in: course:CSE222, out: resource:5072z1qsmtzt96uave4x, type: 'Video', year: '2023' };
+RELATE course:CSE222 -> has:tzzuw2ajfnjiakvlet0s -> resource:7cjcpi6sqgr8pi1typmx CONTENT { __: true, id: has:tzzuw2ajfnjiakvlet0s, in: course:CSE222, out: resource:7cjcpi6sqgr8pi1typmx, type: 'Pdf', year: '2023' };
+RELATE course:CSE222 -> has:ypkepaluk8sy26hugxh2 -> post:vuc687jrwp2014xl18mf CONTENT { __: true, id: has:ypkepaluk8sy26hugxh2, in: course:CSE222, out: post:vuc687jrwp2014xl18mf, year: '2023' };
+
+-- ------------------------------
+-- TABLE DATA: having
+-- ------------------------------
+
+RELATE course:CSE330 -> having:syn88tvte55ce3zxzvv8 -> dailyroutine:ndeb82uxfmwgybsuk2md CONTENT { __: true, id: having:syn88tvte55ce3zxzvv8, in: course:CSE330, out: dailyroutine:ndeb82uxfmwgybsuk2md };
 
 -- ------------------------------
 -- TABLE DATA: login
@@ -225,6 +319,29 @@ RELATE department:CSE -> offers:stkue740iyvgmrklrtq7 -> course:CSE330 CONTENT { 
 RELATE department:CSE -> offers:t5hazd30yi26x82u5n2l -> course:CSE222 CONTENT { __: true, id: offers:t5hazd30yi26x82u5n2l, in: department:CSE, out: course:CSE222, semester: 12, year: 2019 };
 
 -- ------------------------------
+-- TABLE DATA: post
+-- ------------------------------
+
+UPDATE post:vuc687jrwp2014xl18mf CONTENT { description: 'this is the first post', id: post:vuc687jrwp2014xl18mf, info: { date: '2023-08-25T15:16:34.956770300Z', posted_by: teacher:2019331073, title: 'First Post' }, pdf: '' };
+
+-- ------------------------------
+-- TABLE DATA: resource
+-- ------------------------------
+
+UPDATE resource:5072z1qsmtzt96uave4x CONTENT { date: '2023-08-25T14:46:55.308837600Z', id: resource:5072z1qsmtzt96uave4x, link: 'https://www.youtube.com/watch?v=C7WFwgDRStM&ab_channel=Fireship', posted_by: student:2019331013, title: 'Introduction to surrealdb' };
+UPDATE resource:7cjcpi6sqgr8pi1typmx CONTENT { date: '2023-08-25T14:39:22.443165700Z', id: resource:7cjcpi6sqgr8pi1typmx, link: 'https://drive.google.com/file/d/1BoOMYnJTvUzBFGwZ7jfGzUgqc7NT5PSe/view?usp=drive_link', posted_by: student:2019331073, title: 'Database class note' };
+UPDATE resource:a2lphbzcgp5ki4xe5jtv CONTENT { date: '2023-08-25T14:24:04.359252500Z', id: resource:a2lphbzcgp5ki4xe5jtv, link: 'https://www.youtube.com/watch?v=C7WFwgDRStM&ab_channel=Fireship', posted_by: student:2019331073, title: 'Introduction to surrealdb' };
+UPDATE resource:q1bc9ex6a58avvsvldno CONTENT { date: '2023-08-25T14:12:16.412947700Z', id: resource:q1bc9ex6a58avvsvldno, link: 'https://www.youtube.com/watch?v=C7WFwgDRStM&ab_channel=Fireship', posted_by: student:2019331073, title: 'Introduction to surrealdb' };
+
+-- ------------------------------
+-- TABLE DATA: routine
+-- ------------------------------
+
+UPDATE routine:0890gz6xvnjc5oc9cgfc CONTENT { building: 'IICT', duration: '1hr', id: routine:0890gz6xvnjc5oc9cgfc, room: 'G-2', time: 9 };
+UPDATE routine:0sv0qyprii255ccv1vfl CONTENT { building: 'IICT', duration: '2hr', id: routine:0sv0qyprii255ccv1vfl, room: '304', time: 10 };
+UPDATE routine:196j2rikt9dgikhpuelv CONTENT { building: 'IICT', duration: '1hr', id: routine:196j2rikt9dgikhpuelv, room: 'G-2', time: 14 };
+
+-- ------------------------------
 -- TABLE DATA: student
 -- ------------------------------
 
@@ -241,6 +358,8 @@ UPDATE student:2023119144 CONTENT { blood_group: 'O+', current_semester: 5, depa
 -- ------------------------------
 
 RELATE student:2019331073 -> takes:2jepxv788in9t7t71q8g -> course:CSE330 CONTENT { __: true, id: takes:2jepxv788in9t7t71q8g, in: student:2019331073, out: course:CSE330, semester: 12, year: 2019 };
+RELATE student:2019331013 -> takes:4tnahxcwnlgpj6l634dl -> course:CSE222 CONTENT { __: true, id: takes:4tnahxcwnlgpj6l634dl, in: student:2019331013, out: course:CSE222, semester: 12, year: 2019 };
+RELATE student:2019331013 -> takes:cvq6uvnqf51c3vvuws97 -> course:CSE330 CONTENT { __: true, id: takes:cvq6uvnqf51c3vvuws97, in: student:2019331013, out: course:CSE330, semester: 12, year: 2019 };
 
 -- ------------------------------
 -- TABLE DATA: teacher

@@ -106,6 +106,18 @@ CREATE course:CSE330 CONTENT {
 ```
 
 
+### update e course
 ```sql
-select name, credit, type, syllabus from course where 
+update course:CSE222 merge {
+	item : {
+		item : ...
+	}
+}
+```
+
+### all the student and teacher assigned to a course
+```sql
+select name,<-takes<-student.name as assigned_students,
+array::distinct(<-offers<-teaches<-teacher.name) as assigned_teachers
+from course
 ```

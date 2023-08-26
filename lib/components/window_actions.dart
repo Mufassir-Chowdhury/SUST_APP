@@ -15,6 +15,19 @@ class WindowActions extends StatelessWidget {
             icon: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.0),
               child: Icon(
+                FluentIcons.sign_out,
+                size: 15,
+                color: Colors.grey,
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          IconButton(
+            icon: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
+              child: Icon(
                 FluentIcons.chrome_minimize,
                 size: 15,
                 color: Colors.grey,

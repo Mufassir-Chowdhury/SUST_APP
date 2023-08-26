@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
 import 'package:sust_app/routes/Administration/course_registration.dart';
+import 'package:sust_app/routes/Updates/posts.dart';
 import 'package:window_manager/window_manager.dart';
 
 class StudentPage extends StatefulWidget {
@@ -68,8 +69,8 @@ class _StudentPageState extends State<StudentPage> {
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Notices'),
-                  body: bodyItem(),
+                  title: const Text('Posts'),
+                  body: const Posts(),
                 ),
               ],
             ),

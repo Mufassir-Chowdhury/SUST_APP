@@ -16,12 +16,9 @@ class Authorization {
         '''{"ns": "test", "db": "test", "sc": "student", "email": "$id", "password": "$password"}''');
     final http.Response response3 = await signin(
         '''{"ns": "test", "db": "test", "sc": "admin", "email": "$id", "password": "$password"}''');
-    print(response1.body);
-    print(response2.body);
-    print(response3.body);
+
     if (jsonDecode(response1.body)['code'] == 200) {
       final jwt = JWT.decode(jsonDecode(response1.body)['token']);
-      print(jwt.payload);
       return Authorization(
         success: true,
         scope: jwt.payload['SC'],

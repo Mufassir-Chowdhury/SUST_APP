@@ -34,6 +34,9 @@ class MyApp extends StatelessWidget {
     return FluentApp(
       theme: FluentThemeData(
         focusTheme: const FocusThemeData(glowFactor: 4.0),
+        brightness: Brightness.light,
+        visualDensity: VisualDensity.standard,
+        accentColor: Colors.red,
       ),
       title: title,
       home: child,

@@ -48,6 +48,26 @@ class CourseModel with _$CourseModel {
     return CourseStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 
+  static Future<List<ListModel>> getNotTakenCourses(
+      String id, String department, int semester, int year) async {
+    final http.Response response = await post('''
+        select id as subtitle,name as title, id from array::difference(
+(select value id from (select value ->(offers where semester = $semester and year = $year)->course from $department))
+, 
+(select value id from (select value ->(takes where semester=$semester and year = $year)->course from $id))
+);      
+      ''');
+    return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
+  }
+
+  static Future<List<ListModel>> takenCourse(
+      String id, int semester, int year) async {
+    final http.Response response = await post('''
+select id as subtitle, name as title, id from (select value ->(takes where semester=$semester and year = $year)->course from $id);
+      ''');
+    return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
+  }
+
   static Future<String> create(CourseModel course) async {
     final http.Response response = await post(
         '''CREATE course:${course.id} CONTENT ${jsonEncode(course.toJson()).toString()}''');

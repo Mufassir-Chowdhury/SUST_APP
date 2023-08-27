@@ -18,9 +18,10 @@ assert $value != none;
 ```
 
 
-### ralate a course with a dailyroutine
+### relate a course with a dailyroutine
 ```sql
-relate course:CSE330->having->(select id from (create dailyroutine content {
+relate course:CSE330->having->(select id 
+from (create dailyroutine content {
     time: 14,
     duration: '1hr',
     room: 'G-2',

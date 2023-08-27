@@ -248,7 +248,6 @@ mixin _$StudentModel {
   String? get bloodGroup => throw _privateConstructorUsedError;
   String? get privilage => throw _privateConstructorUsedError;
   PersonalModel? get personal => throw _privateConstructorUsedError;
-  ResultModel? get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -272,12 +271,10 @@ abstract class $StudentModelCopyWith<$Res> {
       int? currentSemester,
       String? bloodGroup,
       String? privilage,
-      PersonalModel? personal,
-      ResultModel? result});
+      PersonalModel? personal});
 
   $EmailModelCopyWith<$Res>? get email;
   $PersonalModelCopyWith<$Res>? get personal;
-  $ResultModelCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -303,7 +300,6 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
     Object? bloodGroup = freezed,
     Object? privilage = freezed,
     Object? personal = freezed,
-    Object? result = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -346,10 +342,6 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
           ? _value.personal
           : personal // ignore: cast_nullable_to_non_nullable
               as PersonalModel?,
-      result: freezed == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as ResultModel?,
     ) as $Val);
   }
 
@@ -376,18 +368,6 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
       return _then(_value.copyWith(personal: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ResultModelCopyWith<$Res>? get result {
-    if (_value.result == null) {
-      return null;
-    }
-
-    return $ResultModelCopyWith<$Res>(_value.result!, (value) {
-      return _then(_value.copyWith(result: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -408,15 +388,12 @@ abstract class _$$_StudentModelCopyWith<$Res>
       int? currentSemester,
       String? bloodGroup,
       String? privilage,
-      PersonalModel? personal,
-      ResultModel? result});
+      PersonalModel? personal});
 
   @override
   $EmailModelCopyWith<$Res>? get email;
   @override
   $PersonalModelCopyWith<$Res>? get personal;
-  @override
-  $ResultModelCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -440,7 +417,6 @@ class __$$_StudentModelCopyWithImpl<$Res>
     Object? bloodGroup = freezed,
     Object? privilage = freezed,
     Object? personal = freezed,
-    Object? result = freezed,
   }) {
     return _then(_$_StudentModel(
       id: freezed == id
@@ -483,10 +459,6 @@ class __$$_StudentModelCopyWithImpl<$Res>
           ? _value.personal
           : personal // ignore: cast_nullable_to_non_nullable
               as PersonalModel?,
-      result: freezed == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as ResultModel?,
     ));
   }
 }
@@ -505,8 +477,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
       this.currentSemester,
       this.bloodGroup,
       this.privilage,
-      this.personal,
-      this.result});
+      this.personal});
 
   factory _$_StudentModel.fromJson(Map<String, dynamic> json) =>
       _$$_StudentModelFromJson(json);
@@ -531,12 +502,10 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
   final String? privilage;
   @override
   final PersonalModel? personal;
-  @override
-  final ResultModel? result;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StudentModel(id: $id, name: $name, department: $department, email: $email, gender: $gender, session: $session, currentSemester: $currentSemester, bloodGroup: $bloodGroup, privilage: $privilage, personal: $personal, result: $result)';
+    return 'StudentModel(id: $id, name: $name, department: $department, email: $email, gender: $gender, session: $session, currentSemester: $currentSemester, bloodGroup: $bloodGroup, privilage: $privilage, personal: $personal)';
   }
 
   @override
@@ -553,8 +522,7 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
       ..add(DiagnosticsProperty('currentSemester', currentSemester))
       ..add(DiagnosticsProperty('bloodGroup', bloodGroup))
       ..add(DiagnosticsProperty('privilage', privilage))
-      ..add(DiagnosticsProperty('personal', personal))
-      ..add(DiagnosticsProperty('result', result));
+      ..add(DiagnosticsProperty('personal', personal));
   }
 
   @override
@@ -576,25 +544,13 @@ class _$_StudentModel with DiagnosticableTreeMixin implements _StudentModel {
             (identical(other.privilage, privilage) ||
                 other.privilage == privilage) &&
             (identical(other.personal, personal) ||
-                other.personal == personal) &&
-            (identical(other.result, result) || other.result == result));
+                other.personal == personal));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      department,
-      email,
-      gender,
-      session,
-      currentSemester,
-      bloodGroup,
-      privilage,
-      personal,
-      result);
+  int get hashCode => Object.hash(runtimeType, id, name, department, email,
+      gender, session, currentSemester, bloodGroup, privilage, personal);
 
   @JsonKey(ignore: true)
   @override
@@ -621,8 +577,7 @@ abstract class _StudentModel implements StudentModel {
       final int? currentSemester,
       final String? bloodGroup,
       final String? privilage,
-      final PersonalModel? personal,
-      final ResultModel? result}) = _$_StudentModel;
+      final PersonalModel? personal}) = _$_StudentModel;
 
   factory _StudentModel.fromJson(Map<String, dynamic> json) =
       _$_StudentModel.fromJson;
@@ -647,8 +602,6 @@ abstract class _StudentModel implements StudentModel {
   String? get privilage;
   @override
   PersonalModel? get personal;
-  @override
-  ResultModel? get result;
   @override
   @JsonKey(ignore: true)
   _$$_StudentModelCopyWith<_$_StudentModel> get copyWith =>

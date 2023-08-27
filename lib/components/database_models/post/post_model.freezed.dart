@@ -480,7 +480,7 @@ InfoModel _$InfoModelFromJson(Map<String, dynamic> json) {
 mixin _$InfoModel {
   String? get title => throw _privateConstructorUsedError;
   String? get postedBy => throw _privateConstructorUsedError;
-  String? get dateOfPost => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -493,7 +493,7 @@ abstract class $InfoModelCopyWith<$Res> {
   factory $InfoModelCopyWith(InfoModel value, $Res Function(InfoModel) then) =
       _$InfoModelCopyWithImpl<$Res, InfoModel>;
   @useResult
-  $Res call({String? title, String? postedBy, String? dateOfPost});
+  $Res call({String? title, String? postedBy, String? date});
 }
 
 /// @nodoc
@@ -511,7 +511,7 @@ class _$InfoModelCopyWithImpl<$Res, $Val extends InfoModel>
   $Res call({
     Object? title = freezed,
     Object? postedBy = freezed,
-    Object? dateOfPost = freezed,
+    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       title: freezed == title
@@ -522,9 +522,9 @@ class _$InfoModelCopyWithImpl<$Res, $Val extends InfoModel>
           ? _value.postedBy
           : postedBy // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateOfPost: freezed == dateOfPost
-          ? _value.dateOfPost
-          : dateOfPost // ignore: cast_nullable_to_non_nullable
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -537,7 +537,7 @@ abstract class _$$_InfoModelCopyWith<$Res> implements $InfoModelCopyWith<$Res> {
       __$$_InfoModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? title, String? postedBy, String? dateOfPost});
+  $Res call({String? title, String? postedBy, String? date});
 }
 
 /// @nodoc
@@ -553,7 +553,7 @@ class __$$_InfoModelCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? postedBy = freezed,
-    Object? dateOfPost = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$_InfoModel(
       title: freezed == title
@@ -564,9 +564,9 @@ class __$$_InfoModelCopyWithImpl<$Res>
           ? _value.postedBy
           : postedBy // ignore: cast_nullable_to_non_nullable
               as String?,
-      dateOfPost: freezed == dateOfPost
-          ? _value.dateOfPost
-          : dateOfPost // ignore: cast_nullable_to_non_nullable
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -576,7 +576,7 @@ class __$$_InfoModelCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_InfoModel with DiagnosticableTreeMixin implements _InfoModel {
-  const _$_InfoModel({this.title, this.postedBy, this.dateOfPost});
+  const _$_InfoModel({this.title, this.postedBy, this.date});
 
   factory _$_InfoModel.fromJson(Map<String, dynamic> json) =>
       _$$_InfoModelFromJson(json);
@@ -586,11 +586,11 @@ class _$_InfoModel with DiagnosticableTreeMixin implements _InfoModel {
   @override
   final String? postedBy;
   @override
-  final String? dateOfPost;
+  final String? date;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'InfoModel(title: $title, postedBy: $postedBy, dateOfPost: $dateOfPost)';
+    return 'InfoModel(title: $title, postedBy: $postedBy, date: $date)';
   }
 
   @override
@@ -600,7 +600,7 @@ class _$_InfoModel with DiagnosticableTreeMixin implements _InfoModel {
       ..add(DiagnosticsProperty('type', 'InfoModel'))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('postedBy', postedBy))
-      ..add(DiagnosticsProperty('dateOfPost', dateOfPost));
+      ..add(DiagnosticsProperty('date', date));
   }
 
   @override
@@ -611,13 +611,12 @@ class _$_InfoModel with DiagnosticableTreeMixin implements _InfoModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.postedBy, postedBy) ||
                 other.postedBy == postedBy) &&
-            (identical(other.dateOfPost, dateOfPost) ||
-                other.dateOfPost == dateOfPost));
+            (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, postedBy, dateOfPost);
+  int get hashCode => Object.hash(runtimeType, title, postedBy, date);
 
   @JsonKey(ignore: true)
   @override
@@ -637,7 +636,7 @@ abstract class _InfoModel implements InfoModel {
   const factory _InfoModel(
       {final String? title,
       final String? postedBy,
-      final String? dateOfPost}) = _$_InfoModel;
+      final String? date}) = _$_InfoModel;
 
   factory _InfoModel.fromJson(Map<String, dynamic> json) =
       _$_InfoModel.fromJson;
@@ -647,7 +646,7 @@ abstract class _InfoModel implements InfoModel {
   @override
   String? get postedBy;
   @override
-  String? get dateOfPost;
+  String? get date;
   @override
   @JsonKey(ignore: true)
   _$$_InfoModelCopyWith<_$_InfoModel> get copyWith =>

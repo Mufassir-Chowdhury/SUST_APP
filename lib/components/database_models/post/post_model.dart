@@ -81,7 +81,7 @@ class InfoModel with _$InfoModel {
   const factory InfoModel({
     String? title,
     String? postedBy,
-    String? dateOfPost,
+    String? date,
   }) = _InfoModel;
 
   factory InfoModel.fromJson(Map<String, Object?> json) =>

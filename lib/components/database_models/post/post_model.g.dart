@@ -46,12 +46,12 @@ Map<String, dynamic> _$$_PostModelToJson(_$_PostModel instance) =>
 _$_InfoModel _$$_InfoModelFromJson(Map<String, dynamic> json) => _$_InfoModel(
       title: json['title'] as String?,
       postedBy: json['posted_by'] as String?,
-      dateOfPost: json['date_of_post'] as String?,
+      date: json['date'] as String?,
     );
 
 Map<String, dynamic> _$$_InfoModelToJson(_$_InfoModel instance) =>
     <String, dynamic>{
       'title': instance.title,
       'posted_by': instance.postedBy,
-      'date_of_post': instance.dateOfPost,
+      'date': instance.date,
     };

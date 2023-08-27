@@ -49,6 +49,11 @@ class DepartmentModel with _$DepartmentModel {
     return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 
+  static Future<DepartmentModel> delete(String id) async {
+    final http.Response response = await post('''delete $id;''');
+    return DepartmentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+  }
+
   static Future<String> create(DepartmentModel department) async {
     final http.Response response = await post(
         '''CREATE department:${department.id} CONTENT ${jsonEncode(department.toJson()).toString()}''');

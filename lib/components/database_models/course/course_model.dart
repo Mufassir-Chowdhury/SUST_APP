@@ -43,6 +43,11 @@ class CourseModel with _$CourseModel {
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
+  static Future<CourseModel> delete(String id) async {
+    final http.Response response = await post('''delete $id;''');
+    return CourseStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+  }
+
   static Future<CourseModel> getDetails(String id) async {
     final http.Response response = await post('''SELECT * FROM $id;''');
     return CourseStatus.fromJson(jsonDecode(response.body)[0]).result![0];
@@ -66,6 +71,13 @@ class CourseModel with _$CourseModel {
 select id as subtitle, name as title, id from (select value ->(takes where semester=$semester and year = $year)->course from $id);
       ''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
+  }
+
+  static void registerCourse(
+      String id, int semester, int year, String course) async {
+    final http.Response response = await post('''
+      relate ${id}->takes->${course} set semester = $semester, year = $year;
+      ''');
   }
 
   static Future<String> create(CourseModel course) async {

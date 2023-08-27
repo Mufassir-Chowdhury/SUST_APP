@@ -41,7 +41,7 @@ class TeacherModel with _$TeacherModel {
 
   static Future<List<ListModel>> getListTile(String? department) async {
     final http.Response response = await post(
-        '''SELECT name AS title, department.name AS subtitle, id AS id FROM teacher;''');
+        '''SELECT name AS title, department.name AS subtitle, id AS id FROM teacher  WHERE department = $department;''');
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
@@ -50,9 +50,36 @@ class TeacherModel with _$TeacherModel {
     return TeacherStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 
+  static Future<TeacherModel> delete(String id) async {
+    final http.Response response = await post('''delete $id;''');
+    return TeacherStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+  }
+
   static Future<String> create(TeacherModel teacher) async {
     final http.Response response = await post(
         '''CREATE teacher:${teacher.id} CONTENT ${jsonEncode(teacher.toJson()).toString()}''');
+    TeacherStatus status = TeacherStatus.fromJson(jsonDecode(response.body)[0]);
+    if (status.status == 'ERR') {
+      if (status.detail!.contains('Database record') &&
+          status.detail!.contains('already exists')) {
+        throw 'Department letter code already exists';
+      } else if (status.detail!
+          .contains('Database index `minor_course_code` already contains')) {
+        throw 'Minor course code already exists';
+      } else if (status.detail!
+          .contains('Database index `name` already contains')) {
+        throw 'Department name already exists';
+      } else if (status.detail!
+          .contains('Database index `code` already contains')) {
+        throw 'Department code already exists';
+      }
+    }
+    return status.status!;
+  }
+
+  static Future<String> update(TeacherModel teacher) async {
+    final http.Response response = await post(
+        '''UPDATE teacher:${teacher.id} MERGE ${jsonEncode(teacher.toJson()).toString()}''');
     TeacherStatus status = TeacherStatus.fromJson(jsonDecode(response.body)[0]);
     if (status.status == 'ERR') {
       if (status.detail!.contains('Database record') &&

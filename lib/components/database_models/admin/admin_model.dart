@@ -45,6 +45,11 @@ class AdminModel with _$AdminModel {
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
+  static Future<AdminModel> delete(String id) async {
+    final http.Response response = await post('''delete $id;''');
+    return AdminStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+  }
+
   static Future<AdminModel> getDetails(String id) async {
     final http.Response response = await post('''SELECT * FROM $id;''');
     return AdminStatus.fromJson(jsonDecode(response.body)[0]).result![0];

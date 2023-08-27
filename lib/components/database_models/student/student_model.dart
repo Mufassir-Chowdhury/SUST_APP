@@ -36,7 +36,7 @@ class StudentModel with _$StudentModel {
     String? bloodGroup,
     String? privilage,
     PersonalModel? personal,
-    ResultModel? result,
+    // ResultModel? result,
   }) = _StudentModel;
 
   factory StudentModel.fromJson(Map<String, Object?> json) =>
@@ -44,13 +44,18 @@ class StudentModel with _$StudentModel {
 
   static Future<List<ListModel>> getListTile(String? department) async {
     final http.Response response = await post(
-        '''SELECT name AS title, department.name AS subtitle, id AS id FROM student;''');
+        '''SELECT name AS title, department.name AS subtitle, id AS id FROM student  WHERE department = $department;''');
 
     return ListStatus.fromJson(jsonDecode(response.body)[0]).result!;
   }
 
   static Future<StudentModel> getDetails(String id) async {
     final http.Response response = await post('''SELECT * FROM $id''');
+    return StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
+  }
+
+  static Future<StudentModel> delete(String id) async {
+    final http.Response response = await post('''delete $id;''');
     return StudentStatus.fromJson(jsonDecode(response.body)[0]).result![0];
   }
 

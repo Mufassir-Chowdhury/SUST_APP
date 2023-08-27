@@ -80,67 +80,8 @@ class _TeacherPageState extends State<TeacherPage> {
               items: [
                 PaneItem(
                   icon: const Icon(FluentIcons.people),
-                  title: const Text('Students'),
-                  body: const Student(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.people),
-                  title: const Text('Teacher'),
-                  body: const Teacher(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.people),
                   title: const Text('Admin'),
                   body: const Admin(),
-                ),
-              ],
-            ),
-            PaneItemExpander(
-              icon: const Icon(FluentIcons.account_management),
-              title: const Text('Administrivia'),
-              body: bodyItem(),
-              items: [
-                PaneItem(
-                  icon: const Icon(FluentIcons.mail),
-                  title: const Text('Payment'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Course Registration'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Important Links'),
-                  body: bodyItem(),
-                ),
-              ],
-            ),
-            PaneItemExpander(
-              icon: const Icon(FluentIcons.account_management),
-              title: const Text('Miscellaneous'),
-              body: bodyItem(),
-              items: [
-                PaneItem(
-                  icon: const Icon(FluentIcons.mail),
-                  title: const Text('Bus Schedule'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.view_dashboard),
-                  title: const Text('Student Information'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Events'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Map'),
-                  body: bodyItem(),
                 ),
               ],
             ),

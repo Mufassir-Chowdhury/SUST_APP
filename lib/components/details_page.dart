@@ -39,9 +39,6 @@ class DetailsPage<T> extends StatelessWidget {
           }
         },
       ),
-    )
-        .animate()
-        .fade()
-        .slideY(begin: .25, end: 0, duration: 400.ms, curve: Curves.easeOut);
+    ).animate().fade();
   }
 }

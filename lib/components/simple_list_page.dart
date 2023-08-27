@@ -53,9 +53,15 @@ class Header extends StatelessWidget {
 
 class SimpleListBuilder<T> extends StatelessWidget {
   const SimpleListBuilder(
-      {super.key, required this.nameList, required this.onPressed});
+      {super.key,
+      required this.nameList,
+      required this.onPressed,
+      required this.onEditPressed,
+      required this.onDelete});
   final Future<List<T?>> nameList;
   final Function(String name, String id) onPressed;
+  final Function(String name, String id) onEditPressed;
+  final Function(String id) onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +84,34 @@ class SimpleListBuilder<T> extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 4.0),
                           child: Card(
                             padding: const EdgeInsets.all(5),
-                            child: ListTile(
-                              title: Text(snapshot.data![index]!.title),
-                              subtitle: Text(snapshot.data![index]!.subtitle),
-                              onPressed: () {
-                                onPressed(snapshot.data![index]!.title,
-                                    snapshot.data![index]!.id);
-                              },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  child: ListTile(
+                                    title: Text(snapshot.data![index]!.title),
+                                    subtitle:
+                                        Text(snapshot.data![index]!.subtitle),
+                                    onPressed: () {
+                                      onPressed(snapshot.data![index]!.title,
+                                          snapshot.data![index]!.id);
+                                    },
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(FluentIcons.edit),
+                                  onPressed: () {
+                                    onEditPressed(snapshot.data![index]!.title,
+                                        snapshot.data![index]!.id);
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(FluentIcons.delete),
+                                  onPressed: () {
+                                    onDelete(snapshot.data![index]!.id);
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -108,10 +135,14 @@ class SimpleListPage<T> extends StatefulWidget {
       required this.root,
       required this.loadNames,
       required this.detailsPage,
-      required this.add});
+      required this.editPage,
+      required this.add,
+      required this.deleteItem});
   final String root;
   final Function() loadNames;
   final Function(String id, String name) detailsPage;
+  final Function(String id, String name) editPage;
+  final Function(String id) deleteItem;
   final Widget Function(VoidCallback load) add;
 
   @override
@@ -184,6 +215,54 @@ class _SimpleListPageState<T> extends State<SimpleListPage> {
             title = '${widget.root} > $name';
             _selectedIndex = 1;
           });
+        },
+        onEditPressed: (name, id) {
+          setState(() {
+            pages.add(widget.editPage(id, name));
+            title = '${widget.root}';
+            _selectedIndex = 1;
+          });
+        },
+        onDelete: (id) {
+          showContentDialog(context, id);
+          // setState(() {
+          //   widget.deleteItem(id);
+          //   title = '${widget.root}';
+          //   _selectedIndex = 0;
+          // });
+          loadListPage();
         });
+  }
+
+  void showContentDialog(BuildContext context, String id) async {
+    final result = await showDialog<String>(
+      context: context,
+      builder: (context) => ContentDialog(
+        title: const Text('Delete?'),
+        content: const Text(
+          'Do you want to permanently delete this item?',
+        ),
+        actions: [
+          Button(
+            child: const Text('Delete'),
+            onPressed: () {
+              Navigator.pop(context, 'User deleted item');
+              // Delete file here
+              setState(() {
+                widget.deleteItem(id);
+                title = '${widget.root}';
+                _selectedIndex = 0;
+              });
+              loadListPage();
+            },
+          ),
+          FilledButton(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.pop(context, 'User canceled dialog'),
+          ),
+        ],
+      ),
+    );
+    setState(() {});
   }
 }

@@ -40,9 +40,6 @@ _$_StudentModel _$$_StudentModelFromJson(Map<String, dynamic> json) =>
       personal: json['personal'] == null
           ? null
           : PersonalModel.fromJson(json['personal'] as Map<String, dynamic>),
-      result: json['result'] == null
-          ? null
-          : ResultModel.fromJson(json['result'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_StudentModelToJson(_$_StudentModel instance) =>
@@ -57,7 +54,6 @@ Map<String, dynamic> _$$_StudentModelToJson(_$_StudentModel instance) =>
       'blood_group': instance.bloodGroup,
       'privilage': instance.privilage,
       'personal': instance.personal,
-      'result': instance.result,
     };
 
 _$_ResultModel _$$_ResultModelFromJson(Map<String, dynamic> json) =>

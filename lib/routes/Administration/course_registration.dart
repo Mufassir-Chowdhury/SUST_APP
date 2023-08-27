@@ -6,16 +6,6 @@ import 'package:sust_app/components/database_models/common_model.dart';
 import 'package:sust_app/components/database_models/course/course_model.dart';
 import 'package:sust_app/components/profile_model.dart';
 
-class Animal {
-  final int id;
-  final String name;
-
-  Animal({
-    required this.id,
-    required this.name,
-  });
-}
-
 class CourseRegistration extends StatefulWidget {
   const CourseRegistration({super.key});
 
@@ -42,18 +32,19 @@ class _CourseRegistrationState extends State<CourseRegistration> {
   @override
   void initState() {
     super.initState();
-    courses = Future.value([]);
+    courses = loadCourses();
     takenCourses = loadTakenCourses();
   }
 
   late Future<List<ListModel>> courses;
   late Future<List<ListModel>> takenCourses;
   List<ListModel> selectedCourses = [];
+  List<ListModel> tempCourses = [];
 
   final MultiSelectController<dynamic> _controller = MultiSelectController();
 
-  int? yearSelected;
-  int? semesterSelected;
+  int? yearSelected = 2019;
+  int? semesterSelected = 12;
   final years = <int>[
     2010,
     2011,
@@ -112,6 +103,7 @@ class _CourseRegistrationState extends State<CourseRegistration> {
                     setState(() {
                       semesterSelected = value!;
                       if (yearSelected != null) {
+                        print('loadd');
                         courses = loadCourses();
                       }
                     });
@@ -160,7 +152,7 @@ class _CourseRegistrationState extends State<CourseRegistration> {
                                       temp.add(item);
                                     }
                                   }
-                                  selectedCourses = temp;
+                                  tempCourses = temp;
                                 });
                               },
                             ),
@@ -168,18 +160,30 @@ class _CourseRegistrationState extends State<CourseRegistration> {
                           Button(
                               child: const material.Icon(
                                   material.Icons.arrow_right_alt),
-                              onPressed: () {}),
+                              onPressed: () async {
+                                for (ListModel course in tempCourses) {
+                                  CourseModel.registerCourse(
+                                      Provider.of<ProfileModel>(context,
+                                              listen: false)
+                                          .id!,
+                                      12,
+                                      2019,
+                                      course.id!);
+                                }
+                                courses = loadCourses();
+                                selectedCourses = tempCourses;
+                                setState(() {});
+                              }),
                           Flexible(
-                            child: ListView(
-                              shrinkWrap: true,
-                              children: selectedCourses
-                                  .map((course) => ListTile(
-                                        title: Text(course.title!),
-                                        subtitle: Text(course.id!),
-                                      ))
-                                  .toList(),
-                            ),
-                          ),
+                              child: ListView(
+                            shrinkWrap: true,
+                            children: selectedCourses
+                                .map((course) => ListTile(
+                                      title: Text(course.title!),
+                                      subtitle: Text(course.id!),
+                                    ))
+                                .toList(),
+                          )),
                         ],
                       ),
                     );

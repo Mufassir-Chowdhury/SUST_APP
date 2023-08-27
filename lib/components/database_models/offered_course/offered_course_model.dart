@@ -49,6 +49,12 @@ class OfferedCourseModel with _$OfferedCourseModel {
         .result![0];
   }
 
+  static Future<OfferedCourseModel> delete(String id) async {
+    final http.Response response = await post('''delete $id;''');
+    return OfferedCourseStatus.fromJson(jsonDecode(response.body)[0])
+        .result![0];
+  }
+
   static Future<String> create(
       OfferedCourseModel offeredCourse, String? teacher) async {
     final http.Response response = await post(

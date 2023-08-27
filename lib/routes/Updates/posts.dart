@@ -58,7 +58,7 @@ class _PostsState extends State<Posts> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   DateTime time =
-                      DateTime.parse(snapshot.data![index].info!.dateOfPost!);
+                      DateTime.parse(snapshot.data![index].info!.date!);
                   return Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Card(

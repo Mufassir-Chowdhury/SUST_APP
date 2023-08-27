@@ -2,7 +2,9 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sust_app/components/window_actions.dart';
 import 'package:sust_app/routes/Administration/course_registration.dart';
 import 'package:sust_app/routes/Updates/posts.dart';
+import 'package:sust_app/routes/Updates/routine.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:sust_app/routes/management/department/department.dart';
 
 class StudentPage extends StatefulWidget {
   const StudentPage({super.key});
@@ -47,103 +49,25 @@ class _StudentPageState extends State<StudentPage> {
             },
           ),
           items: [
-            PaneItemExpander(
-              icon: const Icon(FluentIcons.account_management),
-              title: const Text('Updates'),
-              body: bodyItem(),
-              items: [
-                PaneItem(
-                  icon: const Icon(FluentIcons.mail),
-                  title: const Text('Class Routine'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Due Assignments'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Upcoming Exams'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Posts'),
-                  body: const Posts(),
-                ),
-              ],
+            PaneItem(
+              icon: const Icon(FluentIcons.mail),
+              title: const Text('Class Routine'),
+              body: const Routine(),
             ),
-            PaneItemExpander(
-              icon: const Icon(FluentIcons.account_management),
-              title: const Text('Course Information'),
-              body: bodyItem(),
-              items: [
-                PaneItem(
-                  icon: const Icon(FluentIcons.mail),
-                  title: const Text('Resources'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Result'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Attendance'),
-                  body: bodyItem(),
-                ),
-              ],
+            PaneItem(
+              icon: const Icon(FluentIcons.calendar),
+              title: const Text('Posts'),
+              body: const Posts(),
             ),
-            PaneItemExpander(
-              icon: const Icon(FluentIcons.account_management),
-              title: const Text('Administration'),
-              body: bodyItem(),
-              items: [
-                PaneItem(
-                  icon: const Icon(FluentIcons.mail),
-                  title: const Text('Payment'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Course Registration'),
-                  body: const CourseRegistration(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Important Links'),
-                  body: bodyItem(),
-                ),
-              ],
+            PaneItem(
+              icon: const Icon(FluentIcons.calendar),
+              title: const Text('Course Registration'),
+              body: const CourseRegistration(),
             ),
-            PaneItemExpander(
-              icon: const Icon(FluentIcons.account_management),
-              title: const Text('Miscellaneous'),
-              body: bodyItem(),
-              items: [
-                PaneItem(
-                  icon: const Icon(FluentIcons.mail),
-                  title: const Text('Bus Schedule'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.view_dashboard),
-                  title: const Text('Student Information'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Events'),
-                  body: bodyItem(),
-                ),
-                PaneItem(
-                  icon: const Icon(FluentIcons.calendar),
-                  title: const Text('Map'),
-                  body: bodyItem(),
-                ),
-              ],
+            PaneItem(
+              icon: const Icon(FluentIcons.home_group),
+              title: const Text('Department'),
+              body: const Department(),
             ),
           ],
         ),
